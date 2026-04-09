@@ -99,7 +99,7 @@ table tbody td{padding:8px 10px;vertical-align:middle}
 .prog{height:4px;background:#e5e5ea;border-radius:2px;width:60px;overflow:hidden}
 .prog-fill{height:100%;background:var(--blue);border-radius:2px}
 /* Type badge */
-.tbadge{padding:3px 10px;border-radius:12px;font-size:10px;font-weight:700;white-space:nowrap;display:inline-block;letter-spacing:.3px}
+.tbadge{padding:3px 10px;border-radius:12px;font-size:10px;font-weight:700;white-space:nowrap;display:inline-block}
 .t-d{background:#e5e5ea;color:#3a3a3c}
 .t-dr{background:#dcfce7;color:#166534}
 .t-drr{background:#dbeafe;color:#1e40af}
@@ -118,6 +118,9 @@ table tbody td{padding:8px 10px;vertical-align:middle}
 .preview-tbl th{background:var(--bg);padding:6px 10px;text-align:left;border-bottom:1px solid var(--border);font-weight:600}
 .preview-tbl td{padding:5px 10px;border-bottom:1px solid #f2f2f7}
 @media print{.toolbar,.pipeline,.bulk-bar,.hdr .stats{display:none!important}.hdr{position:static}body{background:#fff}.tbl-wrap{padding:0;overflow:visible}table{min-width:unset!important}}
+
+/* Refit Type column min-width */
+table thead tr:not(.grp) th:nth-child(5),table tbody td:nth-child(5){min-width:140px;white-space:nowrap}
 </style>
 </head>
 <body>
@@ -146,7 +149,7 @@ table tbody td{padding:8px 10px;vertical-align:middle}
     <option value="s-done">Concluído</option>
   </select>
   <button class="btn btn-gray" onclick="openImport()">📋 Importar Excel</button>
-  <button class="btn btn-gray" onclick="exportExcel()">⬇ CSV</button>
+  <button class="btn btn-gray" onclick="exportExcel()">📊 Export Excel</button>
   <button class="btn btn-gray" onclick="window.print()">📄 PDF</button>
   <button class="btn btn-blue" onclick="saveData()">💾 Salvar</button>
   <button class="btn btn-red" onclick="if(confirm('Resetar todos os dados?'))resetData()">↩ Reset</button>
@@ -371,7 +374,7 @@ function buildRow(i) {
     +'<td style="text-align:center;color:var(--text2);font-size:11px;font-weight:600">'+(i+1)+'</td>'
     +'<td style="font-family:Menlo,monospace;font-size:10px;color:var(--text2)">'+s.id+'</td>'
     +'<td style="font-weight:500;font-size:12px">'+s.name+'</td>'
-    +'+'<td style="text-align:center">'+typeBadge(s.type)+'</td>' style="text-align:center">'+typeBadge(s.type)+'</td>'
+    +'<td style="text-align:center">'+typeBadge(s.type)+'</td>'
     +dc(i,'todInitial',d,'ct1')+dc(i,'todUpdated',d,'ct1')+dc(i,'todActual',d,'ct1')
     +dc(i,'sbSub',d,'ct2')+dc(i,'sbFeedback',d,'ct2')+dc(i,'sbPartnerAnswer',d,'ct2')+dc(i,'sbApp',d,'ct2')
     +'<td class="ct2" style="text-align:center"><input type="checkbox" '+(d.sbRev?'checked':'')+' onchange="set('+i+',\'sbRev\',this.checked)" style="accent-color:var(--blue)"></td>'
@@ -515,28 +518,28 @@ function initData() {
 function resetData() { localStorage.removeItem(LS); initData(); renderAll(); }
 
 // ── EXPORT CSV ────────────────────────────────────────────────────────
-// ── EXPORT EXCEL ─────────────────────────────────────────────────
-function gvx(d,f){return(d._tbd&&d._tbd[f])?'TBD':fmt(d[f]);}
 function exportExcel() {
-  var H=['Apple ID','POS Name','Type','TOD Initial','TOD Updated','TOD Actual',
-    'SB Submitted','Feedback to Partner','Partner Answer','SB Approved',
-    'IDK Shared','IDK Approved','FDK Shared','MDK Shared',
-    'Audit Submitted','Audit Feedback','Audit Partner Answer','Audit Approved',
-    'SFF Submitted','SFF Approved','Notes'];
-  var rows=STORES.map(function(s,i){
-    var d=DATA[i];
-    return [s.id,s.name,s.type,
-      gvx(d,'todInitial'),gvx(d,'todUpdated'),gvx(d,'todActual'),
-      gvx(d,'sbSub'),gvx(d,'sbFeedback'),gvx(d,'sbPartnerAnswer'),gvx(d,'sbApp'),
-      gvx(d,'idkSh'),gvx(d,'idkApp'),gvx(d,'fdkSh'),gvx(d,'mdkSh'),
-      gvx(d,'auditSub'),gvx(d,'auditFeedback'),gvx(d,'auditPartnerAnswer'),gvx(d,'auditApp'),
-      gvx(d,'sffSub'),gvx(d,'sffApp'),(d.notes||'').replace(/\t/g,' ')
-    ].join('\t');
+  var gvx = function(d,f) { return (d._tbd && d._tbd[f]) ? "TBD" : fmt(d[f]); };
+  var H = ["Apple ID","POS Name","Type","TOD Initial","TOD Updated","TOD Actual",
+    "SB Submitted","Feedback to Partner","Partner Answer","SB Approved",
+    "IDK Shared","IDK Approved","FDK Shared","MDK Shared",
+    "Audit Submitted","Audit Feedback","Audit Partner Answer","Audit Approved",
+    "SFF Submitted","SFF Approved","Notes"];
+  var rows = STORES.map(function(s,i) {
+    var d = DATA[i];
+    return [s.id, s.name, s.type,
+      gvx(d,"todInitial"), gvx(d,"todUpdated"), gvx(d,"todActual"),
+      gvx(d,"sbSub"), gvx(d,"sbFeedback"), gvx(d,"sbPartnerAnswer"), gvx(d,"sbApp"),
+      gvx(d,"idkSh"), gvx(d,"idkApp"), gvx(d,"fdkSh"), gvx(d,"mdkSh"),
+      gvx(d,"auditSub"), gvx(d,"auditFeedback"), gvx(d,"auditPartnerAnswer"), gvx(d,"auditApp"),
+      gvx(d,"sffSub"), gvx(d,"sffApp"),
+      (d.notes || "").replace(/\t/g, " ")
+    ].join("\t");
   });
-  var tsv='\uFEFF'+H.join('\t')+'\n'+rows.join('\n');
-  var a=document.createElement('a');
-  a.href=URL.createObjectURL(new Blob([tsv],{type:'application/vnd.ms-excel;charset=utf-8'}));
-  a.download='iplace-tracker-'+new Date().toISOString().slice(0,10)+'.xlsx';
+  var tsv = "\uFEFF" + H.join("\t") + "\n" + rows.join("\n");
+  var a = document.createElement("a");
+  a.href = URL.createObjectURL(new Blob([tsv], {type: "application/vnd.ms-excel;charset=utf-8"}));
+  a.download = "iplace-tracker-" + new Date().toISOString().slice(0,10) + ".xlsx";
   a.click();
 }
 
