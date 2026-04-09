@@ -99,7 +99,7 @@ table tbody td{padding:8px 10px;vertical-align:middle}
 .prog{height:4px;background:#e5e5ea;border-radius:2px;width:60px;overflow:hidden}
 .prog-fill{height:100%;background:var(--blue);border-radius:2px}
 /* Type badge */
-.tbadge{padding:2px 7px;border-radius:12px;font-size:9px;font-weight:700;white-space:nowrap}
+.tbadge{padding:3px 10px;border-radius:12px;font-size:10px;font-weight:700;white-space:nowrap;display:inline-block;letter-spacing:.3px}
 .t-d{background:#e5e5ea;color:#3a3a3c}
 .t-dr{background:#dcfce7;color:#166534}
 .t-drr{background:#dbeafe;color:#1e40af}
@@ -200,7 +200,7 @@ table tbody td{padding:8px 10px;vertical-align:middle}
   <th class="g8" colspan="3">RESUMO</th>
 </tr>
 <tr>
-  <th>☐</th><th>#</th><th>Apple ID</th><th>POS Name</th><th>Tipo</th>
+  <th>☐</th><th>#</th><th>Apple ID</th><th>POS Name</th><th style="min-width:130px;white-space:nowrap">Refit Type</th>
   <th class="ct1">TOD Initial</th><th class="ct1">TOD Updated</th><th class="ct1">TOD Actual</th>
   <th class="ct2">SB Submitted</th><th class="ct2">Feedback Partner</th><th class="ct2">Partner Answer</th><th class="ct2">SB Approved</th><th class="ct2">Rev?</th>
   <th class="ct3">IDK Shared</th><th class="ct3">IDK Approved</th><th class="ct3">Rev?</th>
@@ -371,7 +371,7 @@ function buildRow(i) {
     +'<td style="text-align:center;color:var(--text2);font-size:11px;font-weight:600">'+(i+1)+'</td>'
     +'<td style="font-family:Menlo,monospace;font-size:10px;color:var(--text2)">'+s.id+'</td>'
     +'<td style="font-weight:500;font-size:12px">'+s.name+'</td>'
-    +'<td style="text-align:center">'+typeBadge(s.type)+'</td>'
+    +'+'<td style="text-align:center">'+typeBadge(s.type)+'</td>' style="text-align:center">'+typeBadge(s.type)+'</td>'
     +dc(i,'todInitial',d,'ct1')+dc(i,'todUpdated',d,'ct1')+dc(i,'todActual',d,'ct1')
     +dc(i,'sbSub',d,'ct2')+dc(i,'sbFeedback',d,'ct2')+dc(i,'sbPartnerAnswer',d,'ct2')+dc(i,'sbApp',d,'ct2')
     +'<td class="ct2" style="text-align:center"><input type="checkbox" '+(d.sbRev?'checked':'')+' onchange="set('+i+',\'sbRev\',this.checked)" style="accent-color:var(--blue)"></td>'
