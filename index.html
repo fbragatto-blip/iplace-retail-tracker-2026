@@ -121,6 +121,13 @@ table tbody td{padding:8px 10px;vertical-align:middle}
 
 /* Refit Type column min-width */
 table thead tr:not(.grp) th:nth-child(5),table tbody td:nth-child(5){min-width:140px;white-space:nowrap}
+
+/* Remove TBD buttons */
+.bt{display:none!important}
+
+/* Drop zone */
+#importTxt{transition:border-color .2s}
+#importTxt.drag-over{border-color:var(--blue)!important;background:#f0f7ff!important}
 </style>
 </head>
 <body>
@@ -149,7 +156,7 @@ table thead tr:not(.grp) th:nth-child(5),table tbody td:nth-child(5){min-width:1
     <option value="s-done">Concluído</option>
   </select>
   <button class="btn btn-gray" onclick="openImport()">📋 Importar Excel</button>
-  <button class="btn btn-gray" onclick="exportExcel()">📊 Export Excel</button>
+  <button class="btn btn-gray" onclick="exportExcel()">📊 Export CSV/Excel</button>
   <button class="btn btn-gray" onclick="window.print()">📄 PDF</button>
   <button class="btn btn-blue" onclick="saveData()">💾 Salvar</button>
   <button class="btn btn-red" onclick="if(confirm('Resetar todos os dados?'))resetData()">↩ Reset</button>
@@ -224,7 +231,7 @@ table thead tr:not(.grp) th:nth-child(5),table tbody td:nth-child(5){min-width:1
     <h2>📋 Importar dados do Excel</h2>
     <p>Copie as células do Excel (⌘C) e cole aqui. A primeira linha deve ter os nomes das colunas. A coluna "Apple ID" identifica cada loja.</p>
     <p style="font-family:monospace;background:#f5f5f7;padding:8px;border-radius:6px;font-size:10px">Apple ID	SB Submitted	FDK Shared	...<br>727819	08/04/2026	15/04/2026	...</p>
-    <textarea id="importTxt" placeholder="Cole aqui os dados do Excel (⌘V)…"></textarea>
+    <textarea id="importTxt" placeholder="Cole aqui (⌘V) ou arraste o arquivo .csv/.xlsx aqui…" ondragover="event.preventDefault();event.dataTransfer.dropEffect='copy'" ondrop="handleFileDrop(event)"></textarea>
     <div style="display:flex;gap:8px">
       <button class="btn btn-blue" onclick="analyzeImport()">Analisar</button>
       <button class="btn btn-gray" onclick="closeImport()">Cancelar</button>
@@ -519,27 +526,42 @@ function resetData() { localStorage.removeItem(LS); initData(); renderAll(); }
 
 // ── EXPORT CSV ────────────────────────────────────────────────────────
 function exportExcel() {
-  var gvx = function(d,f) { return (d._tbd && d._tbd[f]) ? "TBD" : fmt(d[f]); };
-  var H = ["Apple ID","POS Name","Type","TOD Initial","TOD Updated","TOD Actual",
+  // CSV export — proper format, opens correctly in Excel
+  function csvQ(v) {
+    var s = String(v == null ? "" : v);
+    if (s.indexOf(",") >= 0 || s.indexOf('"') >= 0 || s.indexOf("\n") >= 0) {
+      return '"' + s.replace(/"/g, '""')+'"';
+    }
+    return s;
+  }
+  function gvx(d,f) {
+    if (d._tbd && d._tbd[f]) return "TBD";
+    return fmt(d[f]);
+  }
+  var H = ["Apple ID","POS Name","Refit Type",
+    "TOD Initial","TOD Updated","TOD Actual",
     "SB Submitted","Feedback to Partner","Partner Answer","SB Approved",
-    "IDK Shared","IDK Approved","FDK Shared","MDK Shared",
+    "IDK Shared","IDK Approved",
+    "FDK Shared","MDK Shared",
     "Audit Submitted","Audit Feedback","Audit Partner Answer","Audit Approved",
     "SFF Submitted","SFF Approved","Notes"];
   var rows = STORES.map(function(s,i) {
     var d = DATA[i];
-    return [s.id, s.name, s.type,
-      gvx(d,"todInitial"), gvx(d,"todUpdated"), gvx(d,"todActual"),
-      gvx(d,"sbSub"), gvx(d,"sbFeedback"), gvx(d,"sbPartnerAnswer"), gvx(d,"sbApp"),
-      gvx(d,"idkSh"), gvx(d,"idkApp"), gvx(d,"fdkSh"), gvx(d,"mdkSh"),
-      gvx(d,"auditSub"), gvx(d,"auditFeedback"), gvx(d,"auditPartnerAnswer"), gvx(d,"auditApp"),
-      gvx(d,"sffSub"), gvx(d,"sffApp"),
-      (d.notes || "").replace(/\t/g, " ")
-    ].join("\t");
+    return [
+      s.id, s.name, s.type,
+      gvx(d,"todInitial"),gvx(d,"todUpdated"),gvx(d,"todActual"),
+      gvx(d,"sbSub"),gvx(d,"sbFeedback"),gvx(d,"sbPartnerAnswer"),gvx(d,"sbApp"),
+      gvx(d,"idkSh"),gvx(d,"idkApp"),
+      gvx(d,"fdkSh"),gvx(d,"mdkSh"),
+      gvx(d,"auditSub"),gvx(d,"auditFeedback"),gvx(d,"auditPartnerAnswer"),gvx(d,"auditApp"),
+      gvx(d,"sffSub"),gvx(d,"sffApp"),
+      (d.notes||"").replace(/[\r\n]+/g," ")
+    ].map(csvQ).join(",");
   });
-  var tsv = "\uFEFF" + H.join("\t") + "\n" + rows.join("\n");
+  var csv = "\uFEFF" + H.map(csvQ).join(",") + "\n" + rows.join("\n");
   var a = document.createElement("a");
-  a.href = URL.createObjectURL(new Blob([tsv], {type: "application/vnd.ms-excel;charset=utf-8"}));
-  a.download = "iplace-tracker-" + new Date().toISOString().slice(0,10) + ".xlsx";
+  a.href = URL.createObjectURL(new Blob([csv], {type: "text/csv;charset=utf-8"}));
+  a.download = "iplace-tracker-" + new Date().toISOString().slice(0,10) + ".csv";
   a.click();
 }
 
@@ -555,10 +577,31 @@ const FMAP={
 };
 function openImport() { document.getElementById('importModal').className='modal-bg show'; }
 function closeImport() { document.getElementById('importModal').className='modal-bg'; document.getElementById('importTxt').value=''; document.getElementById('importPreview').innerHTML=''; document.getElementById('importApplyArea').style.display='none'; pendingImport=[]; }
+
+// ── FILE DROP HANDLER ─────────────────────────────────────────
+function handleFileDrop(e) {
+  e.preventDefault();
+  var file = e.dataTransfer.files[0];
+  if (!file) return;
+  var reader = new FileReader();
+  reader.onload = function(ev) {
+    document.getElementById("importTxt").value = ev.target.result;
+    document.getElementById("importTxt").classList.remove("drag-over");
+  };
+  reader.readAsText(file, "utf-8");
+}
 function analyzeImport() {
   const txt=document.getElementById('importTxt').value.trim();
   if(!txt){alert('Cole os dados do Excel primeiro.');return;}
-  const lines=txt.split('\n').map(l=>l.split('\t').map(c=>c.trim()));
+  // Support tab (TSV) and comma (CSV) separators
+  var useTab = txt.split('\n')[0].indexOf('\t') >= 0;
+  var lines = txt.split('\n').map(function(l) {
+    if (useTab) return l.split('\t').map(function(x){return x.trim();});
+    var res=[],cur='',inQ=false;
+    for(var ci=0;ci<l.length;ci++){var ch=l[ci];if(ch=='"'){if(inQ&&l[ci+1]=='"'){cur+='"';ci++;}else inQ=!inQ;}else if(ch==','&&!inQ){res.push(cur.trim());cur='';}else cur+=ch;}
+    res.push(cur.trim());
+    return res;
+  });
   if(lines.length<2){alert('Pelo menos 2 linhas necessárias (cabeçalho + dados).');return;}
   const hdrs=lines[0].map(h=>h.toLowerCase());
   const mapped=hdrs.map(h=>FMAP[h]||null);
