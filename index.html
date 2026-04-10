@@ -5,202 +5,130 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>iPlace Retail Tracker 2026</title>
 <style>
-:root{
-  --blue:#007aff;--green:#34c759;--red:#ff3b30;--orange:#f97316;
-  --bg:#f5f5f7;--bd:#d2d2d7;--tx:#1d1d1f;--tx2:#6e6e73;
-  --sb-bg:#dbeafe;--sb-hdr:#1e40af;
-  --idk-bg:#dcfce7;--idk-hdr:#166534;
-  --fdk-bg:#fef3c7;--fdk-hdr:#92400e;
-  --mdk-bg:#fce7f3;--mdk-hdr:#9d174d;
-  --aud-bg:#f3e8ff;--aud-hdr:#6b21a8;
-  --sff-bg:#ccfbf1;--sff-hdr:#065f46;
-  --tod-bg:#fff7ed;--tod-hdr:#c2410c;
-  --sum-bg:#f0f0f5;--sum-hdr:#3a3a3c;
-}
+:root{--blue:#007aff;--green:#34c759;--red:#ff3b30;--orange:#f97316;--bg:#f5f5f7;--bd:#d2d2d7;--tx:#1d1d1f;--tx2:#6e6e73}
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:-apple-system,BlinkMacSystemFont,sans-serif;background:var(--bg);color:var(--tx);font-size:12px}
-
-/* Header */
 .hdr{background:rgba(255,255,255,.95);backdrop-filter:blur(20px);border-bottom:1px solid var(--bd);padding:12px 20px;position:sticky;top:0;z-index:200;display:flex;align-items:center;gap:16px}
 .hdr-t{font-size:15px;font-weight:700}.hdr-s{font-size:11px;color:var(--tx2)}
 .stats{display:flex;gap:10px;margin-left:auto}
 .stat{background:var(--bg);border:1px solid var(--bd);border-radius:8px;padding:5px 12px;text-align:center}
 .stat-n{font-size:17px;font-weight:700;line-height:1}.stat-l{font-size:9px;color:var(--tx2);text-transform:uppercase}
-
-/* Toolbar */
 .bar{display:flex;align-items:center;gap:8px;padding:10px 20px;background:#fff;border-bottom:1px solid var(--bd);flex-wrap:wrap}
 .srch{padding:7px 10px;border:1px solid var(--bd);border-radius:8px;font-size:12px;font-family:inherit;background:var(--bg);outline:none;width:200px}
 .srch:focus{border-color:var(--blue);background:#fff}
 .fsel{padding:7px 10px;border:1px solid var(--bd);border-radius:8px;font-size:12px;font-family:inherit;background:#fff;outline:none}
 .btn{padding:7px 12px;border-radius:8px;border:none;font-size:12px;font-family:inherit;font-weight:500;cursor:pointer;white-space:nowrap}
-.b-bl{background:var(--blue);color:#fff}
-.b-gy{background:var(--bg);color:var(--tx);border:1px solid var(--bd)}
-.b-rd{background:#fff0f0;color:var(--red);border:1px solid #ffd7d5}
+.b-bl{background:var(--blue);color:#fff}.b-gy{background:var(--bg);color:var(--tx);border:1px solid var(--bd)}.b-rd{background:#fff0f0;color:var(--red);border:1px solid #ffd7d5}
 .sav{font-size:10px;color:var(--tx2);margin-left:auto}
-
-/* Pipeline */
 .pipe{display:flex;gap:8px;padding:10px 20px;background:#fff;border-bottom:1px solid var(--bd);flex-wrap:wrap}
 .pc{display:flex;align-items:center;gap:6px;padding:6px 12px;border-radius:20px;border:1px solid var(--bd);cursor:pointer;font-size:11px;font-weight:600;background:var(--bg)}
 .pc:hover{border-color:var(--blue);background:#e8f0ff}
-.pd{width:8px;height:8px;border-radius:50%}
-.pn{font-size:15px;font-weight:700;line-height:1}
-
-/* Bulk bar */
+.pd{width:8px;height:8px;border-radius:50%}.pn{font-size:15px;font-weight:700;line-height:1}
 .bulk{display:none;align-items:center;gap:8px;padding:8px 20px;background:#1d1d1f;color:#fff;flex-wrap:wrap}
 .bulk.on{display:flex}
 .bsel{background:#3a3a3c;color:#fff;border:none;border-radius:6px;padding:5px 8px;font-size:11px;font-family:inherit;outline:none}
 .binp{background:#3a3a3c;color:#fff;border:none;border-radius:6px;padding:5px 8px;font-size:11px;width:110px;font-family:inherit}
 .bbt{background:var(--blue);color:#fff;border:none;border-radius:6px;padding:5px 10px;font-size:11px;font-family:inherit;font-weight:600;cursor:pointer}
 .blnk{color:#aaa;font-size:11px;cursor:pointer;text-decoration:underline}
-
-/* Table */
 .tw{overflow-x:auto;padding:16px 20px}
 table{border-collapse:separate;border-spacing:0;background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.08);min-width:2400px;width:100%}
 thead th.g{padding:5px 8px;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;text-align:center;border-bottom:1px solid rgba(0,0,0,.06)}
 thead th.c{padding:7px 8px;font-size:10px;font-weight:600;color:var(--tx2);background:var(--bg);border-bottom:2px solid var(--bd);white-space:nowrap;vertical-align:bottom}
-
-/* Group header colors */
-.g0{background:var(--sum-bg);color:var(--sum-hdr)}
-.g1{background:var(--tod-bg);color:var(--tod-hdr)}
-.g2{background:var(--sb-bg);color:var(--sb-hdr)}
-.g3{background:var(--idk-bg);color:var(--idk-hdr)}
-.g4{background:var(--fdk-bg);color:var(--fdk-hdr)}
-.g5{background:var(--mdk-bg);color:var(--mdk-hdr)}
-.g6{background:var(--aud-bg);color:var(--aud-hdr)}
-.g7{background:var(--sff-bg);color:var(--sff-hdr)}
-
-/* Cell tints */
-.ct0{background:rgba(240,240,245,.3)}
-.ct1{background:rgba(255,237,213,.25)}
-.ct2{background:rgba(219,234,254,.22)}
-.ct3{background:rgba(220,252,231,.22)}
-.ct4{background:rgba(254,243,199,.22)}
-.ct5{background:rgba(252,231,243,.22)}
-.ct6{background:rgba(243,232,255,.22)}
-.ct7{background:rgba(204,251,241,.22)}
-
-/* Sticky columns 1-4: ☐ # AID POS */
+.g0{background:#f0f0f5;color:#3a3a3c}.g1{background:#fff7ed;color:#c2410c}
+.g2{background:#dbeafe;color:#1e40af}.g3{background:#dcfce7;color:#166534}
+.g4{background:#fef3c7;color:#92400e}.g5{background:#fce7f3;color:#9d174d}
+.g6{background:#f3e8ff;color:#6b21a8}.g7{background:#ccfbf1;color:#065f46}
+.ct0{background:rgba(240,240,245,.3)}.ct1{background:rgba(255,237,213,.25)}
+.ct2{background:rgba(219,234,254,.22)}.ct3{background:rgba(220,252,231,.22)}
+.ct4{background:rgba(254,243,199,.22)}.ct5{background:rgba(252,231,243,.22)}
+.ct6{background:rgba(243,232,255,.22)}.ct7{background:rgba(204,251,241,.22)}
 thead th.c:nth-child(1),tbody td:nth-child(1){position:sticky;left:0;z-index:3;background:#f5f5f7}
 thead th.c:nth-child(2),tbody td:nth-child(2){position:sticky;left:30px;z-index:3;background:#f5f5f7}
 thead th.c:nth-child(3),tbody td:nth-child(3){position:sticky;left:54px;z-index:3;background:#f5f5f7}
 thead th.c:nth-child(4),tbody td:nth-child(4){position:sticky;left:120px;z-index:3;background:#f5f5f7;box-shadow:2px 0 5px rgba(0,0,0,.06)}
-
 tbody tr:hover td{background:#f0f7ff!important}
 tbody tr.sel td{background:rgba(0,122,255,.06)!important}
 tbody tr:not(:last-child) td{border-bottom:1px solid #f2f2f7}
 tbody td{padding:7px 8px;vertical-align:middle}
-
-/* Date input highlight */
 .di{display:flex;align-items:center;min-width:100px}
 .di input{width:88px;padding:4px 6px;border:1px solid #fcd34d;border-radius:5px;font-size:11px;font-family:inherit;background:#fffde7;color:var(--tx);cursor:text}
-.di input:hover{border-color:var(--orange)}
-.di input:focus{border-color:var(--blue);background:#fff;outline:none;box-shadow:0 0 0 2px rgba(0,122,255,.15)}
-.di input:placeholder-shown{background:#f9fafb;border-color:var(--bd)}
-
-/* Status badge */
+.di input:hover{border-color:var(--orange)}.di input:focus{border-color:var(--blue);background:#fff;outline:none}
 .sb{display:inline-flex;align-items:center;gap:4px;padding:3px 8px;border-radius:20px;font-size:10px;font-weight:600;white-space:nowrap}
-.sn{background:#f2f2f7;color:#8e8e93}
-.sp{background:#dbeafe;color:#1e40af}
-.sq{background:#fef3c7;color:#92400e}
-.so{background:#fee2e2;color:#991b1b}
-.sk{background:#d1fae5;color:#065f46}
-
-/* ETA pill */
-.eo{background:#d1fae5;color:#065f46;border-radius:6px;padding:3px 7px;font-size:10px;font-weight:600}
-.ew{background:#fef3c7;color:#92400e;border-radius:6px;padding:3px 7px;font-size:10px;font-weight:600}
-.er{background:#fee2e2;color:#991b1b;border-radius:6px;padding:3px 7px;font-size:10px;font-weight:600}
-.en{color:var(--tx2);font-size:10px}
-
-/* Progress */
+.sn{background:#f2f2f7;color:#8e8e93}.sp{background:#dbeafe;color:#1e40af}
+.sq{background:#fef3c7;color:#92400e}.so{background:#fee2e2;color:#991b1b}.sk{background:#d1fae5;color:#065f46}
 .prg{height:4px;background:#e5e5ea;border-radius:2px;width:55px;overflow:hidden}
 .prf{height:100%;background:var(--blue);border-radius:2px}
-
-/* Type badge */
 .tb{padding:2px 8px;border-radius:12px;font-size:10px;font-weight:700;white-space:nowrap;min-width:100px;display:inline-block;text-align:center}
-.td{background:#e5e5ea;color:#3a3a3c}
-.tr{background:#dcfce7;color:#166534}
-.tz{background:#dbeafe;color:#1e40af}
-
-/* Notes */
+.td{background:#e5e5ea;color:#3a3a3c}.tr{background:#dcfce7;color:#166534}.tz{background:#dbeafe;color:#1e40af}
 .nt{width:100%;padding:4px 6px;border:1px solid transparent;border-radius:5px;font-size:11px;font-family:inherit;background:transparent;resize:none;height:26px;color:var(--tx)}
 .nt:hover,.nt:focus{border-color:var(--bd);background:#fff;outline:none}
-
-/* Import modal */
 .mo{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:500;align-items:center;justify-content:center}
 .mo.on{display:flex}
 .mb{background:#fff;border-radius:14px;padding:24px;width:600px;max-width:95vw;max-height:85vh;overflow-y:auto}
-.mb h2{font-size:16px;font-weight:700;margin-bottom:8px}
-.mb p{font-size:12px;color:var(--tx2);margin-bottom:10px}
+.mb h2{font-size:16px;font-weight:700;margin-bottom:8px}.mb p{font-size:12px;color:var(--tx2);margin-bottom:10px}
 .mb textarea{width:100%;height:150px;padding:10px;border:1px solid var(--bd);border-radius:8px;font-size:12px;font-family:monospace;resize:vertical;margin-bottom:12px}
 .ptbl{width:100%;border-collapse:collapse;font-size:11px;margin-top:10px}
 .ptbl th{background:var(--bg);padding:6px 10px;text-align:left;border-bottom:1px solid var(--bd);font-weight:600}
 .ptbl td{padding:5px 10px;border-bottom:1px solid #f2f2f7}
-
 @media print{.bar,.pipe,.bulk,.hdr .stats{display:none!important}.hdr{position:static}body{background:#fff}.tw{padding:0;overflow:visible}table{min-width:unset!important}}
 </style>
 </head>
 <body>
-
 <header class="hdr">
-  <div>
-    <div class="hdr-t">iPlace Retail Tracker 2026</div>
-    <div class="hdr-s">Document Submission &amp; Approval Tracker</div>
-  </div>
+  <div><div class="hdr-t">iPlace Retail Tracker 2026</div><div class="hdr-s">Document Submission &amp; Approval Tracker</div></div>
   <div class="stats">
     <div class="stat"><div class="stat-n" id="st0" style="color:var(--tx)">15</div><div class="stat-l">Total</div></div>
     <div class="stat"><div class="stat-n" id="st1" style="color:var(--blue)">0</div><div class="stat-l">Andamento</div></div>
     <div class="stat"><div class="stat-n" id="st2" style="color:var(--red)">0</div><div class="stat-l">Atrasado</div></div>
-    <div class="stat"><div class="stat-n" id="st3" style="color:var(--green)">0</div><div class="stat-l">Concluído</div></div>
+    <div class="stat"><div class="stat-n" id="st3" style="color:var(--green)">0</div><div class="stat-l">Concluido</div></div>
   </div>
 </header>
-
 <div class="bar">
-  <input class="srch" id="srch" type="text" placeholder="🔍 Buscar loja ou Apple ID…" oninput="filt()">
+  <input class="srch" id="srch" type="text" placeholder="Buscar loja ou Apple ID" oninput="filt()">
   <select class="fsel" id="sfil" onchange="filt()">
     <option value="">Todos os stages</option>
-    <option value="sn">Não Iniciado</option>
-    <option value="sp">Em Andamento</option>
-    <option value="sq">Pendente</option>
-    <option value="so">Atrasado</option>
-    <option value="sk">Concluído</option>
+    <option value="sn">Nao Iniciado</option><option value="sp">Andamento</option>
+    <option value="sq">Pendente</option><option value="so">Atrasado</option><option value="sk">Concluido</option>
   </select>
-  <button class="btn b-gy" onclick="openImp()">📋 Importar Excel</button>
-  <button class="btn b-gy" onclick="expXls()">📊 Export Excel</button>
-  <button class="btn b-gy" onclick="window.print()">📄 PDF</button>
-  <button class="btn b-bl" onclick="sv()">💾 Salvar</button>
-  <button class="btn b-rd" onclick="if(confirm('Resetar dados?'))rst()">↩ Reset</button>
-  <span class="sav" id="svn">● Auto-salvo</span>
+  <button class="btn b-gy" onclick="openImp()">Importar Excel</button>
+  <button class="btn b-gy" onclick="expXls()">Export Excel</button>
+  <button class="btn b-gy" onclick="window.print()">PDF</button>
+  <button class="btn b-bl" onclick="sv()">Salvar</button>
+  <button class="btn b-rd" onclick="if(confirm('Resetar?'))rst()">Reset</button>
+  <span class="sav" id="svn">Auto-salvo</span>
 </div>
-
 <div class="pipe" id="pipe"></div>
-
 <div class="bulk" id="blk">
-  <span id="blkc" style="white-space:nowrap"></span>
-  <span style="opacity:.4">|</span>
-  <span style="font-size:11px">Campo:</span>
+  <span id="blkc"></span><span style="opacity:.4">|</span><span style="font-size:11px">Campo:</span>
   <select class="bsel" id="blkf">
-    <option value="todInitial">TOD Initial</option><option value="todActual">TOD Actual</option>
-    <option value="sbSub">SB Submitted</option><option value="sbFeedback">SB Feedback</option>
-    <option value="sbPartnerAnswer">SB Partner Answer</option><option value="sbApp">SB Approved</option>
-    <option value="idkSh">IDK Shared</option><option value="idkApp">IDK Approved</option>
-    <option value="fdkSh">FDK Shared</option><option value="mdkSh">MDK Shared</option>
-    <option value="auditSub">Audit Submitted</option><option value="auditFeedback">Audit Feedback</option>
-    <option value="auditPartnerAnswer">Audit Partner Answer</option><option value="auditApp">Audit Approved</option>
-    <option value="sffSub">SFF Submitted</option><option value="sffApp">SFF Approved</option>
+    <option value="todInitial">TOD Initial</option>
+    <option value="todActual">TOD Actual</option>
+    <option value="sbSub">SB Submitted</option>
+    <option value="sbFeedback">SB Feedback</option>
+    <option value="sbPartnerAnswer">SB Partner Answer</option>
+    <option value="sbApp">SB Approved</option>
+    <option value="idkSh">IDK Shared</option>
+    <option value="idkApp">IDK Approved</option>
+    <option value="fdkSh">FDK Shared</option>
+    <option value="mdkSh">MDK Shared</option>
+    <option value="auditSub">Audit Submitted</option>
+    <option value="auditFeedback">Audit Feedback</option>
+    <option value="auditPartnerAnswer">Audit Partner Answer</option>
+    <option value="auditApp">Audit Approved</option>
+    <option value="sffSub">SFF Submitted</option>
+    <option value="sffApp">SFF Approved</option>
   </select>
   <input class="binp" id="blkd" type="text" placeholder="DD/MM/AAAA">
   <button class="bbt" onclick="bfDate()">Aplicar</button>
   <button class="bbt" style="background:#555" onclick="bfToday()">Hoje</button>
   <span class="blnk" onclick="deSel()">Desmarcar</span>
 </div>
-
 <div class="tw">
-<table id="tbl">
-<thead>
+<table id="tbl"><thead>
 <tr>
   <th class="g g0" colspan="7">PROJETO + RESUMO</th>
   <th class="g g1" colspan="2">TOD</th>
-  <th class="g g2" colspan="5">STORE BRIEF (SB)</th>
+  <th class="g g2" colspan="5">STORE BRIEF</th>
   <th class="g g3" colspan="3">IDK</th>
   <th class="g g4" colspan="3">FDK</th>
   <th class="g g5" colspan="3">MDK</th>
@@ -208,7 +136,7 @@ tbody td{padding:7px 8px;vertical-align:middle}
   <th class="g g7" colspan="2">SFF</th>
 </tr>
 <tr>
-  <th class="c" style="width:24px">☐</th>
+  <th class="c" style="width:24px">&#9744;</th>
   <th class="c" style="width:24px">#</th>
   <th class="c" style="width:66px">Apple ID</th>
   <th class="c" style="min-width:160px">POS Name</th>
@@ -216,41 +144,26 @@ tbody td{padding:7px 8px;vertical-align:middle}
   <th class="c ct0" style="min-width:120px">Status</th>
   <th class="c ct0" style="width:70px">Prog.</th>
   <th class="c ct1">TOD Initial</th><th class="c ct1">TOD Actual</th>
-  <th class="c ct2">SB Submitted</th><th class="c ct2">Feedback</th><th class="c ct2">Partner Ans.</th><th class="c ct2">SB Approved</th><th class="c ct2">Rev?</th>
-  <th class="c ct3">IDK Shared</th><th class="c ct3">IDK Approved</th><th class="c ct3">Rev?</th>
+  <th class="c ct2">SB Sub.</th><th class="c ct2">Feedback</th><th class="c ct2">Partner Ans.</th><th class="c ct2">SB Appr.</th><th class="c ct2">Rev?</th>
+  <th class="c ct3">IDK Shared</th><th class="c ct3">IDK Appr.</th><th class="c ct3">Rev?</th>
   <th class="c ct4">FDK Shared</th><th class="c ct4">FDK ETA</th><th class="c ct4">Rev?</th>
   <th class="c ct5">MDK?</th><th class="c ct5">MDK Shared</th><th class="c ct5">MDK ETA</th>
   <th class="c ct6">Audit Sub.</th><th class="c ct6">Feedback</th><th class="c ct6">Partner Ans.</th><th class="c ct6">Audit Appr.</th><th class="c ct6">Rev?</th>
-  <th class="c ct7">SFF Submitted</th><th class="c ct7">SFF Approved</th>
+  <th class="c ct7">SFF Sub.</th><th class="c ct7">SFF Appr.</th>
 </tr>
-</thead>
-<tbody id="tbody"></tbody>
-</table>
+</thead><tbody id="tbody"></tbody></table>
 </div>
-
-<!-- Import Modal -->
-<div class="mo" id="impM">
-  <div class="mb">
-    <h2>📋 Importar dados do Excel</h2>
-    <p>Cole os dados copiados do Excel (⌘C → ⌘V) ou arraste o arquivo .csv/.xls aqui.<br>
-       Primeira linha = cabeçalhos. Coluna "Apple ID" identifica a loja.</p>
-    <p style="font-size:11px;background:var(--bg);padding:8px;border-radius:6px;font-family:monospace">💡 Use "Export Excel" para gerar o template, edite e reimporte.</p>
-    <textarea id="impTxt"
-      ondragover="event.preventDefault()"
-      ondrop="dropFile(event)"
-      placeholder="Cole aqui ou arraste o arquivo…"></textarea>
-    <div style="display:flex;gap:8px">
-      <button class="btn b-bl" onclick="anImp()">Analisar</button>
-      <button class="btn b-gy" onclick="clImp()">Cancelar</button>
-    </div>
-    <div id="impPrev"></div>
-    <div id="impAct" style="display:none;justify-content:flex-end;gap:8px;margin-top:12px">
-      <button class="btn b-bl" onclick="apImp()">✅ Aplicar</button>
-      <button class="btn b-gy" onclick="clImp()">Cancelar</button>
-    </div>
+<div class="mo" id="impM"><div class="mb">
+  <h2>Importar dados do Excel</h2>
+  <p>Cole os dados (Ctrl+V) ou arraste o arquivo. Primeira linha = cabecalhos. Coluna "Apple ID" identifica a loja.</p>
+  <p style="font-size:11px;background:var(--bg);padding:8px;border-radius:6px;font-family:monospace">Use "Export Excel" para gerar o template.</p>
+  <textarea id="impTxt" ondragover="event.preventDefault()" ondrop="dropFile(event)" placeholder="Cole aqui ou arraste o arquivo..."></textarea>
+  <div style="display:flex;gap:8px"><button class="btn b-bl" onclick="anImp()">Analisar</button><button class="btn b-gy" onclick="clImp()">Cancelar</button></div>
+  <div id="impPrev"></div>
+  <div id="impAct" style="display:none;justify-content:flex-end;gap:8px;margin-top:12px">
+    <button class="btn b-bl" onclick="apImp()">Aplicar</button><button class="btn b-gy" onclick="clImp()">Cancelar</button>
   </div>
-</div>
-
+</div></div>
 <script>
 var STORES=[
   {id:727819,  n:"IPLACE SHOPPING IGUATEMI FORTALEZA",          t:"DOWN-REL-RES"},
@@ -269,188 +182,378 @@ var STORES=[
   {id:651719,  n:"IPLACE BRASILIA SHOPPING",                    t:"DOWN"},
   {id:1652724, n:"IPLACE AMAZONAS SHOPPING AM",                 t:"DOWN-RES"}
 ];
+
 var LS="iplace-tracker-2026-v1";
-var D=[],SEL=new Set(),pend=[];
+var D=[], SEL=new Set(), pend=[];
 
-/* DATE UTILS */
-function bd(s,n){if(!s)return null;var d=new Date(s+"T12:00:00");var c=0;while(c<n){d.setDate(d.getDate()+1);if(d.getDay()&&d.getDay()<6)c++;}return d.toISOString().split("T")[0];}
-function fm(s){if(!s)return"";var p=s.split("-");return p[2]+"/"+p[1]+"/"+p[0];}
-function pr(raw){var s=(raw||"").trim();if(!s)return null;var m;
-  m=s.match(/^(\d{4})[-\/\.](\d{1,2})[-\/\.](\d{1,2})$/);if(m)return m[1]+"-"+("0"+m[2]).slice(-2)+"-"+("0"+m[3]).slice(-2);
-  m=s.match(/^(\d{1,2})[-\/\.](\d{1,2})[-\/\.](\d{4})$/);if(m)return m[3]+"-"+("0"+m[2]).slice(-2)+"-"+("0"+m[1]).slice(-2);
-  m=s.match(/^(\d{1,2})[-\/\.](\d{1,2})[-\/\.](\d{2})$/);if(m)return"20"+m[3]+"-"+("0"+m[2]).slice(-2)+"-"+("0"+m[1]).slice(-2);
-  return null;}
-function dl(e){if(!e)return null;var n=new Date();n.setHours(12,0,0,0);return Math.round((new Date(e+"T12:00:00")-n)/86400000);}
-function ep(t,dv,n){if(!t)return'<span class="en">—</span>';var e=bd(t,n);if(dv)return'<span class="eo">✅ '+fm(dv)+'</span>';var r=dl(e);if(r===null)return'<span class="en">—</span>';if(r<0)return'<span class="er">⚠️ '+fm(e)+'('+Math.abs(r)+'d)</span>';if(r<=3)return'<span class="ew">⏳ '+fm(e)+'('+r+'d)</span>';return'<span class="eo">📅 '+fm(e)+'('+r+'d)</span>';}
-
-/* STATUS */
-function st(d){
-  if(d.sffApp)return{c:"sk",l:"✅ Concluído"};
-  if(d.idkApp&&!d.fdkSh){var e=bd(d.idkApp,10);if(e&&new Date(e)<new Date())return{c:"so",l:"🔴 FDK Atrasado"};}
-  if(d.mdkReq&&d.fdkSh&&!d.mdkSh){var e=bd(d.fdkSh,5);if(e&&new Date(e)<new Date())return{c:"so",l:"🔴 MDK Atrasado"};}
-  if(!d.sbSub)return{c:"sn",l:"○ Não Iniciado"};
-  if(d.sffSub&&!d.sffApp)return{c:"sq",l:"💰 SFF Revisão"};
-  if(d.auditApp&&!d.sffSub)return{c:"sp",l:"💰 SFF Pendente"};
-  if(d.auditSub&&!d.auditApp)return{c:"sq",l:"📸 Audit Revisão"};
-  if((d.fdkSh||d.mdkSh)&&!d.auditSub)return{c:"sp",l:"🏪 Pré-Abertura"};
-  if(d.mdkReq&&d.fdkSh&&!d.mdkSh)return{c:"sq",l:"✏️ MDK Pendente"};
-  if(d.idkApp&&!d.fdkSh)return{c:"sq",l:"🎨 FDK Pendente"};
-  if(d.idkSh&&!d.idkApp)return{c:"sq",l:"📐 IDK Revisão"};
-  if(d.sbApp&&!d.idkSh)return{c:"sp",l:"📐 IDK Pendente"};
-  if(d.sbSub&&!d.sbApp)return{c:"sq",l:"📋 SB Revisão"};
-  return{c:"sp",l:"📋 SB Andamento"};
+function bd(s,n){
+  if(!s)return null;
+  var d=new Date(s+"T12:00:00"); var c=0;
+  while(c<n){d.setDate(d.getDate()+1); if(d.getDay()>0&&d.getDay()<6)c++;}
+  return d.toISOString().split("T")[0];
 }
-function sg(d){if(d.sffApp)return"done";if(d.sffSub||d.auditApp)return"sff";if(d.auditSub)return"audit";if(d.fdkSh||d.mdkSh||d.mdkReq)return"pre";if(d.idkApp)return"fdk";if(d.idkSh||d.sbApp)return"idk";if(d.sbSub)return"sb";return"none";}
-function pg(d){var k=["sbSub","sbApp","idkSh","idkApp","fdkSh","auditSub","auditApp","sffSub","sffApp"];var c=0;for(var i=0;i<k.length;i++)if(d[k[i]])c++;return Math.round(c/k.length*100);}
-function tb(t){var m={DOWN:"td","DOWN-RES":"tr","DOWN-REL-RES":"tz"};return'<span class="tb '+(m[t]||"td")+'">'+t+'</span>';}
+function fm(s){if(!s)return""; var p=s.split("-"); return p[2]+"/"+p[1]+"/"+p[0];}
+function pr(raw){
+  var s=(raw||"").trim(); if(!s)return null; var m;
+  m=s.match(/^(\d{4})[-\/.](\d{1,2})[-\/.](\d{1,2})$/);
+  if(m)return m[1]+"-"+("0"+m[2]).slice(-2)+"-"+("0"+m[3]).slice(-2);
+  m=s.match(/^(\d{1,2})[-\/.](\d{1,2})[-\/.](\d{4})$/);
+  if(m)return m[3]+"-"+("0"+m[2]).slice(-2)+"-"+("0"+m[1]).slice(-2);
+  m=s.match(/^(\d{1,2})[-\/.](\d{1,2})[-\/.](\d{2})$/);
+  if(m)return "20"+m[3]+"-"+("0"+m[2]).slice(-2)+"-"+("0"+m[1]).slice(-2);
+  return null;
+}
+function dl(e){
+  if(!e)return null;
+  var n=new Date(); n.setHours(12,0,0,0);
+  return Math.round((new Date(e+"T12:00:00")-n)/86400000);
+}
+function ep(t,dv,bd_n){
+  if(!t)return'<span style="color:#aaa">-</span>';
+  var e=bd(t,bd_n);
+  if(dv)return'<span style="color:#065f46">&#10003;</span>';
+  var r=dl(e);
+  if(r===null)return'<span style="color:#aaa">-</span>';
+  if(r<0)return'<span style="color:#991b1b;font-weight:600">!</span>';
+  if(r<=3)return'<span style="color:#92400e">'+fm(e)+'</span>';
+  return'<span style="color:#065f46">'+fm(e)+'</span>';
+}
 
-/* DATE CELL — simple input, no Hoje/TBD buttons */
+function st(d){
+  if(d.sffApp)return{c:"sk",l:"Concluido"};
+  var e1=d.idkApp?bd(d.idkApp,10):null;
+  if(e1&&!d.fdkSh&&new Date(e1)<new Date())return{c:"so",l:"FDK Atrasado"};
+  var e2=d.fdkSh?bd(d.fdkSh,5):null;
+  if(e2&&d.mdkReq&&!d.mdkSh&&new Date(e2)<new Date())return{c:"so",l:"MDK Atrasado"};
+  if(!d.sbSub)return{c:"sn",l:"Nao Iniciado"};
+  if(d.sffSub&&!d.sffApp)return{c:"sq",l:"SFF Revisao"};
+  if(d.auditApp&&!d.sffSub)return{c:"sp",l:"SFF Pendente"};
+  if(d.auditSub&&!d.auditApp)return{c:"sq",l:"Audit Revisao"};
+  if((d.fdkSh||d.mdkSh)&&!d.auditSub)return{c:"sp",l:"Pre-Abertura"};
+  if(d.mdkReq&&d.fdkSh&&!d.mdkSh)return{c:"sq",l:"MDK Pendente"};
+  if(d.idkApp&&!d.fdkSh)return{c:"sq",l:"FDK Pendente"};
+  if(d.idkSh&&!d.idkApp)return{c:"sq",l:"IDK Revisao"};
+  if(d.sbApp&&!d.idkSh)return{c:"sp",l:"IDK Pendente"};
+  if(d.sbSub&&!d.sbApp)return{c:"sq",l:"SB Revisao"};
+  return{c:"sp",l:"SB Andamento"};
+}
+function sg(d){
+  if(d.sffApp)return"done";
+  if(d.sffSub||d.auditApp)return"sff";
+  if(d.auditSub)return"audit";
+  if(d.fdkSh||d.mdkSh||d.mdkReq)return"pre";
+  if(d.idkApp)return"fdk";
+  if(d.idkSh||d.sbApp)return"idk";
+  if(d.sbSub)return"sb";
+  return"none";
+}
+function pg(d){
+  var k=["sbSub","sbApp","idkSh","idkApp","fdkSh","auditSub","auditApp","sffSub","sffApp"],c=0;
+  for(var i=0;i<k.length;i++)if(d[k[i]])c++;
+  return Math.round(c/k.length*100);
+}
+function tb(t){
+  var m={DOWN:"td","DOWN-RES":"tr","DOWN-REL-RES":"tz"};
+  return'<span class="tb '+(m[t]||"td")+'">'+t+'</span>';
+}
+
 function dc(i,f,d,cl){
   var v=d[f]||"";
-  var cx=cl?' class="'+cl+'"':'';
-  return'<td'+cx+'><div class="di"><input type="text" value="'+fm(v)+'" placeholder="DD/MM/AAAA" onblur="ps('+i+',"'+f+'",this)" onkeydown="if(event.key==='Enter')ps('+i+',"'+f+'",this)"></div></td>';
+  var val=fm(v);
+  var c=cl?(' class="'+cl+'"'):"";
+  var h='<td'+c+'>';
+  h+='<div class="di">';
+  h+='<input type="text"';
+  h+=' value="'+val+'"';
+  h+=' placeholder="DD/MM/AAAA"';
+  h+=' data-i="'+i+'"';
+  h+=' data-f="'+f+'"';
+  h+=' onblur="dca(this)"';
+  h+=' onkeydown="dck(this,event)"';
+  h+='>';
+  h+='</div></td>';
+  return h;
 }
-function ps(i,f,el){var v=el.value.trim();if(!v){se(i,f,"");el.value="";return;}var iso=pr(v);if(iso){se(i,f,iso);el.value=fm(iso);}else el.style.color="red";}
-function se(i,f,v){D[i][f]=v;rr(i);sv();}
-function rr(i){var row=document.getElementById("r"+i);if(row){var t=document.createElement("tbody");t.innerHTML=brow(i);row.replaceWith(t.firstChild);}us();bp();}
+function dca(el){ps(parseInt(el.dataset.i), el.dataset.f, el);}
+function dck(el,ev){if(ev.keyCode===13||ev.key==="Enter")ps(parseInt(el.dataset.i),el.dataset.f,el);}
+function ps(i,f,el){
+  var v=el.value.trim();
+  if(!v){se(i,f,""); el.value=""; return;}
+  var iso=pr(v);
+  if(iso){se(i,f,iso); el.value=fm(iso);}
+  else el.style.color="red";
+}
+function se(i,f,v){D[i][f]=v; rr(i); sv();}
+function rr(i){
+  var row=document.getElementById("r"+i);
+  if(row){var t=document.createElement("tbody"); t.innerHTML=brow(i); row.replaceWith(t.firstChild);}
+  us(); bp();
+}
 
-/* BUILD ROW */
 function brow(i){
-  var d=D[i],s=STORES[i],q=st(d),p=pg(d),sel=SEL.has(i);
+  var d=D[i], s=STORES[i], q=st(d), p=pg(d), sel=SEL.has(i);
   var fE=ep(d.idkApp,d.fdkSh,10);
-  var mE=d.mdkReq?ep(d.fdkSh,d.mdkSh,5):'<span class="en">N/A</span>';
-  var chk=sel?"checked":"";
-  var cls=sel?' class="sel"':"";
-  var row='<tr id="r'+i+'" data-i="'+i+'" data-st="'+q.c+'" data-n="'+s.n.toLowerCase()+'"'+cls+' onclick="rc(event,'+i+')">';
-  row+='<td style="text-align:center;padding:7px 4px"><input type="checkbox" '+chk+' onclick="event.stopPropagation();tsel('+i+')" style="width:14px;height:14px;accent-color:var(--blue)"></td>';
-  row+='<td style="text-align:center;color:var(--tx2);font-size:11px;font-weight:600;padding:7px 4px">'+(i+1)+'</td>';
-  row+='<td style="font-family:Menlo,monospace;font-size:10px;color:var(--tx2);padding:7px 6px">'+s.id+'</td>';
-  row+='<td style="font-weight:500;font-size:12px;padding:7px 8px">'+s.n+'</td>';
-  row+='<td style="text-align:center">'+tb(s.t)+'</td>';
-  row+='<td class="ct0"><span class="sb '+q.c+'">'+q.l+'</span></td>';
-  row+='<td class="ct0"><div style="font-size:9px;text-align:right;color:var(--tx2)">'+p+'%</div><div class="prg"><div class="prf" style="width:'+p+'%"></div></div></td>';
-  row+=dc(i,"todInitial",d,"ct1")+dc(i,"todActual",d,"ct1");
-  row+=dc(i,"sbSub",d,"ct2")+dc(i,"sbFeedback",d,"ct2")+dc(i,"sbPartnerAnswer",d,"ct2")+dc(i,"sbApp",d,"ct2");
-  row+='<td class="ct2" style="text-align:center"><input type="checkbox"'+(d.sbRev?" checked":"")+'onchange="se('+i+','sbRev',this.checked)" style="accent-color:var(--blue)"></td>';
-  row+=dc(i,"idkSh",d,"ct3")+dc(i,"idkApp",d,"ct3");
-  row+='<td class="ct3" style="text-align:center"><input type="checkbox"'+(d.idkRev?" checked":"")+'onchange="se('+i+','idkRev',this.checked)" style="accent-color:var(--blue)"></td>';
-  row+=dc(i,"fdkSh",d,"ct4")+'<td class="ct4" style="text-align:center">'+fE+'</td>';
-  row+='<td class="ct4" style="text-align:center"><input type="checkbox"'+(d.fdkRev?" checked":"")+'onchange="se('+i+','fdkRev',this.checked)" style="accent-color:var(--blue)"></td>';
-  row+='<td class="ct5" style="text-align:center"><input type="checkbox"'+(d.mdkReq?" checked":"")+'onchange="se('+i+','mdkReq',this.checked)" style="accent-color:var(--blue)"></td>';
-  row+=dc(i,"mdkSh",d,"ct5")+'<td class="ct5" style="text-align:center">'+mE+'</td>';
-  row+=dc(i,"auditSub",d,"ct6")+dc(i,"auditFeedback",d,"ct6")+dc(i,"auditPartnerAnswer",d,"ct6")+dc(i,"auditApp",d,"ct6");
-  row+='<td class="ct6" style="text-align:center"><input type="checkbox"'+(d.auditRev?" checked":"")+'onchange="se('+i+','auditRev',this.checked)" style="accent-color:var(--blue)"></td>';
-  row+=dc(i,"sffSub",d,"ct7")+dc(i,"sffApp",d,"ct7");
-  row+='</tr>';
-  return row;
-}
+  var mE=d.mdkReq ? ep(d.fdkSh,d.mdkSh,5) : '<span style="color:#aaa">N/A</span>';
+  var selcls=sel?' class="sel"':'';
+  var chk=sel?' checked':'';
 
-/* RENDER ALL — sorted by status then TOD */
+  var r='<tr id="r'+i+'" data-i="'+i+'" data-st="'+q.c+'" data-n="'+s.n.toLowerCase()+'"'+selcls;
+  r+=' onclick="rc(event,'+i+')">';
+
+  // ☐ checkbox
+  r+='<td style="text-align:center;padding:7px 4px">';
+  r+='<input type="checkbox"'+chk+' onclick="event.stopPropagation();tsel('+i+')"';
+  r+=' style="width:14px;height:14px;accent-color:var(--blue)">';
+  r+='</td>';
+
+  // # number
+  r+='<td style="text-align:center;color:var(--tx2);font-size:11px;font-weight:600;padding:7px 4px">'+(i+1)+'</td>';
+
+  // Apple ID
+  r+='<td style="font-family:Menlo,monospace;font-size:10px;color:var(--tx2);padding:7px 5px">'+s.id+'</td>';
+
+  // POS Name
+  r+='<td style="font-weight:500;font-size:12px;padding:7px 8px">'+s.n+'</td>';
+
+  // Refit Type
+  r+='<td style="text-align:center">'+tb(s.t)+'</td>';
+
+  // Status
+  r+='<td class="ct0"><span class="sb '+q.c+'">'+q.l+'</span></td>';
+
+  // Progress
+  r+='<td class="ct0">';
+  r+='<div style="font-size:9px;text-align:right;color:var(--tx2)">'+p+'%</div>';
+  r+='<div class="prg"><div class="prf" style="width:'+p+'%"></div></div>';
+  r+='</td>';
+
+  // TOD
+  r+=dc(i,"todInitial",d,"ct1")+dc(i,"todActual",d,"ct1");
+
+  // SB
+  r+=dc(i,"sbSub",d,"ct2")+dc(i,"sbFeedback",d,"ct2")+dc(i,"sbPartnerAnswer",d,"ct2")+dc(i,"sbApp",d,"ct2");
+  r+='<td class="ct2" style="text-align:center">';
+  r+='<input type="checkbox"'+(d.sbRev?' checked':'')+' data-i="'+i+'" data-f="sbRev" onchange="chg(this)" style="accent-color:var(--blue)">';
+  r+='</td>';
+
+  // IDK
+  r+=dc(i,"idkSh",d,"ct3")+dc(i,"idkApp",d,"ct3");
+  r+='<td class="ct3" style="text-align:center">';
+  r+='<input type="checkbox"'+(d.idkRev?' checked':'')+' data-i="'+i+'" data-f="idkRev" onchange="chg(this)" style="accent-color:var(--blue)">';
+  r+='</td>';
+
+  // FDK
+  r+=dc(i,"fdkSh",d,"ct4");
+  r+='<td class="ct4" style="text-align:center">'+fE+'</td>';
+  r+='<td class="ct4" style="text-align:center">';
+  r+='<input type="checkbox"'+(d.fdkRev?' checked':'')+' data-i="'+i+'" data-f="fdkRev" onchange="chg(this)" style="accent-color:var(--blue)">';
+  r+='</td>';
+
+  // MDK
+  r+='<td class="ct5" style="text-align:center">';
+  r+='<input type="checkbox"'+(d.mdkReq?' checked':'')+' data-i="'+i+'" data-f="mdkReq" onchange="chg(this)" style="accent-color:var(--blue)">';
+  r+='</td>';
+  r+=dc(i,"mdkSh",d,"ct5");
+  r+='<td class="ct5" style="text-align:center">'+mE+'</td>';
+
+  // Audit
+  r+=dc(i,"auditSub",d,"ct6")+dc(i,"auditFeedback",d,"ct6")+dc(i,"auditPartnerAnswer",d,"ct6")+dc(i,"auditApp",d,"ct6");
+  r+='<td class="ct6" style="text-align:center">';
+  r+='<input type="checkbox"'+(d.auditRev?' checked':'')+' data-i="'+i+'" data-f="auditRev" onchange="chg(this)" style="accent-color:var(--blue)">';
+  r+='</td>';
+
+  // SFF
+  r+=dc(i,"sffSub",d,"ct7")+dc(i,"sffApp",d,"ct7");
+
+  r+='</tr>';
+  return r;
+}
+function chg(el){se(parseInt(el.dataset.i), el.dataset.f, el.checked);}
+
 function ra(){
   var ord={so:0,sq:1,sp:2,sn:3,sk:4};
-  var si=[];for(var i=0;i<STORES.length;i++)si.push(i);
+  var si=[];
+  for(var i=0;i<STORES.length;i++) si.push(i);
   si.sort(function(a,b){
-    var pa=ord[st(D[a]).c]||2,pb=ord[st(D[b]).c]||2;
+    var pa=ord[st(D[a]).c]; if(pa===undefined)pa=2;
+    var pb=ord[st(D[b]).c]; if(pb===undefined)pb=2;
     if(pa!==pb)return pa-pb;
     var da=D[a].todActual||D[a].todInitial||"9999";
     var db=D[b].todActual||D[b].todInitial||"9999";
     return da.localeCompare(db);
   });
-  document.getElementById("tbody").innerHTML=si.map(function(i){return brow(i);}).join("");
-  us();bp();ub();
+  var tbody=document.getElementById("tbody");
+  var html="";
+  for(var j=0;j<si.length;j++) html+=brow(si[j]);
+  tbody.innerHTML=html;
+  us(); bp(); ub();
 }
-
-/* STATS */
 function us(){
   var q=D.map(st);
-  document.getElementById("st1").textContent=q.filter(function(x){return x.c==="sp";}).length;
-  document.getElementById("st2").textContent=q.filter(function(x){return x.c==="so";}).length;
-  document.getElementById("st3").textContent=q.filter(function(x){return x.c==="sk";}).length;
+  var np=0,no=0,nc=0;
+  for(var i=0;i<q.length;i++){
+    if(q[i].c==="sp")np++;
+    else if(q[i].c==="so")no++;
+    else if(q[i].c==="sk")nc++;
+  }
+  document.getElementById("st1").textContent=np;
+  document.getElementById("st2").textContent=no;
+  document.getElementById("st3").textContent=nc;
 }
 
-/* PIPELINE */
 var PL=[
-  {k:"none",l:"Não Iniciado",c:"#8e8e93"},
+  {k:"none",l:"Nao Iniciado",c:"#8e8e93"},
   {k:"sb",l:"Store Brief",c:"#1e40af"},
   {k:"idk",l:"IDK",c:"#166534"},
   {k:"fdk",l:"FDK",c:"#92400e"},
-  {k:"pre",l:"MDK/Pré-Abertura",c:"#9d174d"},
+  {k:"pre",l:"MDK/Pre",c:"#9d174d"},
   {k:"audit",l:"Audit",c:"#6b21a8"},
   {k:"sff",l:"SFF",c:"#065f46"},
-  {k:"done",l:"Concluído",c:"#166534"}
+  {k:"done",l:"Concluido",c:"#166534"}
 ];
 function bp(){
-  var cnt={};PL.forEach(function(x){cnt[x.k]=0;});
-  D.forEach(function(d){var k=sg(d);if(cnt[k]!==undefined)cnt[k]++;});
-  document.getElementById("pipe").innerHTML=PL.map(function(x){
-    return'<div class="pc" onclick="sst(''+x.k+'')"><span class="pd" style="background:'+x.c+'"></span><span class="pn" style="color:'+x.c+'">'+cnt[x.k]+'</span> '+x.l+'</div>';
-  }).join("");
+  var cnt={};
+  for(var i=0;i<PL.length;i++) cnt[PL[i].k]=0;
+  for(var i=0;i<D.length;i++){var k=sg(D[i]); if(cnt[k]!==undefined)cnt[k]++;}
+  var html="";
+  for(var i=0;i<PL.length;i++){
+    var x=PL[i];
+    html+='<div class="pc" onclick="sst(\''+x.k+'\')">'+
+          '<span class="pd" style="background:'+x.c+'"></span>'+
+          '<span class="pn" style="color:'+x.c+'">'+cnt[x.k]+'</span> '+x.l+'</div>';
+  }
+  document.getElementById("pipe").innerHTML=html;
 }
-function sst(k){SEL.clear();D.forEach(function(d,i){if(sg(d)===k)SEL.add(i);});ra();document.getElementById("blk").scrollIntoView({behavior:"smooth",block:"nearest"});}
+function sst(k){
+  SEL.clear();
+  for(var i=0;i<D.length;i++) if(sg(D[i])===k) SEL.add(i);
+  ra();
+  document.getElementById("blk").scrollIntoView({behavior:"smooth",block:"nearest"});
+}
 
-/* SELECTION */
-function tsel(i){if(SEL.has(i))SEL.delete(i);else SEL.add(i);var r=document.getElementById("r"+i);if(r)r.className=SEL.has(i)?"sel":"";ub();}
-function rc(e,i){if(["INPUT","BUTTON","TEXTAREA"].includes(e.target.tagName))return;}
-function deSel(){SEL.clear();ra();}
-function ub(){var b=document.getElementById("blk");if(SEL.size>0){b.className="bulk on";document.getElementById("blkc").textContent=SEL.size+" loja(s) selecionada(s)";}else b.className="bulk";}
-
-/* BULK FILL */
-function bfDate(){var f=document.getElementById("blkf").value;var raw=document.getElementById("blkd").value;var iso=pr(raw);if(!iso){alert("Data inválida");return;}SEL.forEach(function(i){D[i][f]=iso;});sv();ra();}
-function bfToday(){var f=document.getElementById("blkf").value;var iso=new Date().toISOString().split("T")[0];SEL.forEach(function(i){D[i][f]=iso;});sv();ra();}
-
-/* FILTER */
+function tsel(i){
+  if(SEL.has(i)) SEL.delete(i); else SEL.add(i);
+  var r=document.getElementById("r"+i);
+  if(r) r.className=SEL.has(i)?"sel":"";
+  ub();
+}
+function rc(e,i){
+  if(["INPUT","BUTTON","TEXTAREA"].indexOf(e.target.tagName)>=0) return;
+}
+function deSel(){SEL.clear(); ra();}
+function ub(){
+  var b=document.getElementById("blk");
+  if(SEL.size>0){
+    b.className="bulk on";
+    document.getElementById("blkc").textContent=SEL.size+" loja(s) selecionada(s)";
+  } else b.className="bulk";
+}
+function bfDate(){
+  var f=document.getElementById("blkf").value;
+  var raw=document.getElementById("blkd").value;
+  var iso=pr(raw); if(!iso){alert("Data invalida");return;}
+  SEL.forEach(function(i){D[i][f]=iso;});
+  sv(); ra();
+}
+function bfToday(){
+  var f=document.getElementById("blkf").value;
+  var iso=new Date().toISOString().split("T")[0];
+  SEL.forEach(function(i){D[i][f]=iso;});
+  sv(); ra();
+}
 function filt(){
   var q=document.getElementById("srch").value.toLowerCase().trim();
   var sf=document.getElementById("sfil").value;
-  document.querySelectorAll("#tbody tr").forEach(function(r){
-    var nm=r.dataset.n||"";var i=parseInt(r.dataset.i);
-    var id=STORES[i]?STORES[i].id.toString():"";
+  var rows=document.querySelectorAll("#tbody tr");
+  for(var i=0;i<rows.length;i++){
+    var r=rows[i];
+    var nm=r.dataset.n||"";
+    var idx=parseInt(r.dataset.i);
+    var id=STORES[idx]?String(STORES[idx].id):"";
     var sc=r.dataset.st||"";
-    var mq=!q||nm.includes(q)||id.includes(q);
+    var mq=!q||nm.indexOf(q)>=0||id.indexOf(q)>=0;
     var ms=!sf||sc===sf;
     r.style.display=(mq&&ms)?"":"none";
-  });
+  }
 }
 
-/* SAVE / LOAD */
 function sv(){
   localStorage.setItem(LS,JSON.stringify(D));
   var el=document.getElementById("svn");
-  el.textContent="✅ Salvo às "+new Date().toLocaleTimeString();
-  setTimeout(function(){el.textContent="● Auto-salvo";},2000);
+  el.textContent="Salvo";
+  setTimeout(function(){el.textContent="Auto-salvo";},2000);
 }
 function ld(){
   try{
-    var s=localStorage.getItem(LS);if(!s)return false;
-    var p=JSON.parse(s);if(!Array.isArray(p)||p.length!==STORES.length)return false;
-    D=STORES.map(function(_,i){
-      return Object.assign({todInitial:"",todActual:"",sbSub:"",sbFeedback:"",sbPartnerAnswer:"",sbApp:"",sbRev:false,idkSh:"",idkApp:"",idkRev:false,fdkSh:"",fdkRev:false,mdkReq:false,mdkSh:"",auditSub:"",auditFeedback:"",auditPartnerAnswer:"",auditApp:"",auditRev:false,sffSub:"",sffApp:"",notes:""},p[i]||{});
-    });
+    var s=localStorage.getItem(LS);
+    if(!s) return false;
+    var p=JSON.parse(s);
+    if(!Array.isArray(p)||p.length!==STORES.length) return false;
+    var def={todInitial:"",todActual:"",sbSub:"",sbFeedback:"",sbPartnerAnswer:"",sbApp:"",sbRev:false,
+             idkSh:"",idkApp:"",idkRev:false,fdkSh:"",fdkRev:false,mdkReq:false,mdkSh:"",
+             auditSub:"",auditFeedback:"",auditPartnerAnswer:"",auditApp:"",auditRev:false,
+             sffSub:"",sffApp:"",notes:""};
+    D=[];
+    for(var i=0;i<STORES.length;i++){
+      var obj={};
+      for(var k in def) obj[k]=def[k];
+      var src=p[i]||{};
+      for(var k in src) obj[k]=src[k];
+      D.push(obj);
+    }
     return true;
   }catch(e){return false;}
 }
 function id_(){
-  D=STORES.map(function(){
-    return{todInitial:"",todActual:"",sbSub:"",sbFeedback:"",sbPartnerAnswer:"",sbApp:"",sbRev:false,idkSh:"",idkApp:"",idkRev:false,fdkSh:"",fdkRev:false,mdkReq:false,mdkSh:"",auditSub:"",auditFeedback:"",auditPartnerAnswer:"",auditApp:"",auditRev:false,sffSub:"",sffApp:"",notes:""};
-  });
+  D=[];
+  for(var i=0;i<STORES.length;i++){
+    D.push({todInitial:"",todActual:"",sbSub:"",sbFeedback:"",sbPartnerAnswer:"",sbApp:"",sbRev:false,
+            idkSh:"",idkApp:"",idkRev:false,fdkSh:"",fdkRev:false,mdkReq:false,mdkSh:"",
+            auditSub:"",auditFeedback:"",auditPartnerAnswer:"",auditApp:"",auditRev:false,
+            sffSub:"",sffApp:"",notes:""});
+  }
 }
-function rst(){localStorage.removeItem(LS);id_();ra();}
+function rst(){localStorage.removeItem(LS); id_(); ra();}
 
-/* EXPORT EXCEL (SpreadsheetML) */
 function expXls(){
-  function ex(v){return String(v==null?"":v).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
-  function gv(d,f){return d[f]?fm(d[f]):"";}
-  var H=["Apple ID","POS Name","Refit Type","Status","Progress","TOD Initial","TOD Actual","SB Submitted","Feedback","Partner Answer","SB Approved","IDK Shared","IDK Approved","FDK Shared","MDK Shared","Audit Submitted","Audit Feedback","Audit Partner Answer","Audit Approved","SFF Submitted","SFF Approved","Notes"];
-  var xml='<?xml version="1.0" encoding="UTF-8"?>\n<?mso-application progid="Excel.Sheet"?>\n';
-  xml+='<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet" xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet">\n';
-  xml+='<Styles><Style ss:ID="h"><Font ss:Bold="1"/><Interior ss:Color="#F0F0F5" ss:Pattern="Solid"/></Style></Styles>\n';
+  function ex(v){
+    var s=String(v==null?"":v);
+    s=s.replace(/&/g,"&amp;");
+    s=s.replace(/</g,"&lt;");
+    s=s.replace(/>/g,"&gt;");
+    return s;
+  }
+  function gv(d,f){return d[f]?fm(d[f]):""; }
+  var H=["Apple ID","POS Name","Refit Type","Status","Progress",
+         "TOD Initial","TOD Actual",
+         "SB Submitted","Feedback","Partner Answer","SB Approved",
+         "IDK Shared","IDK Approved",
+         "FDK Shared","MDK Shared",
+         "Audit Submitted","Audit Feedback","Audit Partner Answer","Audit Approved",
+         "SFF Submitted","SFF Approved","Notes"];
+  var xml='<?xml version="1.0" encoding="UTF-8"?>\n';
+  xml+='<?mso-application progid="Excel.Sheet"?>\n';
+  xml+='<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet" ';
+  xml+='xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet">\n';
+  xml+='<Styles><Style ss:ID="h"><Font ss:Bold="1"/></Style></Styles>\n';
   xml+='<Worksheet ss:Name="iPlace Tracker"><Table>\n';
-  xml+='<Row>'+H.map(function(h){return'<Cell ss:StyleID="h"><Data ss:Type="String">'+ex(h)+'</Data></Cell>';}).join("")+'</Row>\n';
-  D.forEach(function(d,i){
-    var s=STORES[i],q=st(d),p=pg(d);
-    var cells=[s.id,s.n,s.t,q.l.replace(/[^\w\s\-]/g,"").trim(),p+"%",gv(d,"todInitial"),gv(d,"todActual"),gv(d,"sbSub"),gv(d,"sbFeedback"),gv(d,"sbPartnerAnswer"),gv(d,"sbApp"),gv(d,"idkSh"),gv(d,"idkApp"),gv(d,"fdkSh"),gv(d,"mdkSh"),gv(d,"auditSub"),gv(d,"auditFeedback"),gv(d,"auditPartnerAnswer"),gv(d,"auditApp"),gv(d,"sffSub"),gv(d,"sffApp"),(d.notes||"").replace(/[\r\n]+/g," ")];
-    xml+='<Row>'+cells.map(function(v){return'<Cell><Data ss:Type="String">'+ex(v)+'</Data></Cell>';}).join("")+'</Row>\n';
-  });
+  var hrow='<Row>';
+  for(var i=0;i<H.length;i++) hrow+='<Cell ss:StyleID="h"><Data ss:Type="String">'+ex(H[i])+'</Data></Cell>';
+  hrow+='</Row>\n';
+  xml+=hrow;
+  for(var i=0;i<D.length;i++){
+    var d=D[i], s=STORES[i], q=st(d), p=pg(d);
+    var cells=[s.id,s.n,s.t,q.l,p+"%",
+               gv(d,"todInitial"),gv(d,"todActual"),
+               gv(d,"sbSub"),gv(d,"sbFeedback"),gv(d,"sbPartnerAnswer"),gv(d,"sbApp"),
+               gv(d,"idkSh"),gv(d,"idkApp"),gv(d,"fdkSh"),gv(d,"mdkSh"),
+               gv(d,"auditSub"),gv(d,"auditFeedback"),gv(d,"auditPartnerAnswer"),gv(d,"auditApp"),
+               gv(d,"sffSub"),gv(d,"sffApp"),(d.notes||"").replace(/[\r\n]+/g," ")];
+    var drow='<Row>';
+    for(var j=0;j<cells.length;j++) drow+='<Cell><Data ss:Type="String">'+ex(cells[j])+'</Data></Cell>';
+    drow+='</Row>\n';
+    xml+=drow;
+  }
   xml+='</Table></Worksheet></Workbook>';
   var a=document.createElement("a");
   a.href=URL.createObjectURL(new Blob([xml],{type:"application/vnd.ms-excel;charset=utf-8"}));
@@ -458,54 +561,99 @@ function expXls(){
   a.click();
 }
 
-/* IMPORT */
 function dropFile(e){
   e.preventDefault();
-  var file=e.dataTransfer.files[0];if(!file)return;
+  var file=e.dataTransfer.files[0]; if(!file)return;
   var reader=new FileReader();
   reader.onload=function(ev){document.getElementById("impTxt").value=ev.target.result;};
   reader.readAsText(file,"utf-8");
 }
-var FM={"apple id":"_id","id":"_id","tod initial":"todInitial","tod actual":"todActual","tod":"todActual","sb submitted":"sbSub","feedback to partner":"sbFeedback","feedback":"sbFeedback","partner answer":"sbPartnerAnswer","sb approved":"sbApp","idk shared":"idkSh","idk approved":"idkApp","fdk shared":"fdkSh","mdk shared":"mdkSh","audit submitted":"auditSub","audit feedback":"auditFeedback","audit partner answer":"auditPartnerAnswer","audit partner ans.":"auditPartnerAnswer","audit approved":"auditApp","sff submitted":"sffSub","sff approved":"sffApp","notes":"notes"};
+var FM={
+  "apple id":"_id","id":"_id",
+  "tod initial":"todInitial","tod actual":"todActual","tod":"todActual",
+  "sb submitted":"sbSub","feedback":"sbFeedback","feedback to partner":"sbFeedback",
+  "partner answer":"sbPartnerAnswer","partner ans.":"sbPartnerAnswer","sb approved":"sbApp",
+  "idk shared":"idkSh","idk approved":"idkApp","fdk shared":"fdkSh","mdk shared":"mdkSh",
+  "audit submitted":"auditSub","audit feedback":"auditFeedback",
+  "audit partner answer":"auditPartnerAnswer","audit partner ans.":"auditPartnerAnswer",
+  "audit approved":"auditApp","sff submitted":"sffSub","sff approved":"sffApp","notes":"notes"
+};
 function openImp(){document.getElementById("impM").className="mo on";}
-function clImp(){document.getElementById("impM").className="mo";document.getElementById("impTxt").value="";document.getElementById("impPrev").innerHTML="";document.getElementById("impAct").style.display="none";pend=[];}
+function clImp(){
+  document.getElementById("impM").className="mo";
+  document.getElementById("impTxt").value="";
+  document.getElementById("impPrev").innerHTML="";
+  document.getElementById("impAct").style.display="none";
+  pend=[];
+}
 function anImp(){
   var txt=document.getElementById("impTxt").value.trim();
   if(!txt){alert("Cole os dados primeiro.");return;}
   var useTab=txt.split("\n")[0].indexOf("\t")>=0;
-  var lines=txt.split("\n").map(function(l){
-    if(useTab)return l.split("\t").map(function(x){return x.trim();});
-    var res=[],cur="",inQ=false;
-    for(var ci=0;ci<l.length;ci++){var ch=l[ci];if(ch==='"'){if(inQ&&l[ci+1]==='"'){cur+='"';ci++;}else inQ=!inQ;}else if(ch===","&&!inQ){res.push(cur.trim());cur="";}else cur+=ch;}
-    res.push(cur.trim());return res;
-  });
-  if(lines.length<2){alert("Mínimo 2 linhas.");return;}
-  var hdrs=lines[0].map(function(h){return h.toLowerCase();});
+  var lines=txt.split("\n");
+  var parsed=[];
+  for(var i=0;i<lines.length;i++){
+    if(useTab){
+      parsed.push(lines[i].split("\t").map(function(x){return x.trim();}));
+    } else {
+      var row=[],cur="",inQ=false,l=lines[i];
+      for(var ci=0;ci<l.length;ci++){
+        var ch=l[ci];
+        if(ch==='"'){if(inQ&&l[ci+1]==='"'){cur+='"';ci++;}else inQ=!inQ;}
+        else if(ch===","&&!inQ){row.push(cur.trim());cur="";}
+        else cur+=ch;
+      }
+      row.push(cur.trim());
+      parsed.push(row);
+    }
+  }
+  if(parsed.length<2){alert("Minimo 2 linhas.");return;}
+  var hdrs=parsed[0].map(function(h){return h.toLowerCase();});
   var mp=hdrs.map(function(h){return FM[h]||null;});
-  var ii=mp.indexOf("_id");if(ii===-1){alert('Coluna "Apple ID" não encontrada.');return;}
+  var ii=mp.indexOf("_id");
+  if(ii===-1){alert("Coluna Apple ID nao encontrada.");return;}
   pend=[];
-  for(var r=1;r<lines.length;r++){
-    var row=lines[r];if(!row[ii])continue;
+  for(var r=1;r<parsed.length;r++){
+    var row=parsed[r]; if(!row[ii])continue;
     var aid=parseInt(row[ii]);
-    var si=STORES.findIndex(function(x){return x.id===aid;});
+    var si=-1;
+    for(var j=0;j<STORES.length;j++) if(STORES[j].id===aid){si=j;break;}
     if(si===-1)continue;
     var upd={};
-    mp.forEach(function(f,ci){if(!f||f==="_id")return;var raw=row[ci]||"";if(!raw)return;var iso=pr(raw);upd[f]=iso||raw;});
-    if(Object.keys(upd).length>0)pend.push({si:si,nm:STORES[si].n,upd:upd});
+    for(var ci=0;ci<mp.length;ci++){
+      var f=mp[ci]; if(!f||f==="_id")continue;
+      var raw=row[ci]||""; if(!raw)continue;
+      var iso=pr(raw); upd[f]=iso||raw;
+    }
+    if(Object.keys(upd).length>0) pend.push({si:si,nm:STORES[si].n,upd:upd});
   }
-  if(pend.length===0){document.getElementById("impPrev").innerHTML='<p style="color:red;margin-top:10px">Nenhuma correspondência encontrada.</p>';return;}
+  if(pend.length===0){
+    document.getElementById("impPrev").innerHTML='<p style="color:red;margin-top:10px">Nenhuma correspondencia encontrada.</p>';
+    return;
+  }
   var h='<table class="ptbl"><tr><th>Loja</th><th>Campos</th></tr>';
-  pend.forEach(function(p){h+='<tr><td>'+p.nm+'</td><td>'+Object.entries(p.upd).map(function(e){return'<b>'+e[0]+'</b>: '+e[1];}).join(", ")+'</td></tr>';});
+  for(var i=0;i<pend.length;i++){
+    var fields=[];
+    for(var k in pend[i].upd) fields.push('<b>'+k+'</b>: '+pend[i].upd[k]);
+    h+='<tr><td>'+pend[i].nm+'</td><td>'+fields.join(", ")+'</td></tr>';
+  }
   h+='</table>';
   document.getElementById("impPrev").innerHTML=h;
-  var a=document.getElementById("impAct");a.style.display="flex";
-  a.querySelector("button").textContent="✅ Aplicar "+pend.length+" atualizações";
+  var btn=document.getElementById("impAct");
+  btn.style.display="flex";
+  btn.querySelector("button").textContent="Aplicar "+pend.length+" atualizacoes";
 }
-function apImp(){pend.forEach(function(p){Object.assign(D[p.si],p.upd);});sv();ra();clImp();}
+function apImp(){
+  for(var i=0;i<pend.length;i++){
+    var p=pend[i];
+    for(var k in p.upd) D[p.si][k]=p.upd[k];
+  }
+  sv(); ra(); clImp();
+}
 
-/* INIT */
-if(!ld())id_();
+if(!ld()) id_();
 ra();
+
 </script>
 </body>
 </html>
