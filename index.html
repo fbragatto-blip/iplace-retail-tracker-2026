@@ -128,6 +128,22 @@ table thead tr:not(.grp) th:nth-child(5),table tbody td:nth-child(5){min-width:1
 /* Drop zone */
 #importTxt{transition:border-color .2s}
 #importTxt.drag-over{border-color:var(--blue)!important;background:#f0f7ff!important}
+
+/* Remove Hoje button */
+.bh{display:none!important}
+/* Highlight date input cells */
+.dw input{background:#fffde7!important;border:1px solid #fcd34d!important;border-radius:5px}
+.dw input:focus{background:#fff!important;border-color:var(--blue)!important}
+/* TOD color — orange/amber (distinct from SB blue) */
+.g1{background:#fff7ed;color:#c2410c}
+.ct1{background:rgba(255,237,213,.3)}
+/* Refit Type column */
+table thead tr:not(.grp) th:nth-child(5),
+table tbody td:nth-child(5){min-width:140px;white-space:nowrap}
+/* Compact first 4 sticky columns */
+table tbody td:nth-child(1),table tbody td:nth-child(2){padding:8px 4px}
+table tbody td:nth-child(3){padding:8px 5px}
+table tbody td:nth-child(4){padding:8px 6px}
 </style>
 </head>
 <body>
@@ -156,7 +172,7 @@ table thead tr:not(.grp) th:nth-child(5),table tbody td:nth-child(5){min-width:1
     <option value="s-done">Concluído</option>
   </select>
   <button class="btn btn-gray" onclick="openImport()">📋 Importar Excel</button>
-  <button class="btn btn-gray" onclick="exportExcel()">📊 Export CSV/Excel</button>
+  <button class="btn btn-gray" onclick="exportExcel()">📊 Export Excel (.xls)</button>
   <button class="btn btn-gray" onclick="window.print()">📄 PDF</button>
   <button class="btn btn-blue" onclick="saveData()">💾 Salvar</button>
   <button class="btn btn-red" onclick="if(confirm('Resetar todos os dados?'))resetData()">↩ Reset</button>
@@ -200,25 +216,25 @@ table thead tr:not(.grp) th:nth-child(5),table tbody td:nth-child(5){min-width:1
 <thead>
 <tr class="grp">
   <th class="g0" colspan="5">PROJETO</th>
-  <th class="g1" colspan="3">TOD</th>
+  <th class="g8" colspan="3">RESUMO</th>
   <th class="g2" colspan="5">STORE BRIEF (SB)</th>
   <th class="g3" colspan="3">IDK</th>
   <th class="g4" colspan="3">FDK</th>
   <th class="g5" colspan="3">MDK</th>
   <th class="g6" colspan="5">APPOINTMENT AUDIT</th>
   <th class="g7" colspan="2">SFF</th>
-  <th class="g8" colspan="3">RESUMO</th>
+  <th class="g1" colspan="2">TOD</th>
 </tr>
 <tr>
   <th>☐</th><th>#</th><th>Apple ID</th><th>POS Name</th><th style="min-width:130px;white-space:nowrap">Refit Type</th>
-  <th class="ct1">TOD Initial</th><th class="ct1">TOD Updated</th><th class="ct1">TOD Actual</th>
+  <th>Prog.</th><th>Status</th><th>Notas</th>
   <th class="ct2">SB Submitted</th><th class="ct2">Feedback Partner</th><th class="ct2">Partner Answer</th><th class="ct2">SB Approved</th><th class="ct2">Rev?</th>
   <th class="ct3">IDK Shared</th><th class="ct3">IDK Approved</th><th class="ct3">Rev?</th>
   <th class="ct4">FDK Shared</th><th class="ct4">FDK ETA</th><th class="ct4">Rev?</th>
   <th class="ct5">MDK?</th><th class="ct5">MDK Shared</th><th class="ct5">MDK ETA</th>
   <th class="ct6">Audit Submitted</th><th class="ct6">Feedback Partner</th><th class="ct6">Partner Answer</th><th class="ct6">Audit Approved</th><th class="ct6">Rev?</th>
   <th class="ct7">SFF Submitted</th><th class="ct7">SFF Approved</th>
-  <th>Prog.</th><th>Status</th><th>Notas</th>
+  <th class="ct1">TOD Initial</th><th class="ct1">TOD Actual</th>
 </tr>
 </thead>
 <tbody id="tbody"></tbody>
@@ -382,7 +398,11 @@ function buildRow(i) {
     +'<td style="font-family:Menlo,monospace;font-size:10px;color:var(--text2)">'+s.id+'</td>'
     +'<td style="font-weight:500;font-size:12px">'+s.name+'</td>'
     +'<td style="text-align:center">'+typeBadge(s.type)+'</td>'
-    +dc(i,'todInitial',d,'ct1')+dc(i,'todUpdated',d,'ct1')+dc(i,'todActual',d,'ct1')
+    '<td><div style="font-size:9px;text-align:right;color:var(--text2)">'+pr+'%</div><div class="prog"><div class="prog-fill" style="width:'+pr+'%"></div></div></td>'
+    +'<td style="text-align:center"><span class="sbadge '+st.cls+'">'+st.lbl+'</span></td>'
+    +'<td><textarea class="notes" onchange="set('+i+',\'notes\',this.value)">'+((d.notes||'').replace(/</g,'&lt;'))+'</textarea></td>'
+    
+    +dc(i,'todInitial',d,'ct1')+dc(i,'todActual',d,'ct1')
     +dc(i,'sbSub',d,'ct2')+dc(i,'sbFeedback',d,'ct2')+dc(i,'sbPartnerAnswer',d,'ct2')+dc(i,'sbApp',d,'ct2')
     +'<td class="ct2" style="text-align:center"><input type="checkbox" '+(d.sbRev?'checked':'')+' onchange="set('+i+',\'sbRev\',this.checked)" style="accent-color:var(--blue)"></td>'
     +dc(i,'idkSh',d,'ct3')+dc(i,'idkApp',d,'ct3')
@@ -394,13 +414,18 @@ function buildRow(i) {
     +dc(i,'auditSub',d,'ct6')+dc(i,'auditFeedback',d,'ct6')+dc(i,'auditPartnerAnswer',d,'ct6')+dc(i,'auditApp',d,'ct6')
     +'<td class="ct6" style="text-align:center"><input type="checkbox" '+(d.auditRev?'checked':'')+' onchange="set('+i+',\'auditRev\',this.checked)" style="accent-color:var(--blue)"></td>'
     +dc(i,'sffSub',d,'ct7')+dc(i,'sffApp',d,'ct7')
-    +'<td><div style="font-size:9px;text-align:right;color:var(--text2)">'+pr+'%</div><div class="prog"><div class="prog-fill" style="width:'+pr+'%"></div></div></td>'
-    +'<td style="text-align:center"><span class="sbadge '+st.cls+'">'+st.lbl+'</span></td>'
-    +'<td><textarea class="notes" onchange="set('+i+',\'notes\',this.value)">'+((d.notes||'').replace(/</g,'&lt;'))+'</textarea></td>'
-    +'</tr>';
+    ++'</tr>';
 }
 function renderAll() {
-  document.getElementById('tbody').innerHTML=STORES.map((_,i)=>buildRow(i)).join('');
+  var _ord={'so':0,'sq':1,'sp':2,'sn':3,'sk':4};
+  var _si=STORES.map(function(_,i){return i;}).sort(function(a,b){
+    var pa=_ord[status(DATA[a]).cls]||2,pb=_ord[status(DATA[b]).cls]||2;
+    if(pa!==pb)return pa-pb;
+    var da=DATA[a].todActual||DATA[a].todInitial||'9999';
+    var db=DATA[b].todActual||DATA[b].todInitial||'9999';
+    return da.localeCompare(db);
+  });
+  document.getElementById('tbody').innerHTML=_si.map(function(i){return buildRow(i);}).join('');
   updateStats(); buildPipeline(); updateBulkBar();
 }
 
@@ -526,42 +551,40 @@ function resetData() { localStorage.removeItem(LS); initData(); renderAll(); }
 
 // ── EXPORT CSV ────────────────────────────────────────────────────────
 function exportExcel() {
-  // CSV export — proper format, opens correctly in Excel
-  function csvQ(v) {
-    var s = String(v == null ? "" : v);
-    if (s.indexOf(",") >= 0 || s.indexOf('"') >= 0 || s.indexOf("\n") >= 0) {
-      return '"' + s.replace(/"/g, '""')+'"';
-    }
-    return s;
-  }
-  function gvx(d,f) {
-    if (d._tbd && d._tbd[f]) return "TBD";
-    return fmt(d[f]);
-  }
-  var H = ["Apple ID","POS Name","Refit Type",
-    "TOD Initial","TOD Updated","TOD Actual",
+  function esc(v) { return String(v==null?"":v).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+  function gvx(d,f) { if(d._tbd&&d._tbd[f])return"TBD"; return fmt(d[f]); }
+  var H=["Apple ID","POS Name","Refit Type","Status","Progress",
+    "TOD Initial","TOD Actual",
     "SB Submitted","Feedback to Partner","Partner Answer","SB Approved",
     "IDK Shared","IDK Approved",
     "FDK Shared","MDK Shared",
     "Audit Submitted","Audit Feedback","Audit Partner Answer","Audit Approved",
     "SFF Submitted","SFF Approved","Notes"];
-  var rows = STORES.map(function(s,i) {
-    var d = DATA[i];
-    return [
-      s.id, s.name, s.type,
-      gvx(d,"todInitial"),gvx(d,"todUpdated"),gvx(d,"todActual"),
+  var xml='<?xml version="1.0" encoding="UTF-8"?>\n';
+  xml+='<?mso-application progid="Excel.Sheet"?>\n';
+  xml+='<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet" ';
+  xml+='xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet">\n';
+  xml+='<Styles><Style ss:ID="h"><Font ss:Bold="1"/></Style></Styles>\n';
+  xml+='<Worksheet ss:Name="iPlace Tracker"><Table>\n';
+  xml+='<Row>'+H.map(function(h){return'<Cell ss:StyleID="h"><Data ss:Type="String">'+esc(h)+'</Data></Cell>';}).join("")+'</Row>\n';
+  STORES.forEach(function(s,i){
+    var d=DATA[i],st=status(d),pr=progress(d);
+    var cells=[
+      s.id,s.name,s.type,st.lbl.replace(/[^\w\s\-]/g,"").trim(),pr+"%",
+      gvx(d,"todInitial"),gvx(d,"todActual"),
       gvx(d,"sbSub"),gvx(d,"sbFeedback"),gvx(d,"sbPartnerAnswer"),gvx(d,"sbApp"),
       gvx(d,"idkSh"),gvx(d,"idkApp"),
       gvx(d,"fdkSh"),gvx(d,"mdkSh"),
       gvx(d,"auditSub"),gvx(d,"auditFeedback"),gvx(d,"auditPartnerAnswer"),gvx(d,"auditApp"),
       gvx(d,"sffSub"),gvx(d,"sffApp"),
       (d.notes||"").replace(/[\r\n]+/g," ")
-    ].map(csvQ).join(",");
+    ];
+    xml+='<Row>'+cells.map(function(v){return'<Cell><Data ss:Type="String">'+esc(v)+'</Data></Cell>';}).join("")+'</Row>\n';
   });
-  var csv = "\uFEFF" + H.map(csvQ).join(",") + "\n" + rows.join("\n");
-  var a = document.createElement("a");
-  a.href = URL.createObjectURL(new Blob([csv], {type: "text/csv;charset=utf-8"}));
-  a.download = "iplace-tracker-" + new Date().toISOString().slice(0,10) + ".csv";
+  xml+='</Table></Worksheet></Workbook>';
+  var a=document.createElement("a");
+  a.href=URL.createObjectURL(new Blob([xml],{type:"application/vnd.ms-excel;charset=utf-8"}));
+  a.download="iplace-tracker-"+new Date().toISOString().slice(0,10)+".xls";
   a.click();
 }
 
