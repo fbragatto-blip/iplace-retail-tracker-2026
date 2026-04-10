@@ -95,6 +95,7 @@ tbody td{padding:7px 8px;vertical-align:middle}
   <button class="btn b-gy" onclick="window.print()">PDF</button>
   <button class="btn b-bl" onclick="sv()">Salvar</button>
   <button class="btn b-rd" onclick="if(confirm('Resetar?'))rst()">Reset</button>
+  <button class="btn b-gy" onclick="configToken()" title="Configurar token GitHub para salvar">🔑</button>
   <span class="sav" id="svn">Auto-salvo</span>
 </div>
 <div class="pipe" id="pipe"></div>
@@ -165,6 +166,89 @@ tbody td{padding:7px 8px;vertical-align:middle}
   </div>
 </div></div>
 <script>
+
+var GH_USER = "fbragatto-blip";
+var GH_REPO = "iplace-retail-tracker-2026";
+var GH_FILE = "data.json";
+var GH_RAW  = "https://raw.githubusercontent.com/"+GH_USER+"/"+GH_REPO+"/main/"+GH_FILE;
+var GH_API  = "https://api.github.com/repos/"+GH_USER+"/"+GH_REPO+"/contents/"+GH_FILE;
+var GH_TOKEN_KEY = "gh_tracker_token";
+
+function getToken(){return localStorage.getItem(GH_TOKEN_KEY)||"";}
+function setToken(t){localStorage.setItem(GH_TOKEN_KEY,t);}
+
+// Load data from GitHub (public read)
+function loadFromGH(callback){
+  var url=GH_RAW+"?t="+Date.now();
+  fetch(url).then(function(r){return r.json();}).then(function(d){
+    if(d&&Array.isArray(d.data)&&d.data.length===STORES.length){
+      var def={todInitial:"",todActual:"",sbSub:"",sbFeedback:"",sbPartnerAnswer:"",sbApp:"",sbRev:false,
+               idkSh:"",idkApp:"",idkRev:false,fdkSh:"",fdkRev:false,mdkReq:false,mdkSh:"",
+               auditSub:"",auditFeedback:"",auditPartnerAnswer:"",auditApp:"",auditRev:false,
+               sffSub:"",sffApp:"",notes:""};
+      D=STORES.map(function(_,i){
+        var obj={};for(var k in def)obj[k]=def[k];
+        var src=d.data[i]||{};for(var k in src)obj[k]=src[k];
+        return obj;
+      });
+      callback(true);
+    } else {
+      callback(false);
+    }
+  }).catch(function(){callback(false);});
+}
+
+// Save data to GitHub (requires token)
+function saveToGH(){
+  var token=getToken();
+  if(!token){
+    showTokenModal(function(t){
+      if(t){setToken(t);saveToGH();}
+    });
+    return;
+  }
+  document.getElementById("svn").textContent="Salvando...";
+  // Get current SHA first
+  fetch(GH_API,{headers:{"Authorization":"Bearer "+token}})
+  .then(function(r){return r.json();})
+  .then(function(meta){
+    var sha=meta.sha;
+    var payload=JSON.stringify({v:1,data:D});
+    var b64=btoa(unescape(encodeURIComponent(payload)));
+    return fetch(GH_API,{
+      method:"PUT",
+      headers:{"Authorization":"Bearer "+token,"Content-Type":"application/json"},
+      body:JSON.stringify({message:"Update tracker data",content:b64,sha:sha})
+    });
+  })
+  .then(function(r){
+    if(r.ok){
+      document.getElementById("svn").textContent="Salvo no GitHub";
+      setTimeout(function(){document.getElementById("svn").textContent="Auto-salvo";},2000);
+      localStorage.setItem(LS,JSON.stringify(D)); // also local
+    } else {
+      document.getElementById("svn").textContent="Erro ao salvar - token invalido?";
+      setToken(""); // clear bad token
+    }
+  })
+  .catch(function(e){
+    document.getElementById("svn").textContent="Erro de rede";
+  });
+}
+
+// Token config modal
+function showTokenModal(cb){
+  var t=prompt("Cole seu GitHub Personal Access Token (com permissao 'repo'):\n\nhttps://github.com/settings/tokens/new");
+  if(t&&t.trim()) cb(t.trim()); else cb(null);
+}
+
+function configToken(){
+  var cur=getToken();
+  var msg=cur?"Token atual: "+cur.slice(0,8)+"...\nDigite novo token (ou Cancel para manter):":"Nenhum token configurado.\nDigite seu GitHub PAT:";
+  var t=prompt(msg);
+  if(t&&t.trim()){setToken(t.trim());alert("Token salvo! Clique em Salvar para sincronizar.");}
+}
+
 var STORES=[
   {id:727819,  n:"IPLACE SHOPPING IGUATEMI FORTALEZA",          t:"DOWN-REL-RES"},
   {id:881687,  n:"IPLACE RIOSUL SHOPPING",                      t:"DOWN-RES"},
@@ -477,12 +561,11 @@ function filt(){
   }
 }
 
+
 function sv(){
-  localStorage.setItem(LS,JSON.stringify(D));
-  var el=document.getElementById("svn");
-  el.textContent="Salvo";
-  setTimeout(function(){el.textContent="Auto-salvo";},2000);
+  saveToGH();
 }
+
 function ld(){
   try{
     var s=localStorage.getItem(LS);
@@ -651,8 +734,18 @@ function apImp(){
   sv(); ra(); clImp();
 }
 
-if(!ld()) id_();
-ra();
+
+// Try to load from GitHub first, fall back to localStorage
+document.getElementById("svn").textContent="Carregando dados...";
+loadFromGH(function(ok){
+  if(!ok){
+    // Fall back to localStorage
+    if(!ld()) id_();
+  }
+  ra();
+  document.getElementById("svn").textContent="Auto-salvo";
+});
+
 
 </script>
 </body>
