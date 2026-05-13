@@ -354,12 +354,20 @@ function saveToGH(){
         document.getElementById("svn").textContent="Salvo no GitHub";
         setTimeout(function(){document.getElementById("svn").textContent="Auto-salvo";},2500);
         localStorage.setItem(LS,JSON.stringify({data2026:D,data2025:D25}));
-      } else {document.getElementById("svn").textContent="Erro - token invalido?";setToken("");}
+      } else {document.getElementById("svn").textContent="Erro ao salvar — verifique o token (🔑)";}
     })
-    .catch(function(){document.getElementById("svn").textContent="Erro de rede";});
+    .catch(function(){document.getElementById("svn").textContent="Erro de rede — dados salvos localmente";});
 }
 function showTokenModal(cb){var t=prompt("GitHub PAT (permissao repo):");if(t&&t.trim())cb(t.trim());else cb(null);}
-function configToken(){var cur=getToken();var t=prompt(cur?"Token: "+cur.slice(0,8)+"...\nNovo token:":"GitHub PAT:");if(t&&t.trim()){setToken(t.trim());alert("Token salvo!");}}
+function configToken(){
+  var cur=getToken();
+  var msg=cur
+    ?"✅ Token salvo: "+cur.slice(0,12)+"...\n\nPara trocar, cole o novo token abaixo.\nDeixe em branco para manter o atual:"
+    :"Cole seu GitHub PAT (permissao: repo):";
+  var t=prompt(msg);
+  if(t&&t.trim()){setToken(t.trim());alert("✅ Token salvo com sucesso! Não será pedido novamente.");}
+  else if(!cur){alert("⚠️ Nenhum token configurado. Os dados não serão salvos no GitHub.");}
+}
 
 /* ── Tab switching ── */
 var _tab='26';
