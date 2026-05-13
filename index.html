@@ -238,7 +238,8 @@ tbody td{padding:7px 8px;vertical-align:middle}
   <span id="blkc25"></span><span class="bsep">|</span>
   <span style="font-size:11px">Data:</span>
   <select class="bsel" id="blkf25">
-    <option value="aaiPlace">AA iPlace Sub.</option>
+    <option value="aaiPlaceFirst">AA 1st Sub.</option>
+    <option value="aaiPlace">AA Ult. Sub.</option>
     <option value="aaLocalReply">Local Reply (CSP BR)</option>
     <option value="aaLocalAns">iPlace Ans. Local</option>
     <option value="aaRegSub">Regional Sub. (Miami)</option>
@@ -257,13 +258,15 @@ tbody td{padding:7px 8px;vertical-align:middle}
   </select>
   <button class="bbt" onclick="bfDri25()">Aplicar DRI</button>
   <span class="bsep">|</span>
+  <button class="bbt bbt-au" onclick="bfResubmit25()">&#8635; AA Resubmit</button>
+  <span class="bsep">|</span>
   <span class="blnk" onclick="deSel25()">Desmarcar tudo</span>
 </div>
 <div class="tw">
 <table class="tbl25" id="tbl25"><thead>
 <tr>
   <th class="g g0" colspan="8">PROJETO + RESUMO</th>
-  <th class="g g2" colspan="3">REVISAO LOCAL (CSP BR)</th>
+  <th class="g g2" colspan="5">REVISAO LOCAL (CSP BR)</th>
   <th class="g g4" colspan="4">REGIONAL (MIAMI)</th>
 </tr>
 <tr>
@@ -275,7 +278,9 @@ tbody td{padding:7px 8px;vertical-align:middle}
   <th class="c ct0" style="width:70px">Prog.</th>
   <th class="c ct0" style="min-width:80px" title="Responsavel atual">DRI</th>
   <th class="c ct0" style="min-width:180px">Notas</th>
-  <th class="c ct2" style="min-width:100px" title="iPlace submete o AA">AA Sub. (iPlace)</th>
+  <th class="c ct2" style="width:60px">Rodada #</th>
+  <th class="c ct2" style="min-width:100px" title="1a submissao iPlace">1st Sub.</th>
+  <th class="c ct2" style="min-width:108px" title="Ultima submissao iPlace">Ult. Sub.</th>
   <th class="c ct2" style="min-width:108px" title="CSP BR envia feedback">Local Reply (CSP BR)</th>
   <th class="c ct2" style="min-width:100px" title="iPlace responde ao feedback local">iPlace Ans. Local</th>
   <th class="c ct4" style="min-width:108px" title="CSP BR submete ao Miami">Regional Sub. (Miami)</th>
@@ -321,7 +326,7 @@ function loadFromGH(callback){
         // backward compat v1-v3
         var df=mkDef();D=STORES.map(function(_,i){var o={},s=d.data[i]||{};for(var k in df)o[k]=df[k];for(var k in s)o[k]=s[k];migrate(o);return o;});ok=true;
       }
-      if(d&&Array.isArray(d.data2025)&&d.data2025.length===STORES_2025.length){
+      if(d&&Array.isArray(d.data2025)&&d.data2025.length>0){
         var df=mkDef25();D25=STORES_2025.map(function(_,i){var o={},s=d.data2025[i]||{};for(var k in df)o[k]=df[k];for(var k in s)o[k]=s[k];return o;});
       } else {id_25();}
       callback(ok);
@@ -396,7 +401,9 @@ var STORES_2025=[
   {id:1559317, n:"IPLACE SHOPPING BARRA SALVADOR",              t:"Downgrade FY25"},
   {id:2379427, n:"IPLACE SHOPPING DA BAHIA",                    t:"Downgrade + Resize FY25"},
   {id:1671869, n:"IPLACE PARQUE SHOPPING BELEM",                t:"Downgrade + Resize FY25"},
-  {id:1718416, n:"IPLACE SHOPPING UNIAO DE OSASCO",             t:"Downgrade + Reallocation FY25"}
+  {id:1718416, n:"IPLACE SHOPPING UNIAO DE OSASCO",             t:"Downgrade + Reallocation FY25"},
+  {id:479954,  n:"IPLACE BH SHOPPING",                            t:"REFIT APR"},
+  {id:991538,  n:"IPLACE IGUATEMI CAMPINAS",                      t:"REFIT APR"}
 ];
 
 var LS="iplace-tracker-2026-v4";
@@ -412,7 +419,7 @@ function mkDef(){
     sffSub:"",sffApp:"",notes:""};
 }
 function mkDef25(){
-  return{dri:"",aaiPlace:"",aaLocalReply:"",aaLocalAns:"",aaRegSub:"",aaRegReply:"",aaRegAns:"",aaApproval:"",notes:""};
+  return{dri:"",aaRound:0,aaiPlaceFirst:"",aaiPlace:"",aaLocalReply:"",aaLocalAns:"",aaRegSub:"",aaRegReply:"",aaRegAns:"",aaApproval:"",notes:""};
 }
 function migrate(obj){
   if(obj.sbSub&&!obj.sbLastSub)obj.sbLastSub=obj.sbSub;
@@ -515,8 +522,8 @@ function pg25(d){
 /* ── Shared cell renderers (use data-tab for routing) ── */
 function tb(t){var m={DOWN:"td","DOWN-RES":"tr","DOWN-REL-RES":"tz"};return'<span class="tb '+(m[t]||"td")+'">'+t+"</span>";}
 function tb25(t){
-  var m={"Downgrade FY25":"DOWN","Downgrade + Reallocation FY25":"DOWN+REALL","Downgrade + Resize FY25":"DOWN+RES","Reallocation FY25":"REALL"};
-  return'<span class="tb td">'+(m[t]||t)+"</span>";
+  var m={"Downgrade FY25":{l:"DOWN",c:"td"},"Downgrade + Reallocation FY25":{l:"DOWN+REALL",c:"td"},"Downgrade + Resize FY25":{l:"DOWN+RES",c:"td"},"Reallocation FY25":{l:"REALL",c:"td"},"REFIT APR":{l:"REFIT APR",c:"tz"}};
+  var e=m[t];return'<span class="tb '+(e?e.c:"td")+'">'+(e?e.l:t)+"</span>";
 }
 function dc(i,f,d,cl,tab){
   var v=d[f]||"",val=fm(v),c=cl?(' class="'+cl+'"'):"",t=tab||'26';
@@ -576,6 +583,19 @@ function roundCell(i,f,val,cl){
     +'<button class="rnd-btn" data-i="'+i+'" data-f="'+f+'" data-d="1" onclick="adjRound(event,this)">+</button>'
     +'</div></td>';
 }
+function adjRound25(ev,el){
+  ev.stopPropagation();
+  var i=parseInt(el.dataset.i),f=el.dataset.f,delta=parseInt(el.dataset.d);
+  se25(i,f,Math.max(0,(parseInt(D25[i][f])||0)+delta));
+}
+function roundCell25(i,f,val,cl){
+  var c=cl?(' class="'+cl+'"'):"",n=parseInt(val)||0;
+  var vc=n===0?'rnd-zero':n===1?'rnd-one':n===2?'rnd-two':'rnd-many';
+  return'<td'+c+'><div class="rnd-wrap">'
+    +'<button class="rnd-btn" data-i="'+i+'" data-f="'+f+'" data-d="-1" onclick="adjRound25(event,this)">-</button>'
+    +'<span class="rnd-val '+vc+'">'+(n||'0')+'</span>'
+    +'<button class="rnd-btn" data-i="'+i+'" data-f="'+f+'" data-d="1" onclick="adjRound25(event,this)">+</button>'
+    +'</div></td>';}
 function cmtCell(i,notes,tab){
   var t=tab||'26',val=(notes||'').replace(/"/g,'&quot;'),hasCls=notes?'has-val':'';
   return'<td class="ct0"><input type="text" class="cmt-inp '+hasCls+'" value="'+val+'" placeholder="Comentario..."'
@@ -615,7 +635,10 @@ function ps(i,f,el){
 }
 function ps25(i,f,el){
   var v=el.value.trim();if(!v){se25(i,f,"");el.value="";return;}
-  var iso=pr(v);if(iso){se25(i,f,iso);el.value=fm(iso);el.style.color="";}else el.style.color="red";
+  var iso=pr(v);if(iso){
+    se25(i,f,iso);el.value=fm(iso);el.style.color="";
+    if(f==="aaiPlace"&&!D25[i].aaiPlaceFirst)se25(i,"aaiPlaceFirst",iso);
+  }else el.style.color="red";
 }
 function se(i,f,v){D[i][f]=v;rr(i);sv();}
 function se25(i,f,v){D25[i][f]=v;rr25(i);sv();}
@@ -677,7 +700,9 @@ function brow25(i){
   r+='<td class="ct0"><div style="font-size:9px;text-align:right;color:var(--tx2)">'+p+'%</div><div class="prg"><div class="prf" style="width:'+p+'%"></div></div></td>';
   r+=driCell(i,"dri",d.dri,"ct0",'25');
   r+=cmtCell(i,d.notes,'25');
-  r+=dcAge25(i,"aaiPlace","aaLocalReply",d,"ct2");
+  r+=roundCell25(i,"aaRound",d.aaRound,"ct2");
+  r+=dcFirst(i,"aaiPlaceFirst",d,"ct2",'25');
+  r+=dcLastSub(i,"aaiPlace","aaLocalReply",d,"ct2",'25');
   r+=dcAge25(i,"aaLocalReply","aaLocalAns",d,"ct2");
   r+=dcAge25(i,"aaLocalAns","aaRegSub",d,"ct2");
   r+=dcAge25(i,"aaRegSub","aaRegReply",d,"ct4");
@@ -758,6 +783,16 @@ function bfResubmit(section){
 function bfDate25(){var f=document.getElementById("blkf25").value,iso=pr(document.getElementById("blkd25").value);if(!iso){alert("Data invalida");return;}SEL25.forEach(function(i){D25[i][f]=iso;});sv();ra25();}
 function bfToday25(){var f=document.getElementById("blkf25").value,iso=new Date().toISOString().split("T")[0];SEL25.forEach(function(i){D25[i][f]=iso;});sv();ra25();}
 function bfDri25(){var v=document.getElementById("blkDriVal25").value;SEL25.forEach(function(i){D25[i].dri=v;});sv();ra25();}
+function bfResubmit25(){
+  if(SEL25.size===0){alert("Selecione ao menos uma loja.");return;}
+  var today=new Date().toISOString().split("T")[0];
+  SEL25.forEach(function(i){
+    D25[i].aaRound=(parseInt(D25[i].aaRound)||0)+1;
+    D25[i].aaiPlace=today;
+    if(!D25[i].aaiPlaceFirst)D25[i].aaiPlaceFirst=today;
+  });
+  sv();ra25();
+}
 
 /* ── Filter ── */
 function filt(){
@@ -776,7 +811,7 @@ function ld(){
     var s=localStorage.getItem(LS);if(!s)return false;var p=JSON.parse(s);
     var d26=p.data2026||p;if(!Array.isArray(d26)||d26.length!==STORES.length)return false;
     var df=mkDef();D=[];for(var i=0;i<STORES.length;i++){var o={},src=d26[i]||{};for(var k in df)o[k]=df[k];for(var k in src)o[k]=src[k];migrate(o);D.push(o);}
-    if(p.data2025&&Array.isArray(p.data2025)&&p.data2025.length===STORES_2025.length){
+    if(p.data2025&&Array.isArray(p.data2025)&&p.data2025.length>0){
       var df25=mkDef25();D25=[];for(var i=0;i<STORES_2025.length;i++){var o={},src=p.data2025[i]||{};for(var k in df25)o[k]=df25[k];for(var k in src)o[k]=src[k];D25.push(o);}
     }else id_25();
     return true;
@@ -787,18 +822,20 @@ function rst(){localStorage.removeItem(LS);id_();ra();}
 function id_25(){
   D25=[];
   var pre=[
-    {dri:"iplace", aaiPlace:"2026-03-16",aaLocalReply:"2026-03-17",aaLocalAns:"",aaRegSub:"",aaRegReply:"",aaRegAns:"",aaApproval:"",notes:""},
-    {dri:"iplace", aaiPlace:"2026-03-18",aaLocalReply:"2026-04-07",aaLocalAns:"",aaRegSub:"",aaRegReply:"",aaRegAns:"",aaApproval:"",notes:""},
-    {dri:"cspmia", aaiPlace:"2026-04-02",aaLocalReply:"2026-04-08",aaLocalAns:"2026-04-10",aaRegSub:"2026-04-15",aaRegReply:"",aaRegAns:"",aaApproval:"",notes:""},
-    {dri:"cspbr",  aaiPlace:"2026-04-15",aaLocalReply:"",aaLocalAns:"",aaRegSub:"2026-04-28",aaRegReply:"",aaRegAns:"",aaApproval:"",notes:""},
-    {dri:"cspbr",  aaiPlace:"2026-04-15",aaLocalReply:"",aaLocalAns:"",aaRegSub:"",aaRegReply:"",aaRegAns:"",aaApproval:"",notes:""},
-    {dri:"iplace", aaiPlace:"2026-04-09",aaLocalReply:"2026-04-10",aaLocalAns:"",aaRegSub:"",aaRegReply:"",aaRegAns:"",aaApproval:"",notes:""},
-    {dri:"iplace", aaiPlace:"",aaLocalReply:"",aaLocalAns:"",aaRegSub:"",aaRegReply:"",aaRegAns:"",aaApproval:"",notes:""},
-    {dri:"iplace", aaiPlace:"",aaLocalReply:"",aaLocalAns:"",aaRegSub:"",aaRegReply:"",aaRegAns:"",aaApproval:"",notes:""},
-    {dri:"iplace", aaiPlace:"",aaLocalReply:"",aaLocalAns:"",aaRegSub:"",aaRegReply:"",aaRegAns:"",aaApproval:"",notes:""},
-    {dri:"iplace", aaiPlace:"",aaLocalReply:"",aaLocalAns:"",aaRegSub:"",aaRegReply:"",aaRegAns:"",aaApproval:"",notes:""},
-    {dri:"iplace", aaiPlace:"",aaLocalReply:"",aaLocalAns:"",aaRegSub:"",aaRegReply:"",aaRegAns:"",aaApproval:"",notes:""},
-    {dri:"iplace", aaiPlace:"",aaLocalReply:"",aaLocalAns:"",aaRegSub:"",aaRegReply:"",aaRegAns:"",aaApproval:"",notes:""}
+    {dri:"iplace", aaRound:0,aaiPlaceFirst:"2026-03-16",aaiPlace:"2026-03-16",aaLocalReply:"2026-03-17",aaLocalAns:"",aaRegSub:"",aaRegReply:"",aaRegAns:"",aaApproval:"",notes:""},
+    {dri:"iplace", aaRound:0,aaiPlaceFirst:"2026-03-18",aaiPlace:"2026-03-18",aaLocalReply:"2026-04-07",aaLocalAns:"",aaRegSub:"",aaRegReply:"",aaRegAns:"",aaApproval:"",notes:""},
+    {dri:"cspmia", aaRound:0,aaiPlaceFirst:"2026-04-02",aaiPlace:"2026-04-02",aaLocalReply:"2026-04-08",aaLocalAns:"2026-04-10",aaRegSub:"2026-04-15",aaRegReply:"",aaRegAns:"",aaApproval:"",notes:""},
+    {dri:"cspbr",  aaRound:0,aaiPlaceFirst:"2026-04-15",aaiPlace:"2026-04-15",aaLocalReply:"",aaLocalAns:"",aaRegSub:"2026-04-28",aaRegReply:"",aaRegAns:"",aaApproval:"",notes:""},
+    {dri:"cspbr",  aaRound:0,aaiPlaceFirst:"2026-04-15",aaiPlace:"2026-04-15",aaLocalReply:"",aaLocalAns:"",aaRegSub:"",aaRegReply:"",aaRegAns:"",aaApproval:"",notes:""},
+    {dri:"iplace", aaRound:0,aaiPlaceFirst:"2026-04-09",aaiPlace:"2026-04-09",aaLocalReply:"2026-04-10",aaLocalAns:"",aaRegSub:"",aaRegReply:"",aaRegAns:"",aaApproval:"",notes:""},
+    {dri:"iplace", aaRound:0,aaiPlaceFirst:"",aaiPlace:"",aaLocalReply:"",aaLocalAns:"",aaRegSub:"",aaRegReply:"",aaRegAns:"",aaApproval:"",notes:""},
+    {dri:"iplace", aaRound:0,aaiPlaceFirst:"",aaiPlace:"",aaLocalReply:"",aaLocalAns:"",aaRegSub:"",aaRegReply:"",aaRegAns:"",aaApproval:"",notes:""},
+    {dri:"iplace", aaRound:0,aaiPlaceFirst:"",aaiPlace:"",aaLocalReply:"",aaLocalAns:"",aaRegSub:"",aaRegReply:"",aaRegAns:"",aaApproval:"",notes:""},
+    {dri:"iplace", aaRound:0,aaiPlaceFirst:"",aaiPlace:"",aaLocalReply:"",aaLocalAns:"",aaRegSub:"",aaRegReply:"",aaRegAns:"",aaApproval:"",notes:""},
+    {dri:"iplace", aaRound:0,aaiPlaceFirst:"",aaiPlace:"",aaLocalReply:"",aaLocalAns:"",aaRegSub:"",aaRegReply:"",aaRegAns:"",aaApproval:"",notes:""},
+    {dri:"iplace", aaRound:0,aaiPlaceFirst:"",aaiPlace:"",aaLocalReply:"",aaLocalAns:"",aaRegSub:"",aaRegReply:"",aaRegAns:"",aaApproval:"",notes:""},
+    {dri:"iplace", aaRound:0,aaiPlaceFirst:"",aaiPlace:"",aaLocalReply:"",aaLocalAns:"",aaRegSub:"",aaRegReply:"",aaRegAns:"",aaApproval:"",notes:""},
+    {dri:"iplace", aaRound:0,aaiPlaceFirst:"",aaiPlace:"",aaLocalReply:"",aaLocalAns:"",aaRegSub:"",aaRegReply:"",aaRegAns:"",aaApproval:"",notes:""}
   ];
   var df=mkDef25();for(var i=0;i<STORES_2025.length;i++){var o={};for(var k in df)o[k]=df[k];var s=pre[i]||{};for(var k in s)o[k]=s[k];D25.push(o);}
 }
@@ -824,11 +861,11 @@ function expXls25(){
   function ex(v){var s=String(v==null?"":v);return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
   function gv(d,f){return d[f]?fm(d[f]):"";}
   var DL={iplace:"iPlace",cspbr:"CSP BR",cspmia:"CSP Miami"};
-  var H=["Apple ID","POS Name","Refit 2025","Status","Progress","DRI","AA Sub. (iPlace)","Local Reply (CSP BR)","iPlace Ans. Local","Regional Sub. (Miami)","Miami Reply","iPlace Ans. Regional","Aprovacao","Comentarios"];
+  var H=["Apple ID","POS Name","Refit 2025","Status","Progress","DRI","AA Rodada","AA 1st Sub.","AA Ult. Sub.","Local Reply (CSP BR)","iPlace Ans. Local","Regional Sub. (Miami)","Miami Reply","iPlace Ans. Regional","Aprovacao","Comentarios"];
   var xml='<?xml version="1.0" encoding="UTF-8"?>\n<?mso-application progid="Excel.Sheet"?>\n<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet" xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet">\n<Styles><Style ss:ID="h"><Font ss:Bold="1"/></Style></Styles>\n<Worksheet ss:Name="2025 AA Audit"><Table>\n';
   var hr='<Row>';for(var i=0;i<H.length;i++)hr+='<Cell ss:StyleID="h"><Data ss:Type="String">'+ex(H[i])+'</Data></Cell>';xml+=hr+'</Row>\n';
   for(var i=0;i<D25.length;i++){var d=D25[i],s=STORES_2025[i],q=st25(d),p=pg25(d);
-    var cells=[s.id,s.n,s.t,q.l,p+"%",(DL[d.dri]||""),gv(d,"aaiPlace"),gv(d,"aaLocalReply"),gv(d,"aaLocalAns"),gv(d,"aaRegSub"),gv(d,"aaRegReply"),gv(d,"aaRegAns"),gv(d,"aaApproval"),(d.notes||"")];
+    var cells=[s.id,s.n,s.t,q.l,p+"%",(DL[d.dri]||""),(d.aaRound||0),gv(d,"aaiPlaceFirst"),gv(d,"aaiPlace"),gv(d,"aaLocalReply"),gv(d,"aaLocalAns"),gv(d,"aaRegSub"),gv(d,"aaRegReply"),gv(d,"aaRegAns"),gv(d,"aaApproval"),(d.notes||"")];
     var dr='<Row>';for(var j=0;j<cells.length;j++)dr+='<Cell><Data ss:Type="String">'+ex(cells[j])+'</Data></Cell>';xml+=dr+'</Row>\n';}
   xml+='</Table></Worksheet></Workbook>';
   var a=document.createElement("a");a.href=URL.createObjectURL(new Blob([xml],{type:"application/vnd.ms-excel;charset=utf-8"}));a.download="iplace-2025-aa-"+new Date().toISOString().slice(0,10)+".xls";a.click();
@@ -849,6 +886,8 @@ var FM={
 var FM25={
   "apple id":"_id","id":"_id","aid":"_id",
   "dri":"dri",
+  "aa 1st sub.":"aaiPlaceFirst","aa first sub":"aaiPlaceFirst","aa 1st sub":"aaiPlaceFirst",
+  "aa ult. sub.":"aaiPlace","aa ult sub":"aaiPlace","aa rodada":"aaRound",
   "aa sub. (iplace)":"aaiPlace","aa iplace sub":"aaiPlace","aa - iplace":"aaiPlace",
   "local reply (csp br)":"aaLocalReply","aa - local reply":"aaLocalReply",
   "iplace ans. local":"aaLocalAns","aa - iplace answer":"aaLocalAns",
