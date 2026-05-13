@@ -153,7 +153,7 @@ tbody td{padding:7px 8px;vertical-align:middle}
   <select class="bsel" id="blkf">
     <option value="todInitial">TOD Initial</option><option value="todActual">TOD Actual</option>
     <option value="sbFirstSub">SB 1st Sub.</option><option value="sbLastSub">SB Ult. Sub.</option>
-    <option value="sbApp">SB Approved</option><option value="idkSh">IDK Shared</option>
+    <option value="sbResp">SB Resp. iPlace</option><option value="sbApp">SB Approved</option><option value="idkSh">IDK Shared</option>
     <option value="idkApp">IDK Approved</option><option value="fdkSh">FDK Shared</option>
     <option value="mdkSh">MDK Shared</option><option value="auditFirstSub">Audit 1st Sub.</option>
     <option value="auditLastSub">Audit Ult. Sub.</option><option value="auditApp">Audit Approved</option>
@@ -178,7 +178,7 @@ tbody td{padding:7px 8px;vertical-align:middle}
 <tr>
   <th class="g g0" colspan="7">PROJETO + RESUMO</th>
   <th class="g g1" colspan="2">TOD</th>
-  <th class="g g2" colspan="6">STORE BRIEF</th>
+  <th class="g g2" colspan="7">STORE BRIEF</th>
   <th class="g g3" colspan="3">IDK</th>
   <th class="g g4" colspan="3">FDK</th>
   <th class="g g5" colspan="3">MDK</th>
@@ -198,6 +198,7 @@ tbody td{padding:7px 8px;vertical-align:middle}
   <th class="c ct2" style="min-width:80px">DRI</th>
   <th class="c ct2" style="min-width:100px">1st Sub.</th>
   <th class="c ct2" style="min-width:108px">Ult. Sub.</th>
+  <th class="c ct2" style="min-width:100px" title="Resposta do iPlace ao feedback">Resp. iPlace</th>
   <th class="c ct2">SB Appr.</th>
   <th class="c ct2" style="width:34px">Rev?</th>
   <th class="c ct3">IDK Shared</th><th class="c ct3">IDK Appr.</th><th class="c ct3" style="width:34px">Rev?</th>
@@ -417,7 +418,7 @@ var D=[], D25=[], SEL=new Set(), SEL25=new Set(), pend=[], _importTab='26';
 /* ── Defaults ── */
 function mkDef(){
   return{todInitial:"",todActual:"",
-    sbRound:0,sbDRI:"",sbFirstSub:"",sbLastSub:"",sbApp:"",sbRev:false,
+    sbRound:0,sbDRI:"",sbFirstSub:"",sbLastSub:"",sbResp:"",sbApp:"",sbRev:false,
     idkSh:"",idkApp:"",idkRev:false,fdkSh:"",fdkRev:false,
     mdkReq:false,mdkSh:"",
     auditRound:0,auditDRI:"",auditFirstSub:"",auditLastSub:"",auditApp:"",auditRev:false,
@@ -674,7 +675,8 @@ function brow(i){
   r+=roundCell(i,"sbRound",d.sbRound,"ct2");
   r+=driCell(i,"sbDRI",d.sbDRI,"ct2",'26');
   r+=dcFirst(i,"sbFirstSub",d,"ct2",'26');
-  r+=dcLastSub(i,"sbLastSub","sbApp",d,"ct2",'26');
+  r+=dcLastSub(i,"sbLastSub","sbResp",d,"ct2",'26');
+  r+=dc(i,"sbResp",d,"ct2");
   r+=dc(i,"sbApp",d,"ct2");
   r+='<td class="ct2" style="text-align:center"><input type="checkbox"'+(d.sbRev?' checked':'')+' data-i="'+i+'" data-f="sbRev" onchange="chg(this)" style="accent-color:var(--blue)"></td>';
   r+=dc(i,"idkSh",d,"ct3")+dc(i,"idkApp",d,"ct3");
@@ -860,11 +862,11 @@ function expXls(){
   function ex(v){var s=String(v==null?"":v);return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
   function gv(d,f){return d[f]?fm(d[f]):"";}
   var DL={iplace:"iPlace",cspbr:"CSP BR",cspmia:"CSP Miami"};
-  var H=["Apple ID","POS Name","Refit Type","Status","Progress","TOD Initial","TOD Actual","SB Rodada","SB DRI","SB 1st Sub","SB Ult.Sub","SB Approved","IDK Shared","IDK Approved","FDK Shared","MDK Shared","Audit Rodada","Audit DRI","Audit 1st Sub","Audit Ult.Sub","Audit Approved","SFF Submitted","SFF Approved","Comentarios"];
+  var H=["Apple ID","POS Name","Refit Type","Status","Progress","TOD Initial","TOD Actual","SB Rodada","SB DRI","SB 1st Sub","SB Ult.Sub","SB Resp. iPlace","SB Approved","IDK Shared","IDK Approved","FDK Shared","MDK Shared","Audit Rodada","Audit DRI","Audit 1st Sub","Audit Ult.Sub","Audit Approved","SFF Submitted","SFF Approved","Comentarios"];
   var xml='<?xml version="1.0" encoding="UTF-8"?>\n<?mso-application progid="Excel.Sheet"?>\n<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet" xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet">\n<Styles><Style ss:ID="h"><Font ss:Bold="1"/></Style></Styles>\n<Worksheet ss:Name="2026 Refit"><Table>\n';
   var hr='<Row>';for(var i=0;i<H.length;i++)hr+='<Cell ss:StyleID="h"><Data ss:Type="String">'+ex(H[i])+'</Data></Cell>';xml+=hr+'</Row>\n';
   for(var i=0;i<D.length;i++){var d=D[i],s=STORES[i],q=st(d),p=pg(d);
-    var cells=[s.id,s.n,s.t,q.l,p+"%",gv(d,"todInitial"),gv(d,"todActual"),(d.sbRound||0),(DL[d.sbDRI]||""),gv(d,"sbFirstSub"),gv(d,"sbLastSub"),gv(d,"sbApp"),gv(d,"idkSh"),gv(d,"idkApp"),gv(d,"fdkSh"),gv(d,"mdkSh"),(d.auditRound||0),(DL[d.auditDRI]||""),gv(d,"auditFirstSub"),gv(d,"auditLastSub"),gv(d,"auditApp"),gv(d,"sffSub"),gv(d,"sffApp"),(d.notes||"")];
+    var cells=[s.id,s.n,s.t,q.l,p+"%",gv(d,"todInitial"),gv(d,"todActual"),(d.sbRound||0),(DL[d.sbDRI]||""),gv(d,"sbFirstSub"),gv(d,"sbLastSub"),gv(d,"sbResp"),gv(d,"sbApp"),gv(d,"idkSh"),gv(d,"idkApp"),gv(d,"fdkSh"),gv(d,"mdkSh"),(d.auditRound||0),(DL[d.auditDRI]||""),gv(d,"auditFirstSub"),gv(d,"auditLastSub"),gv(d,"auditApp"),gv(d,"sffSub"),gv(d,"sffApp"),(d.notes||"")];
     var dr='<Row>';for(var j=0;j<cells.length;j++)dr+='<Cell><Data ss:Type="String">'+ex(cells[j])+'</Data></Cell>';xml+=dr+'</Row>\n';}
   xml+='</Table></Worksheet></Workbook>';
   var a=document.createElement("a");a.href=URL.createObjectURL(new Blob([xml],{type:"application/vnd.ms-excel;charset=utf-8"}));a.download="iplace-2026-"+new Date().toISOString().slice(0,10)+".xls";a.click();
@@ -892,7 +894,7 @@ var FM={
   "tod initial":"todInitial","tod actual":"todActual",
   "sb rodada":"sbRound","sb dri":"sbDRI",
   "sb 1st sub":"sbFirstSub","sb ult.sub":"sbLastSub","sb ultima submissao":"sbLastSub","sb submitted":"sbLastSub",
-  "sb approved":"sbApp","idk shared":"idkSh","idk approved":"idkApp","fdk shared":"fdkSh","mdk shared":"mdkSh",
+  "sb approved":"sbApp","sb resp. iplace":"sbResp","sb response":"sbResp","sb resposta":"sbResp","idk shared":"idkSh","idk approved":"idkApp","fdk shared":"fdkSh","mdk shared":"mdkSh",
   "audit rodada":"auditRound","audit dri":"auditDRI",
   "audit 1st sub":"auditFirstSub","audit ult.sub":"auditLastSub","audit ultima submissao":"auditLastSub","audit submitted":"auditLastSub",
   "audit approved":"auditApp","sff submitted":"sffSub","sff approved":"sffApp","notas":"notes","comentarios":"notes"
