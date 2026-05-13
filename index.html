@@ -676,7 +676,7 @@ function brow(i){
   r+=driCell(i,"sbDRI",d.sbDRI,"ct2",'26');
   r+=dcFirst(i,"sbFirstSub",d,"ct2",'26');
   r+=dcLastSub(i,"sbLastSub","sbResp",d,"ct2",'26');
-  r+=dc(i,"sbResp",d,"ct2");
+  r+=dcLastSub(i,"sbResp","sbApp",d,"ct2",'26');
   r+=dc(i,"sbApp",d,"ct2");
   r+='<td class="ct2" style="text-align:center"><input type="checkbox"'+(d.sbRev?' checked':'')+' data-i="'+i+'" data-f="sbRev" onchange="chg(this)" style="accent-color:var(--blue)"></td>';
   r+=dc(i,"idkSh",d,"ct3")+dc(i,"idkApp",d,"ct3");
