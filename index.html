@@ -238,14 +238,15 @@ tbody td{padding:7px 8px;vertical-align:middle}
   <span id="blkc25"></span><span class="bsep">|</span>
   <span style="font-size:11px">Data:</span>
   <select class="bsel" id="blkf25">
-    <option value="aaiPlaceFirst">AA 1st Sub.</option>
-    <option value="aaiPlace">AA Ult. Sub.</option>
-    <option value="aaLocalReply">Local Reply (CSP BR)</option>
-    <option value="aaLocalAns">iPlace Ans. Local</option>
-    <option value="aaRegSub">Regional Sub. (Miami)</option>
-    <option value="aaRegReply">Miami Reply</option>
-    <option value="aaRegAns">iPlace Ans. Regional</option>
-    <option value="aaApproval">Aprovacao</option>
+    <option value="aaiPlaceFirst">1ª Submissão</option>
+    <option value="aaiPlace">Últ. Submissão</option>
+    <option value="aaRegSub">Sub. Miami</option>
+    <option value="aaRegReply">Resp. Miami</option>
+    <option value="aaLocalReply">Feedback c/ iPlace</option>
+    <option value="aaLocalAns">Resp. iPlace</option>
+    <option value="aaApproval">Aprovação</option>
+    <option value="sffSub">SFF Sub.</option>
+    <option value="sffApp">SFF Aprov.</option>
   </select>
   <input class="binp" id="blkd25" type="text" placeholder="DD/MM/AAAA">
   <button class="bbt" onclick="bfDate25()">Aplicar</button>
@@ -266,27 +267,31 @@ tbody td{padding:7px 8px;vertical-align:middle}
 <table class="tbl25" id="tbl25"><thead>
 <tr>
   <th class="g g0" colspan="8">PROJETO + RESUMO</th>
-  <th class="g g2" colspan="5">REVISAO LOCAL (CSP BR)</th>
-  <th class="g g4" colspan="4">REGIONAL (MIAMI)</th>
+  <th class="g g2" colspan="3">SUBMISSÃO AA</th>
+  <th class="g g4" colspan="2" title="Opcional — nem todas as lojas passam por Miami">VALIDAÇÃO MIAMI ⚠︎</th>
+  <th class="g g3" colspan="2">FEEDBACK CSP BR</th>
+  <th class="g g7" colspan="1">APROVAÇÃO AA</th>
+  <th class="g g7" colspan="2">SFF</th>
 </tr>
 <tr>
   <th class="c" style="width:24px">&#9744;</th>
   <th class="c" style="width:66px">Apple ID</th>
-  <th class="c" style="min-width:160px">POS Name</th>
-  <th class="c" style="min-width:120px">Refit 2025</th>
+  <th class="c" style="min-width:160px">Nome POS</th>
+  <th class="c" style="min-width:120px">Tipo Refit</th>
   <th class="c ct0" style="min-width:130px">Status</th>
   <th class="c ct0" style="width:70px">Prog.</th>
-  <th class="c ct0" style="min-width:80px" title="Responsavel atual">DRI</th>
+  <th class="c ct0" style="min-width:80px" title="Responsável atual">DRI</th>
   <th class="c ct0" style="min-width:180px">Notas</th>
   <th class="c ct2" style="width:60px">Rodada #</th>
-  <th class="c ct2" style="min-width:100px" title="1a submissao iPlace">1st Sub.</th>
-  <th class="c ct2" style="min-width:108px" title="Ultima submissao iPlace">Ult. Sub.</th>
-  <th class="c ct2" style="min-width:108px" title="CSP BR envia feedback">Local Reply (CSP BR)</th>
-  <th class="c ct2" style="min-width:100px" title="iPlace responde ao feedback local">iPlace Ans. Local</th>
-  <th class="c ct4" style="min-width:108px" title="CSP BR submete ao Miami">Regional Sub. (Miami)</th>
-  <th class="c ct4" style="min-width:108px" title="Miami envia feedback">Miami Reply</th>
-  <th class="c ct4" style="min-width:100px" title="iPlace responde ao Miami">iPlace Ans. Regional</th>
-  <th class="c ct4" style="min-width:100px">Aprovacao</th>
+  <th class="c ct2" style="min-width:100px" title="1ª submissão iPlace">1ª Sub.</th>
+  <th class="c ct2" style="min-width:108px" title="Última submissão iPlace">Últ. Sub.</th>
+  <th class="c ct4" style="min-width:108px" title="CSP BR envia para Miami (opcional)">Sub. Miami</th>
+  <th class="c ct4" style="min-width:108px" title="Miami envia feedback ao CSP BR">Resp. Miami</th>
+  <th class="c ct3" style="min-width:130px" title="CSP BR compartilha feedback com iPlace">Feedback c/ iPlace</th>
+  <th class="c ct3" style="min-width:100px" title="iPlace responde ao feedback">Resp. iPlace</th>
+  <th class="c ct7" style="min-width:100px">Aprovação AA</th>
+  <th class="c ct7" style="min-width:100px" title="Submissão SFF">SFF Sub.</th>
+  <th class="c ct7" style="min-width:100px" title="Aprovação SFF">SFF Aprov.</th>
 </tr>
 </thead><tbody id="tbody25"></tbody></table>
 </div>
@@ -419,7 +424,7 @@ function mkDef(){
     sffSub:"",sffApp:"",notes:""};
 }
 function mkDef25(){
-  return{dri:"",aaRound:0,aaiPlaceFirst:"",aaiPlace:"",aaLocalReply:"",aaLocalAns:"",aaRegSub:"",aaRegReply:"",aaRegAns:"",aaApproval:"",notes:""};
+  return{dri:"",aaRound:0,aaiPlaceFirst:"",aaiPlace:"",aaLocalReply:"",aaLocalAns:"",aaRegSub:"",aaRegReply:"",aaRegAns:"",aaApproval:"",sffSub:"",sffApp:"",notes:""};
 }
 function migrate(obj){
   if(obj.sbSub&&!obj.sbLastSub)obj.sbLastSub=obj.sbSub;
@@ -493,30 +498,36 @@ function pg(d){
 
 /* ── 2025 Status ── */
 function st25(d){
-  if(d.aaApproval)return{c:"sk",l:"Aprovado"};
-  if(d.aaiPlace&&!d.aaLocalReply&&wdAge(d.aaiPlace)>7)return{c:"so",l:"Local Atrasado"};
+  if(d.sffApp)return{c:"sk",l:"Concluído"};
+  if(d.sffSub&&!d.sffApp)return{c:"sq",l:"SFF Em Revisão"};
+  if(d.aaApproval&&!d.sffSub)return{c:"sp",l:"SFF Pendente"};
+  if(d.aaLocalReply&&!d.aaLocalAns&&wdAge(d.aaLocalReply)>5)return{c:"so",l:"Resp. iPlace Atrasada"};
   if(d.aaRegSub&&!d.aaRegReply&&wdAge(d.aaRegSub)>7)return{c:"so",l:"Miami Atrasado"};
-  if(d.aaRegAns&&!d.aaApproval)return{c:"sq",l:"Aguard. Aprovacao"};
-  if(d.aaRegReply&&!d.aaRegAns)return{c:"sq",l:"iPlace Resp. Miami"};
-  if(d.aaRegSub&&!d.aaRegReply)return{c:"sp",l:"Revisao Miami"};
-  if(d.aaLocalAns&&!d.aaRegSub)return{c:"sp",l:"Sub. Regional Pend."};
-  if(d.aaLocalReply&&!d.aaLocalAns)return{c:"sq",l:"iPlace Resp. Local"};
-  if(d.aaiPlace&&!d.aaLocalReply)return{c:"sp",l:"Revisao Local"};
-  return{c:"sn",l:"Nao Submetido"};
+  if(d.aaiPlace&&!d.aaRegSub&&!d.aaLocalReply&&wdAge(d.aaiPlace)>7)return{c:"so",l:"Feedback Atrasado"};
+  if(d.aaLocalAns&&!d.aaApproval)return{c:"sq",l:"Aguard. Aprovação"};
+  if(d.aaLocalReply&&!d.aaLocalAns)return{c:"sq",l:"Resp. iPlace Pendente"};
+  if(d.aaRegReply&&!d.aaLocalReply)return{c:"sp",l:"Feedback Pendente"};
+  if(d.aaRegSub&&!d.aaRegReply)return{c:"sp",l:"Revisão Miami"};
+  if(d.aaiPlace&&!d.aaLocalReply&&!d.aaRegSub)return{c:"sp",l:"Aguardando Feedback"};
+  return{c:"sn",l:"Não Submetido"};
 }
 function sg25(d){
-  if(d.aaApproval)return"done";
-  if(d.aaRegAns)return"pend_ap";
-  if(d.aaRegReply)return"iplace_reg";
-  if(d.aaRegSub)return"regional";
-  if(d.aaLocalAns)return"pend_reg";
-  if(d.aaLocalReply)return"iplace_local";
-  if(d.aaiPlace)return"local";
+  if(d.sffApp)return"done";
+  if(d.sffSub)return"sff";
+  if(d.aaApproval)return"pend_sff";
+  if(d.aaLocalAns)return"pend_ap";
+  if(d.aaLocalReply)return"resp";
+  if(d.aaRegReply)return"feedback";
+  if(d.aaRegSub)return"miami";
+  if(d.aaiPlace)return"submitted";
   return"none";
 }
 function pg25(d){
-  var k=["aaiPlace","aaLocalReply","aaLocalAns","aaRegSub","aaRegReply","aaRegAns","aaApproval"],c=0;
-  for(var i=0;i<k.length;i++)if(d[k[i]])c++;return Math.round(c/k.length*100);
+  if(d.sffApp)return 100;
+  var k=["aaiPlace","aaLocalReply","aaLocalAns","aaApproval","sffSub"],c=0;
+  for(var i=0;i<k.length;i++)if(d[k[i]])c++;
+  if(d.aaRegSub)c+=0.5;if(d.aaRegReply)c+=0.5;
+  return Math.min(99,Math.round(c/5*100));
 }
 
 /* ── Shared cell renderers (use data-tab for routing) ── */
@@ -703,13 +714,16 @@ function brow25(i){
   r+=roundCell25(i,"aaRound",d.aaRound,"ct2");
   r+=dcFirst(i,"aaiPlaceFirst",d,"ct2",'25');
   r+=dcLastSub(i,"aaiPlace","aaLocalReply",d,"ct2",'25');
-  r+=dcAge25(i,"aaLocalReply","aaLocalAns",d,"ct2");
-  r+=dcAge25(i,"aaLocalAns","aaRegSub",d,"ct2");
   r+=dcAge25(i,"aaRegSub","aaRegReply",d,"ct4");
-  r+=dcAge25(i,"aaRegReply","aaRegAns",d,"ct4");
-  r+=dcAge25(i,"aaRegAns","aaApproval",d,"ct4");
-  r+='<td class="ct4"><div class="di"><input type="text" value="'+appVal+'" placeholder="DD/MM/AAAA"'
+  r+=dcAge25(i,"aaRegReply","aaLocalReply",d,"ct4");
+  r+=dcAge25(i,"aaLocalReply","aaLocalAns",d,"ct3");
+  r+=dcAge25(i,"aaLocalAns","aaApproval",d,"ct3");
+  r+='<td class="ct7"><div class="di"><input type="text" value="'+appVal+'" placeholder="DD/MM/AAAA"'
     +' data-tab="25" data-i="'+i+'" data-f="aaApproval" onblur="dca(this)" onkeydown="dck(this,event)">'+appInner+'</div></td>';
+  r+=dcLastSub(i,"sffSub","sffApp",d,"ct7",'25');
+  var sffAppV=d.sffApp||"",sffAppVal=fm(sffAppV),sffAppInner=sffAppV?'<span style="color:#16a34a;font-size:11px;font-weight:700">&#10003;</span>':'';
+  r+='<td class="ct7"><div class="di"><input type="text" value="'+sffAppVal+'" placeholder="DD/MM/AAAA"'
+    +' data-tab="25" data-i="'+i+'" data-f="sffApp" onblur="dca(this)" onkeydown="dck(this,event)">'+sffAppInner+'</div></td>';
   r+='</tr>';return r;
 }
 
@@ -750,7 +764,7 @@ function us25(){
   document.getElementById("st0").textContent=STORES_2025.length;
   document.getElementById("st1").textContent=np;document.getElementById("st2").textContent=no;document.getElementById("st3").textContent=nc;
 }
-var PL25=[{k:"none",l:"Nao Submetido",c:"#8e8e93"},{k:"local",l:"Revisao Local",c:"#1e40af"},{k:"iplace_local",l:"iPlace Local",c:"#166534"},{k:"pend_reg",l:"Sub. Regional",c:"#92400e"},{k:"regional",l:"Revisao Miami",c:"#6b21a8"},{k:"iplace_reg",l:"iPlace Miami",c:"#9d174d"},{k:"pend_ap",l:"Pend. Aprovacao",c:"#065f46"},{k:"done",l:"Aprovado",c:"#166534"}];
+var PL25=[{k:"none",l:"Não Submetido",c:"#8e8e93"},{k:"submitted",l:"Submetido",c:"#1e40af"},{k:"miami",l:"Revisão Miami",c:"#6b21a8"},{k:"feedback",l:"Feedback Pendente",c:"#9d174d"},{k:"resp",l:"Resp. iPlace",c:"#92400e"},{k:"pend_ap",l:"Aguard. Aprovação",c:"#0891b2"},{k:"pend_sff",l:"SFF Pendente",c:"#065f46"},{k:"sff",l:"SFF Em Revisão",c:"#0e7490"},{k:"done",l:"Concluído",c:"#166534"}];
 function bp25(){
   var cnt={};for(var i=0;i<PL25.length;i++)cnt[PL25[i].k]=0;
   for(var i=0;i<D25.length;i++){var k=sg25(D25[i]);if(cnt[k]!==undefined)cnt[k]++;}
@@ -861,11 +875,11 @@ function expXls25(){
   function ex(v){var s=String(v==null?"":v);return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
   function gv(d,f){return d[f]?fm(d[f]):"";}
   var DL={iplace:"iPlace",cspbr:"CSP BR",cspmia:"CSP Miami"};
-  var H=["Apple ID","POS Name","Refit 2025","Status","Progress","DRI","AA Rodada","AA 1st Sub.","AA Ult. Sub.","Local Reply (CSP BR)","iPlace Ans. Local","Regional Sub. (Miami)","Miami Reply","iPlace Ans. Regional","Aprovacao","Comentarios"];
+  var H=["Apple ID","Nome POS","Tipo Refit","Status","Progresso","DRI","Rodada AA","1ª Sub.","Últ. Sub.","Sub. Miami","Resp. Miami","Feedback c/ iPlace","Resp. iPlace","Aprovação AA","SFF Sub.","SFF Aprov.","Comentários"];
   var xml='<?xml version="1.0" encoding="UTF-8"?>\n<?mso-application progid="Excel.Sheet"?>\n<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet" xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet">\n<Styles><Style ss:ID="h"><Font ss:Bold="1"/></Style></Styles>\n<Worksheet ss:Name="2025 AA Audit"><Table>\n';
   var hr='<Row>';for(var i=0;i<H.length;i++)hr+='<Cell ss:StyleID="h"><Data ss:Type="String">'+ex(H[i])+'</Data></Cell>';xml+=hr+'</Row>\n';
   for(var i=0;i<D25.length;i++){var d=D25[i],s=STORES_2025[i],q=st25(d),p=pg25(d);
-    var cells=[s.id,s.n,s.t,q.l,p+"%",(DL[d.dri]||""),(d.aaRound||0),gv(d,"aaiPlaceFirst"),gv(d,"aaiPlace"),gv(d,"aaLocalReply"),gv(d,"aaLocalAns"),gv(d,"aaRegSub"),gv(d,"aaRegReply"),gv(d,"aaRegAns"),gv(d,"aaApproval"),(d.notes||"")];
+    var cells=[s.id,s.n,s.t,q.l,p+"%",(DL[d.dri]||""),(d.aaRound||0),gv(d,"aaiPlaceFirst"),gv(d,"aaiPlace"),gv(d,"aaRegSub"),gv(d,"aaRegReply"),gv(d,"aaLocalReply"),gv(d,"aaLocalAns"),gv(d,"aaApproval"),gv(d,"sffSub"),gv(d,"sffApp"),(d.notes||"")];
     var dr='<Row>';for(var j=0;j<cells.length;j++)dr+='<Cell><Data ss:Type="String">'+ex(cells[j])+'</Data></Cell>';xml+=dr+'</Row>\n';}
   xml+='</Table></Worksheet></Workbook>';
   var a=document.createElement("a");a.href=URL.createObjectURL(new Blob([xml],{type:"application/vnd.ms-excel;charset=utf-8"}));a.download="iplace-2025-aa-"+new Date().toISOString().slice(0,10)+".xls";a.click();
@@ -886,16 +900,17 @@ var FM={
 var FM25={
   "apple id":"_id","id":"_id","aid":"_id",
   "dri":"dri",
-  "aa 1st sub.":"aaiPlaceFirst","aa first sub":"aaiPlaceFirst","aa 1st sub":"aaiPlaceFirst",
-  "aa ult. sub.":"aaiPlace","aa ult sub":"aaiPlace","aa rodada":"aaRound",
-  "aa sub. (iplace)":"aaiPlace","aa iplace sub":"aaiPlace","aa - iplace":"aaiPlace",
-  "local reply (csp br)":"aaLocalReply","aa - local reply":"aaLocalReply",
-  "iplace ans. local":"aaLocalAns","aa - iplace answer":"aaLocalAns",
-  "regional sub. (miami)":"aaRegSub","aa - regional sub":"aaRegSub",
-  "miami reply":"aaRegReply","aa - regional reply":"aaRegReply",
-  "iplace ans. regional":"aaRegAns",
-  "aprovacao":"aaApproval","approval":"aaApproval","aa - approval":"aaApproval",
-  "notas":"notes","comentarios":"notes"
+  "rodada aa":"aaRound","aa rodada":"aaRound","rodada #":"aaRound",
+  "1ª sub.":"aaiPlaceFirst","1a sub.":"aaiPlaceFirst","aa 1st sub.":"aaiPlaceFirst","aa first sub":"aaiPlaceFirst","aa 1st sub":"aaiPlaceFirst","1ª submissão":"aaiPlaceFirst",
+  "últ. sub.":"aaiPlace","ult. sub.":"aaiPlace","aa ult. sub.":"aaiPlace","aa ult sub":"aaiPlace","última submissão":"aaiPlace","aa sub. (iplace)":"aaiPlace","aa iplace sub":"aaiPlace",
+  "sub. miami":"aaRegSub","regional sub. (miami)":"aaRegSub","aa - regional sub":"aaRegSub",
+  "resp. miami":"aaRegReply","miami reply":"aaRegReply","aa - regional reply":"aaRegReply",
+  "feedback c/ iplace":"aaLocalReply","feedback compartilhado":"aaLocalReply","local reply (csp br)":"aaLocalReply","aa - local reply":"aaLocalReply",
+  "resp. iplace":"aaLocalAns","resposta iplace":"aaLocalAns","iplace ans. local":"aaLocalAns","aa - iplace answer":"aaLocalAns",
+  "aprovação":"aaApproval","aprovacao":"aaApproval","approval":"aaApproval","aa - approval":"aaApproval",
+  "sff sub.":"sffSub","sff submitted":"sffSub","sff submissão":"sffSub",
+  "sff aprov.":"sffApp","sff approved":"sffApp","sff aprovação":"sffApp",
+  "comentários":"notes","comentarios":"notes","notas":"notes"
 };
 function openImp(tab){_importTab=tab||'26';document.getElementById("impM").className="mo on";document.getElementById("impTitle").textContent=tab==='25'?"Importar dados — 2025 AA Audit":"Importar dados — 2026 Refit";}
 function clImp(){document.getElementById("impM").className="mo";document.getElementById("impTxt").value="";document.getElementById("impPrev").innerHTML="";document.getElementById("impAct").style.display="none";pend=[];}
