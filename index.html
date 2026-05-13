@@ -231,8 +231,8 @@ tbody td{padding:7px 8px;vertical-align:middle}
   <button class="btn b-gy" onclick="openImp('25')">Importar Excel</button>
   <button class="btn b-gy" onclick="expXls25()">Export Excel</button>
   <button class="btn b-gy" onclick="window.print()">PDF</button>
-  <button class="btn b-bl" onclick="sv()">Salvar</button>
-  <button class="btn b-rd" onclick="if(confirm('Resetar dados 2025?'))rst25()">Reset</button>
+  <button class="btn b-bl" onclick="sv();document.getElementById('svn25').textContent='Salvando...';setTimeout(function(){document.getElementById('svn25').textContent='';},3000)">Salvar</button>
+  <span class="sav" id="svn25"></span>
 </div>
 <div class="pipe" id="pipe25"></div>
 <div class="bulk" id="blk25">
@@ -353,10 +353,18 @@ function saveToGH(){
       if(r.ok){
         document.getElementById("svn").textContent="Salvo no GitHub";
         setTimeout(function(){document.getElementById("svn").textContent="Auto-salvo";},2500);
+        var el25=document.getElementById("svn25");if(el25)el25.textContent="✓ Salvo";
         localStorage.setItem(LS,JSON.stringify({data2026:D,data2025:D25}));
-      } else {document.getElementById("svn").textContent="Erro ao salvar — verifique o token (🔑)";}
+      } else {
+        document.getElementById("svn").textContent="Erro ao salvar — verifique o token (🔑)";
+        var el25=document.getElementById("svn25");if(el25)el25.textContent="Erro ao salvar";
+      }
     })
-    .catch(function(){document.getElementById("svn").textContent="Erro de rede — dados salvos localmente";});
+    .catch(function(){
+      document.getElementById("svn").textContent="Erro de rede — dados salvos localmente";
+      localStorage.setItem(LS,JSON.stringify({data2026:D,data2025:D25}));
+      var el25=document.getElementById("svn25");if(el25)el25.textContent="Salvo localmente";
+    });
 }
 function showTokenModal(cb){var t=prompt("GitHub PAT (permissao repo):");if(t&&t.trim())cb(t.trim());else cb(null);}
 function configToken(){
