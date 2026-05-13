@@ -153,7 +153,7 @@ tbody td{padding:7px 8px;vertical-align:middle}
   <select class="bsel" id="blkf">
     <option value="todInitial">TOD Initial</option><option value="todActual">TOD Actual</option>
     <option value="sbFirstSub">SB 1st Sub.</option><option value="sbLastSub">SB Ult. Sub.</option>
-    <option value="sbResp">SB Resp. iPlace</option><option value="sbApp">SB Approved</option><option value="idkSh">IDK Shared</option>
+    <option value="sbResp">SB Feedback iPlace</option><option value="sbApp">SB Approved</option><option value="idkSh">IDK Shared</option>
     <option value="idkApp">IDK Approved</option><option value="fdkSh">FDK Shared</option>
     <option value="mdkSh">MDK Shared</option><option value="auditFirstSub">Audit 1st Sub.</option>
     <option value="auditLastSub">Audit Ult. Sub.</option><option value="auditApp">Audit Approved</option>
@@ -198,7 +198,7 @@ tbody td{padding:7px 8px;vertical-align:middle}
   <th class="c ct2" style="min-width:80px">DRI</th>
   <th class="c ct2" style="min-width:100px">1st Sub.</th>
   <th class="c ct2" style="min-width:108px">Ult. Sub.</th>
-  <th class="c ct2" style="min-width:100px" title="Resposta do iPlace ao feedback">Resp. iPlace</th>
+  <th class="c ct2" style="min-width:100px" title="Feedback do iPlace ao CSP BR">Feedback iPlace</th>
   <th class="c ct2">SB Appr.</th>
   <th class="c ct2" style="width:34px">Rev?</th>
   <th class="c ct3">IDK Shared</th><th class="c ct3">IDK Appr.</th><th class="c ct3" style="width:34px">Rev?</th>
@@ -862,7 +862,7 @@ function expXls(){
   function ex(v){var s=String(v==null?"":v);return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
   function gv(d,f){return d[f]?fm(d[f]):"";}
   var DL={iplace:"iPlace",cspbr:"CSP BR",cspmia:"CSP Miami"};
-  var H=["Apple ID","POS Name","Refit Type","Status","Progress","TOD Initial","TOD Actual","SB Rodada","SB DRI","SB 1st Sub","SB Ult.Sub","SB Resp. iPlace","SB Approved","IDK Shared","IDK Approved","FDK Shared","MDK Shared","Audit Rodada","Audit DRI","Audit 1st Sub","Audit Ult.Sub","Audit Approved","SFF Submitted","SFF Approved","Comentarios"];
+  var H=["Apple ID","POS Name","Refit Type","Status","Progress","TOD Initial","TOD Actual","SB Rodada","SB DRI","SB 1st Sub","SB Ult.Sub","SB Feedback iPlace","SB Approved","IDK Shared","IDK Approved","FDK Shared","MDK Shared","Audit Rodada","Audit DRI","Audit 1st Sub","Audit Ult.Sub","Audit Approved","SFF Submitted","SFF Approved","Comentarios"];
   var xml='<?xml version="1.0" encoding="UTF-8"?>\n<?mso-application progid="Excel.Sheet"?>\n<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet" xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet">\n<Styles><Style ss:ID="h"><Font ss:Bold="1"/></Style></Styles>\n<Worksheet ss:Name="2026 Refit"><Table>\n';
   var hr='<Row>';for(var i=0;i<H.length;i++)hr+='<Cell ss:StyleID="h"><Data ss:Type="String">'+ex(H[i])+'</Data></Cell>';xml+=hr+'</Row>\n';
   for(var i=0;i<D.length;i++){var d=D[i],s=STORES[i],q=st(d),p=pg(d);
@@ -894,7 +894,7 @@ var FM={
   "tod initial":"todInitial","tod actual":"todActual",
   "sb rodada":"sbRound","sb dri":"sbDRI",
   "sb 1st sub":"sbFirstSub","sb ult.sub":"sbLastSub","sb ultima submissao":"sbLastSub","sb submitted":"sbLastSub",
-  "sb approved":"sbApp","sb resp. iplace":"sbResp","sb response":"sbResp","sb resposta":"sbResp","idk shared":"idkSh","idk approved":"idkApp","fdk shared":"fdkSh","mdk shared":"mdkSh",
+  "sb approved":"sbApp","sb feedback iplace":"sbResp","sb resp. iplace":"sbResp","sb response":"sbResp","sb resposta":"sbResp","idk shared":"idkSh","idk approved":"idkApp","fdk shared":"fdkSh","mdk shared":"mdkSh",
   "audit rodada":"auditRound","audit dri":"auditDRI",
   "audit 1st sub":"auditFirstSub","audit ult.sub":"auditLastSub","audit ultima submissao":"auditLastSub","audit submitted":"auditLastSub",
   "audit approved":"auditApp","sff submitted":"sffSub","sff approved":"sffApp","notas":"notes","comentarios":"notes"
