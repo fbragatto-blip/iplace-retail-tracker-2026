@@ -123,7 +123,7 @@ body {
   border-radius: var(--radius-md);
   padding: 6px 14px;
   text-align: center;
-  min-width: 82px;
+  min-width: 88px;
   box-shadow: var(--shadow-sm);
   transition: transform 0.15s, box-shadow 0.15s;
 }
@@ -781,6 +781,7 @@ th.sorted-asc .sort-arrow, th.sorted-desc .sort-arrow { opacity: 1; color: var(-
     </div>
   </div>
 
+  <!-- 4 Clean Quadrants (Removed 64d Maior Atraso as requested) -->
   <div class="hdr-stats">
     <div class="stat-card">
       <div class="stat-num" id="st-total">20</div>
@@ -797,10 +798,6 @@ th.sorted-asc .sort-arrow, th.sorted-desc .sort-arrow { opacity: 1; color: var(-
     <div class="stat-card" style="border-top: 3px solid var(--blue);">
       <div class="stat-num" style="color:var(--blue);" id="st-pre">8</div>
       <div class="stat-lbl">Pré-Abertura</div>
-    </div>
-    <div class="stat-card" style="border-top: 3px solid var(--purple);">
-      <div class="stat-num" style="color:var(--purple);" id="st-aging">64d</div>
-      <div class="stat-lbl">Maior Atraso</div>
     </div>
   </div>
 </header>
@@ -825,19 +822,19 @@ th.sorted-asc .sort-arrow, th.sorted-desc .sort-arrow { opacity: 1; color: var(-
 <div class="alert-box" id="main-alert">
   <div class="alert-icon">!</div>
   <div class="alert-content">
-    <h3>Atenção Imediata: 6 Lojas com AA Não Aprovado e 6 Lojas Abertas sem AA Submetido</h3>
+    <h3>Atenção: 6 Lojas com AA Não Aprovado e 6 Lojas Abertas sem AA Submetido</h3>
     <p>
-      <strong>Atrasos Críticos de Retorno:</strong> Barra Shopping Sul (64 dias), Barra Salvador (63 dias) e Iguatemi Campinas (60 dias) aguardam resposta formal do iPlace aos apontamentos desde agosto.
+      <strong>Lojas ordenadas cronologicamente por Data de Abertura (TOD).</strong>
       <br>
       <strong>Atualização de Hoje (27/10):</strong> <em>iPlace Shopping Recife</em> recebeu feedback da Regional Miami com apontamentos no A0 e foi repassado ao iPlace hoje.
       <br>
-      <strong>Risco Financeiro:</strong> Nenhum SFF foi submetido ou aprovado para estas 20 lojas. O reembolso financeiro permanece travado até a aprovação formal do AA.
+      <strong>Reembolso Financeiro (SFF):</strong> Nenhuma das 20 lojas possui SFF submetido ou aprovado. A liberação financeira permanece vinculada à aprovação formal do AA.
     </p>
     <div class="alert-tags">
-      <span class="alert-tag">Barra Sul: 64d em aberto</span>
-      <span class="alert-tag">Barra Salvador: 63d em aberto</span>
-      <span class="alert-tag">Iguatemi Campinas: 60d em aberto</span>
-      <span class="alert-tag">Shopping Recife: Feedback Hoje (27/10)</span>
+      <span class="alert-tag">Shopping Recife: Feedback Repassado Hoje (27/10)</span>
+      <span class="alert-tag">Barra Sul: 64d aguardando resposta</span>
+      <span class="alert-tag">Barra Salvador: 63d aguardando resposta</span>
+      <span class="alert-tag">Iguatemi Campinas: 60d aguardando resposta</span>
       <span class="alert-tag">Novo TOD: Boulevard Belém (12/11)</span>
     </div>
   </div>
@@ -915,7 +912,7 @@ th.sorted-asc .sort-arrow, th.sorted-desc .sort-arrow { opacity: 1; color: var(-
           <th onclick="sortTable(1)" style="min-width:180px;">POS Name <span class="sort-arrow">↕</span></th>
           <th onclick="sortTable(2)" style="width:90px;">Responsável <span class="sort-arrow">↕</span></th>
           <th onclick="sortTable(3)" style="min-width:130px;">Status AA <span class="sort-arrow">↕</span></th>
-          <th onclick="sortTable(4)" style="min-width:105px;">Abertura (TOD) <span class="sort-arrow">↕</span></th>
+          <th onclick="sortTable(4)" style="min-width:115px;" class="sorted-asc">Abertura (TOD) <span class="sort-arrow">▲</span></th>
           <th onclick="sortTable(5)" style="width:75px;">Rodada AA <span class="sort-arrow">↕</span></th>
           <th onclick="sortTable(6)" style="min-width:95px;">1ª Sub. <span class="sort-arrow">↕</span></th>
           <th onclick="sortTable(7)" style="min-width:95px;">Últ. Sub. <span class="sort-arrow">↕</span></th>
@@ -943,7 +940,7 @@ th.sorted-asc .sort-arrow, th.sorted-desc .sort-arrow { opacity: 1; color: var(-
     <!-- Card 1: Diagnóstico de Status -->
     <div class="card">
       <h2>📊 Diagnóstico Geral do Programa</h2>
-      <p class="card-desc">Visão consolidada das 20 lojas divididas entre os ciclos Refit 2026 e Pendências Históricas (AA 2025/Uruguai).</p>
+      <p class="card-desc">Visão consolidada das 20 lojas organizadas pelo cronograma de aberturas (TOD).</p>
       
       <div style="display:flex; flex-direction:column; gap:10px;">
         <div style="display:flex; justify-content:space-between; align-items:center; padding:8px 12px; background:#fef2f2; border-radius:8px; border:1px solid #fee2e2;">
@@ -982,13 +979,13 @@ th.sorted-asc .sort-arrow, th.sorted-desc .sort-arrow { opacity: 1; color: var(-
 
     <!-- Card 2: Ranking de Dias em Aberto (Aging) -->
     <div class="card">
-      <h2>⏱️ Ranking de Aging — Resposta iPlace Pendente</h2>
-      <p class="card-desc">Tempo decorrido desde o envio do feedback ao iPlace sem retorno com correções.</p>
+      <h2>⏱️ Apontamentos Aguardando Retorno do iPlace</h2>
+      <p class="card-desc">Lojas com feedback de Miami repassado ao iPlace sem envio de correções.</p>
 
       <div class="aging-row">
         <div>
           <div class="aging-store">IPLACE BARRA SHOPPING SUL</div>
-          <div class="aging-detail">Feedback: 24/08/2026 · Pendência: Ajuste logo fachada</div>
+          <div class="aging-detail">Abertura: 11/07/2026 · Feedback: 24/08/2026 · Ajuste logo fachada</div>
         </div>
         <span class="aging-tag aging-crit">64 dias</span>
       </div>
@@ -996,7 +993,7 @@ th.sorted-asc .sort-arrow, th.sorted-desc .sort-arrow { opacity: 1; color: var(-
       <div class="aging-row">
         <div>
           <div class="aging-store">IPLACE SHOPPING BARRA SALVADOR</div>
-          <div class="aging-detail">Feedback: 25/08/2026 · Fachada, Flex Table, LAC, balcão AT e A0</div>
+          <div class="aging-detail">Abertura: 12/09/2025 · Feedback: 25/08/2026 · Fachada, Flex Table, LAC, AT e A0</div>
         </div>
         <span class="aging-tag aging-crit">63 dias</span>
       </div>
@@ -1004,7 +1001,7 @@ th.sorted-asc .sort-arrow, th.sorted-desc .sort-arrow { opacity: 1; color: var(-
       <div class="aging-row">
         <div>
           <div class="aging-store">IPLACE IGUATEMI CAMPINAS</div>
-          <div class="aging-detail">Feedback: 28/08/2026 · Pendência: Ajuste Fachada</div>
+          <div class="aging-detail">Abertura: 02/09/2025 · Feedback: 28/08/2026 · Ajuste Fachada</div>
         </div>
         <span class="aging-tag aging-crit">60 dias</span>
       </div>
@@ -1012,7 +1009,7 @@ th.sorted-asc .sort-arrow, th.sorted-desc .sort-arrow { opacity: 1; color: var(-
       <div class="aging-row">
         <div>
           <div class="aging-store">SHOPPING NUEVO CENTRO (Uruguai)</div>
-          <div class="aging-detail">Feedback: 22/09/2026 · Pendência: Clearance entrada</div>
+          <div class="aging-detail">Abertura: 04/10/2024 · Feedback: 22/09/2026 · Clearance entrada</div>
         </div>
         <span class="aging-tag aging-crit">35 dias</span>
       </div>
@@ -1020,7 +1017,7 @@ th.sorted-asc .sort-arrow, th.sorted-desc .sort-arrow { opacity: 1; color: var(-
       <div class="aging-row">
         <div>
           <div class="aging-store">IPLACE SHOPPING UNIAO DE OSASCO</div>
-          <div class="aging-detail">Feedback: 30/09/2026 · Pendência: Clearance Caixa</div>
+          <div class="aging-detail">Abertura: 12/09/2025 · Feedback: 30/09/2026 · Clearance Caixa</div>
         </div>
         <span class="aging-tag aging-warn">27 dias</span>
       </div>
@@ -1028,7 +1025,7 @@ th.sorted-asc .sort-arrow, th.sorted-desc .sort-arrow { opacity: 1; color: var(-
       <div class="aging-row" style="background:#f0f9ff; border-color:#bae6fd;">
         <div>
           <div class="aging-store">IPLACE SHOPPING RECIFE</div>
-          <div class="aging-detail">Feedback de Miami hoje (27/10) repassado ao parceiro · Ajustes A0</div>
+          <div class="aging-detail">Abertura: 25/07/2026 · Feedback de Miami hoje (27/10) · Ajustes A0</div>
         </div>
         <span class="aging-tag aging-new">0 dias (Hoje!)</span>
       </div>
@@ -1095,7 +1092,7 @@ th.sorted-asc .sort-arrow, th.sorted-desc .sort-arrow { opacity: 1; color: var(-
     <div class="modal-field"><span class="mf-lbl">Feedback Regional Miami:</span><span class="mf-val" id="m-fbmia">-</span></div>
     <div class="modal-field"><span class="mf-lbl">Feedback Enviado ao iPlace:</span><span class="mf-val" id="m-fbip">-</span></div>
     <div class="modal-field"><span class="mf-lbl">Resposta do iPlace:</span><span class="mf-val" id="m-retip">-</span></div>
-    <div class="modal-field"><span class="mf-lbl">Dias em Aberto (Aging):</span><span class="mf-val" id="m-aging">-</span></div>
+    <div class="modal-field"><span class="mf-lbl">Dias em Aberto:</span><span class="mf-val" id="m-aging">-</span></div>
     <div class="modal-field"><span class="mf-lbl">Aprovação AA:</span><span class="mf-val" id="m-appaa">-</span></div>
     <div class="modal-field"><span class="mf-lbl">Submissão SFF:</span><span class="mf-val" id="m-sffsub">-</span></div>
     <div class="modal-field"><span class="mf-lbl">Aprovação SFF:</span><span class="mf-val" id="m-sffapp">-</span></div>
@@ -1114,7 +1111,15 @@ th.sorted-asc .sort-arrow, th.sorted-desc .sort-arrow { opacity: 1; color: var(-
 
 <!-- ══════════════ JAVASCRIPT LOGIC ══════════════ -->
 <script>
+// RAW_DATA ORDERED STRICTLY BY DATA DE ABERTURA (CHRONOLOGICAL)
 const RAW_DATA = [
+  // ── 2024 / 2025 ──
+  { id: "4284227", name: "SHOPPING NUEVO CENTRO (Uruguai)", group: "Uruguai", resp: "iPlace", status: "AA não aprovado", tod: "04/10/2024", round: 3, sub1: "31/10/2024", subUlt: "22/09/2026", subMia: "22/09/2026", fbMia: "22/09/2026", fbIp: "22/09/2026", retIp: "", appAA: "", sffSub: "", sffApp: "", notes: "Clearance entrada", aging: 35, urgency: "critical" },
+  { id: "991538",  name: "IPLACE IGUATEMI CAMPINAS", group: "AA 2025", resp: "iPlace", status: "AA não aprovado", tod: "02/09/2025", round: 1, sub1: "21/08/2026", subUlt: "21/08/2026", subMia: "27/08/2026", fbMia: "28/08/2026", fbIp: "28/08/2026", retIp: "", appAA: "", sffSub: "", sffApp: "", notes: "Ajuste Fachada", aging: 60, urgency: "critical" },
+  { id: "1559317", name: "IPLACE SHOPPING BARRA SALVADOR", group: "AA 2025", resp: "iPlace", status: "AA não aprovado", tod: "12/09/2025", round: 1, sub1: "21/08/2026", subUlt: "21/08/2026", subMia: "24/08/2026", fbMia: "25/08/2026", fbIp: "25/08/2026", retIp: "", appAA: "", sffSub: "", sffApp: "", notes: "Fachada (Logo), Flex Table 1,5 m, LAC, balcão AT e A0.", aging: 63, urgency: "critical" },
+  { id: "1718416", name: "IPLACE SHOPPING UNIAO DE OSASCO", group: "AA 2025", resp: "iPlace", status: "AA não aprovado", tod: "12/09/2025", round: 2, sub1: "19/06/2026", subUlt: "24/09/2026", subMia: "24/09/2026", fbMia: "28/09/2026", fbIp: "30/09/2026", retIp: "", appAA: "", sffSub: "", sffApp: "", notes: "Clearance Caixa", aging: 27, urgency: "warning" },
+
+  // ── 2026 (ABERTAS) ──
   { id: "481804",  name: "IPLACE BARRA SHOPPING SUL", group: "Refit 2026", resp: "iPlace", status: "AA não aprovado", tod: "11/07/2026", round: 1, sub1: "14/08/2026", subUlt: "14/08/2026", subMia: "17/08/2026", fbMia: "24/08/2026", fbIp: "24/08/2026", retIp: "", appAA: "", sffSub: "", sffApp: "", notes: "Ajuste logo fachada", aging: 64, urgency: "critical" },
   { id: "2386980", name: "IPLACE SHOPPING RECIFE", group: "Refit 2026", resp: "iPlace", status: "AA não aprovado", tod: "25/07/2026", round: 1, sub1: "15/10/2026", subUlt: "15/10/2026", subMia: "26/10/2026", fbMia: "27/10/2026", fbIp: "27/10/2026", retIp: "", appAA: "", sffSub: "", sffApp: "", notes: "Ajustes A0", aging: 0, urgency: "new" },
   { id: "2379277", name: "IPLACE RIOMAR RECIFE", group: "Refit 2026", resp: "iPlace", status: "AA pendente", tod: "11/08/2026", round: null, sub1: "", subUlt: "", subMia: "", fbMia: "", fbIp: "", retIp: "", appAA: "", sffSub: "", sffApp: "", notes: "Loja aberta", aging: null, urgency: "pending_sub" },
@@ -1123,24 +1128,34 @@ const RAW_DATA = [
   { id: "881687",  name: "IPLACE RIOSUL SHOPPING", group: "Refit 2026", resp: "iPlace", status: "AA pendente", tod: "23/09/2026", round: null, sub1: "", subUlt: "", subMia: "", fbMia: "", fbIp: "", retIp: "", appAA: "", sffSub: "", sffApp: "", notes: "Loja aberta", aging: null, urgency: "pending_sub" },
   { id: "1685237", name: "IPLACE SHOPPING LEBLON", group: "Refit 2026", resp: "iPlace", status: "AA pendente", tod: "05/10/2026", round: null, sub1: "", subUlt: "", subMia: "", fbMia: "", fbIp: "", retIp: "", appAA: "", sffSub: "", sffApp: "", notes: "Loja aberta", aging: null, urgency: "pending_sub" },
   { id: "727819",  name: "IPLACE SHOPPING IGUATEMI FORTALEZA", group: "Refit 2026", resp: "iPlace", status: "AA pendente", tod: "11/10/2026", round: null, sub1: "", subUlt: "", subMia: "", fbMia: "", fbIp: "", retIp: "", appAA: "", sffSub: "", sffApp: "", notes: "Loja aberta", aging: null, urgency: "pending_sub" },
-  { id: "452958",  name: "IPLACE IGUATEMI FLORIANOPOLIS (VILA ROMANA)", group: "Refit 2026", resp: "iPlace", status: "Pré-Abertura", tod: "10/11/2026", round: null, sub1: "", subUlt: "", subMia: "", fbMia: "", fbIp: "", retIp: "", appAA: "", sffSub: "", sffApp: "", notes: "Abertura prevista", aging: null, urgency: "future" },
+
+  // ── 2026 (PRÉ-ABERTURA NOVEMBRO) ──
   { id: "423032",  name: "IPLACE IGUATEMI CAXIAS DO SUL", group: "Refit 2026", resp: "iPlace", status: "Pré-Abertura", tod: "03/11/2026", round: null, sub1: "", subUlt: "", subMia: "", fbMia: "", fbIp: "", retIp: "", appAA: "", sffSub: "", sffApp: "", notes: "Abertura prevista", aging: null, urgency: "future" },
   { id: "651719",  name: "IPLACE BRASILIA SHOPPING", group: "Refit 2026", resp: "iPlace", status: "Pré-Abertura", tod: "06/11/2026", round: null, sub1: "", subUlt: "", subMia: "", fbMia: "", fbIp: "", retIp: "", appAA: "", sffSub: "", sffApp: "", notes: "Abertura prevista", aging: null, urgency: "future" },
+  { id: "452958",  name: "IPLACE IGUATEMI FLORIANOPOLIS (VILA ROMANA)", group: "Refit 2026", resp: "iPlace", status: "Pré-Abertura", tod: "10/11/2026", round: null, sub1: "", subUlt: "", subMia: "", fbMia: "", fbIp: "", retIp: "", appAA: "", sffSub: "", sffApp: "", notes: "Abertura prevista", aging: null, urgency: "future" },
   { id: "728139",  name: "IPLACE BOULEVARD SHOPPING BELEM", group: "Refit 2026", resp: "iPlace", status: "Pré-Abertura", tod: "12/11/2026 ↑", round: null, sub1: "", subUlt: "", subMia: "", fbMia: "", fbIp: "", retIp: "", appAA: "", sffSub: "", sffApp: "", notes: "Novo TOD (era 18/10)", aging: null, urgency: "future" },
-  { id: "1695800", name: "IPLACE BEIRA MAR SHOPPING", group: "Refit 2026", resp: "iPlace", status: "Pré-Abertura", tod: "23/11/2026", round: null, sub1: "", subUlt: "", subMia: "", fbMia: "", fbIp: "", retIp: "", appAA: "", sffSub: "", sffApp: "", notes: "Abertura prevista", aging: null, urgency: "future" },
   { id: "1652724", name: "IPLACE AMAZONAS SHOPPING AM", group: "Refit 2026", resp: "iPlace", status: "Pré-Abertura", tod: "16/11/2026", round: null, sub1: "", subUlt: "", subMia: "", fbMia: "", fbIp: "", retIp: "", appAA: "", sffSub: "", sffApp: "", notes: "Abertura prevista", aging: null, urgency: "future" },
+  { id: "1695800", name: "IPLACE BEIRA MAR SHOPPING", group: "Refit 2026", resp: "iPlace", status: "Pré-Abertura", tod: "23/11/2026", round: null, sub1: "", subUlt: "", subMia: "", fbMia: "", fbIp: "", retIp: "", appAA: "", sffSub: "", sffApp: "", notes: "Abertura prevista", aging: null, urgency: "future" },
+
+  // ── DATA A CONFIRMAR ──
   { id: "712653",  name: "IPLACE SHOPPING MANAUARA", group: "Refit 2026", resp: "iPlace", status: "Pré-Abertura", tod: "—", round: null, sub1: "", subUlt: "", subMia: "", fbMia: "", fbIp: "", retIp: "", appAA: "", sffSub: "", sffApp: "", notes: "Data a confirmar", aging: null, urgency: "future" },
-  { id: "462902",  name: "IPLACE PARK SHOPPING BRASILIA (SEM SFF)", group: "Refit 2026", resp: "iPlace", status: "Pré-Abertura", tod: "—", round: null, sub1: "", subUlt: "", subMia: "", fbMia: "", fbIp: "", retIp: "", appAA: "", sffSub: "", sffApp: "", notes: "Data a confirmar", aging: null, urgency: "future" },
-  { id: "1559317", name: "IPLACE SHOPPING BARRA SALVADOR", group: "AA 2025", resp: "iPlace", status: "AA não aprovado", tod: "12/09/2025", round: 1, sub1: "21/08/2026", subUlt: "21/08/2026", subMia: "24/08/2026", fbMia: "25/08/2026", fbIp: "25/08/2026", retIp: "", appAA: "", sffSub: "", sffApp: "", notes: "Fachada (Logo), Flex Table 1,5 m, LAC, balcão AT e A0.", aging: 63, urgency: "critical" },
-  { id: "1718416", name: "IPLACE SHOPPING UNIAO DE OSASCO", group: "AA 2025", resp: "iPlace", status: "AA não aprovado", tod: "12/09/2025", round: 2, sub1: "19/06/2026", subUlt: "24/09/2026", subMia: "24/09/2026", fbMia: "28/09/2026", fbIp: "30/09/2026", retIp: "", appAA: "", sffSub: "", sffApp: "", notes: "Clearance Caixa", aging: 27, urgency: "warning" },
-  { id: "4284227", name: "SHOPPING NUEVO CENTRO (Uruguai)", group: "Uruguai", resp: "iPlace", status: "AA não aprovado", tod: "04/10/2024", round: 3, sub1: "31/10/2024", subUlt: "22/09/2026", subMia: "22/09/2026", fbMia: "22/09/2026", fbIp: "22/09/2026", retIp: "", appAA: "", sffSub: "", sffApp: "", notes: "Clearance entrada", aging: 35, urgency: "critical" },
-  { id: "991538",  name: "IPLACE IGUATEMI CAMPINAS", group: "AA 2025", resp: "iPlace", status: "AA não aprovado", tod: "02/09/2025", round: 1, sub1: "21/08/2026", subUlt: "21/08/2026", subMia: "27/08/2026", fbMia: "28/08/2026", fbIp: "28/08/2026", retIp: "", appAA: "", sffSub: "", sffApp: "", notes: "Ajuste Fachada", aging: 60, urgency: "critical" }
+  { id: "462902",  name: "IPLACE PARK SHOPPING BRASILIA (SEM SFF)", group: "Refit 2026", resp: "iPlace", status: "Pré-Abertura", tod: "—", round: null, sub1: "", subUlt: "", subMia: "", fbMia: "", fbIp: "", retIp: "", appAA: "", sffSub: "", sffApp: "", notes: "Data a confirmar", aging: null, urgency: "future" }
 ];
 
 let currentTab = 'all';
 let currentQuick = 'all';
-let sortCol = -1;
+let sortCol = 4; // Default sorted by Abertura (TOD)
 let sortAsc = true;
+
+function parseDateVal(dStr) {
+  if (!dStr || dStr === '—' || dStr === '-') return new Date(9999, 11, 31).getTime();
+  const clean = dStr.replace('↑', '').trim();
+  const parts = clean.split('/');
+  if (parts.length === 3) {
+    return new Date(parseInt(parts[2]), parseInt(parts[1]) - 1, parseInt(parts[0])).getTime();
+  }
+  return new Date(9999, 11, 31).getTime();
+}
 
 function switchTab(tab) {
   currentTab = tab;
@@ -1296,7 +1311,24 @@ function sortTable(colIdx) {
     sortAsc = true;
   }
 
+  // Update headers class
+  document.querySelectorAll('.col-row th').forEach((th, i) => {
+    th.classList.remove('sorted-asc', 'sorted-desc');
+    const arrow = th.querySelector('.sort-arrow');
+    if (arrow) arrow.textContent = '↕';
+    if (i === colIdx) {
+      th.classList.add(sortAsc ? 'sorted-asc' : 'sorted-desc');
+      if (arrow) arrow.textContent = sortAsc ? '▲' : '▼';
+    }
+  });
+
   RAW_DATA.sort((a, b) => {
+    if (colIdx === 4) {
+      const da = parseDateVal(a.tod);
+      const db = parseDateVal(b.tod);
+      return sortAsc ? da - db : db - da;
+    }
+
     let va = getColVal(a, colIdx);
     let vb = getColVal(b, colIdx);
     if (va === null || va === undefined || va === "") return 1;
@@ -1316,7 +1348,7 @@ function getColVal(item, idx) {
     case 1: return item.name;
     case 2: return item.resp;
     case 3: return item.status;
-    case 4: return item.tod;
+    case 4: return parseDateVal(item.tod);
     case 5: return item.round || 0;
     case 6: return item.sub1;
     case 7: return item.subUlt;
