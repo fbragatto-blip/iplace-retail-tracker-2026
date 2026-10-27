@@ -3,23 +3,24 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>iPlace Retail Tracker — Reporte Appointment Audit (AA) & Refit</title>
+<title>iPlace & Apple Retail — Reporte Executivo de Appointment Audit (AA) & Refit</title>
 <style>
 :root {
   --blue: #0071e3;
   --blue-hover: #0051a2;
+  --blue-bg: #e8f2ff;
   --green: #34c759;
   --green-dark: #166534;
   --green-bg: #dcfce7;
   --orange: #f56300;
   --orange-dark: #9a3412;
-  --orange-bg: #ffedd5;
+  --orange-bg: #fff7ed;
   --red: #ff3b30;
   --red-dark: #991b1b;
   --red-bg: #fee2e2;
-  --purple: #af52de;
-  --purple-dark: #6b21a8;
-  --purple-bg: #f3e8ff;
+  --purple: #8b5cf6;
+  --purple-dark: #6d28d9;
+  --purple-bg: #f5f3ff;
   --teal: #06b6d4;
   --teal-dark: #0e7490;
   --teal-bg: #cffafe;
@@ -54,7 +55,7 @@ body {
 
 /* ── HEADER ── */
 .hdr {
-  background: rgba(255, 255, 255, 0.92);
+  background: rgba(255, 255, 255, 0.94);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--border);
@@ -72,23 +73,27 @@ body {
   align-items: center;
   gap: 12px;
 }
+.hdr-logo-group {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
 .hdr-logo {
-  width: 34px;
-  height: 34px;
-  border-radius: 9px;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
   background: linear-gradient(135deg, #1d1d1f 0%, #3a3a3c 100%);
   color: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: 700;
-  font-size: 16px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  font-size: 14px;
 }
 .hdr-titles h1 {
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 700;
-  letter-spacing: -0.3px;
+  letter-spacing: -0.2px;
   color: var(--text);
 }
 .hdr-titles p {
@@ -123,7 +128,7 @@ body {
   border-radius: var(--radius-md);
   padding: 6px 14px;
   text-align: center;
-  min-width: 88px;
+  min-width: 96px;
   box-shadow: var(--shadow-sm);
   transition: transform 0.15s, box-shadow 0.15s;
 }
@@ -153,7 +158,7 @@ body {
   display: flex;
   gap: 4px;
   position: sticky;
-  top: 63px;
+  top: 61px;
   z-index: 250;
 }
 .tab-btn {
@@ -190,13 +195,13 @@ body {
   color: var(--blue);
 }
 
-/* ── ALERT BANNER / CALLOUT ── */
+/* ── ALERT BANNER / CALLOUT CONJUNTO ── */
 .alert-box {
   margin: 16px 24px 0;
-  background: linear-gradient(135deg, #fff7ed 0%, #ffedd5 100%);
-  border: 1px solid #fed7aa;
+  background: linear-gradient(135deg, #f0f7ff 0%, #e0effe 100%);
+  border: 1px solid #bae6fd;
   border-radius: var(--radius-lg);
-  padding: 14px 18px;
+  padding: 14px 20px;
   display: flex;
   align-items: flex-start;
   gap: 14px;
@@ -206,7 +211,7 @@ body {
   width: 28px;
   height: 28px;
   border-radius: 50%;
-  background: var(--orange);
+  background: var(--blue);
   color: #fff;
   display: flex;
   align-items: center;
@@ -219,12 +224,12 @@ body {
 .alert-content h3 {
   font-size: 13px;
   font-weight: 700;
-  color: #9a3412;
+  color: #0369a1;
   margin-bottom: 4px;
 }
 .alert-content p {
   font-size: 11.5px;
-  color: #7c2d12;
+  color: #0c4a6e;
   line-height: 1.5;
 }
 .alert-tags {
@@ -235,12 +240,22 @@ body {
 }
 .alert-tag {
   background: #fff;
-  border: 1px solid #fdba74;
+  border: 1px solid #7dd3fc;
   border-radius: 6px;
   padding: 3px 8px;
   font-size: 10px;
   font-weight: 600;
-  color: #9a3412;
+  color: #0369a1;
+}
+.alert-tag.highlight {
+  background: #f5f3ff;
+  border-color: #c4b5fd;
+  color: #6d28d9;
+}
+.alert-tag.success {
+  background: #f0fdf4;
+  border-color: #86efac;
+  color: #166534;
 }
 
 /* ── TOOLBAR / CONTROLS ── */
@@ -393,7 +408,7 @@ body {
 .th-g-mia  { background: #fef3c7; color: #92400e; }
 .th-g-resp { background: #ffedd5; color: #c2410c; }
 .th-g-sff  { background: #dcfce7; color: #15803d; }
-.th-g-note { background: #f3e8ff; color: #7e22ce; }
+.th-g-note { background: #f5f3ff; color: #6d28d9; }
 
 /* Column Headers */
 .tracker-table thead tr.col-row th {
@@ -484,6 +499,10 @@ th.sorted-asc .sort-arrow, th.sorted-desc .sort-arrow { opacity: 1; color: var(-
   white-space: nowrap;
   color: var(--text);
 }
+.date-cell.highlight {
+  font-weight: 700;
+  color: var(--blue);
+}
 .date-empty {
   color: #c7c7cc;
   text-align: center;
@@ -513,23 +532,28 @@ th.sorted-asc .sort-arrow, th.sorted-desc .sort-arrow { opacity: 1; color: var(-
   white-space: nowrap;
   letter-spacing: 0.2px;
 }
-.badge-red {
-  background: #fee2e2;
-  color: #991b1b;
-  border: 1px solid #fecaca;
+.badge-miami {
+  background: #e0f2fe;
+  color: #0369a1;
+  border: 1px solid #bae6fd;
+}
+.badge-scheduled {
+  background: #f5f3ff;
+  color: #6d28d9;
+  border: 1px solid #ddd6fe;
 }
 .badge-orange {
-  background: #ffedd5;
+  background: #fff7ed;
   color: #c2410c;
   border: 1px solid #fed7aa;
 }
 .badge-blue {
-  background: #dbeafe;
+  background: #eff6ff;
   color: #1e40af;
   border: 1px solid #bfdbfe;
 }
 .badge-green {
-  background: #dcfce7;
+  background: #f0fdf4;
   color: #15803d;
   border: 1px solid #bbf7d0;
 }
@@ -545,54 +569,41 @@ th.sorted-asc .sort-arrow, th.sorted-desc .sort-arrow { opacity: 1; color: var(-
   background: currentColor;
 }
 
-/* Aging / Dias em Aberto */
-.aging-tag {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  padding: 3px 8px;
-  border-radius: 12px;
-  font-size: 10px;
-  font-weight: 700;
-  font-variant-numeric: tabular-nums;
-  white-space: nowrap;
-}
-.aging-crit { background: #fee2e2; color: #991b1b; border: 1px solid #fca5a5; }
-.aging-warn { background: #fef3c7; color: #92400e; border: 1px solid #fcd34d; }
-.aging-ok   { background: #dcfce7; color: #166534; border: 1px solid #86efac; }
-.aging-new  { background: #e0f2fe; color: #0369a1; border: 1px solid #7dd3fc; }
-.aging-none { color: #a1a1aa; font-weight: 500; font-size: 10.5px; }
-
-/* Comment notes */
+/* Comments */
 .comment-box {
-  max-width: 280px;
+  max-width: 320px;
   font-size: 11px;
-  color: #374151;
   line-height: 1.35;
-  display: flex;
-  align-items: center;
-  gap: 6px;
 }
 .comment-pill {
-  background: #f3f4f6;
-  border: 1px solid #e5e7eb;
   border-radius: 6px;
-  padding: 2px 7px;
-  font-size: 10.5px;
-  color: #1f2937;
+  padding: 3px 8px;
+  font-size: 11px;
   font-weight: 500;
   display: inline-block;
+  line-height: 1.35;
 }
-.comment-pill.alert {
-  background: #fff1f2;
-  border-color: #fecdd3;
-  color: #be123c;
+.comment-pill.scheduled {
+  background: #f5f3ff;
+  border: 1px solid #ddd6fe;
+  color: #5b21b6;
   font-weight: 600;
 }
-.comment-pill.info {
-  background: #eff6ff;
-  border-color: #dbeafe;
-  color: #1d4ed8;
+.comment-pill.miami {
+  background: #f0f9ff;
+  border: 1px solid #bae6fd;
+  color: #0369a1;
+  font-weight: 600;
+}
+.comment-pill.pending {
+  background: #fff7ed;
+  border: 1px solid #fed7aa;
+  color: #9a3412;
+}
+.comment-pill.neutral {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  color: #334155;
 }
 
 /* ── EXECUTIVE SUMMARY CARDS (TAB 4) ── */
@@ -651,9 +662,10 @@ th.sorted-asc .sort-arrow, th.sorted-desc .sort-arrow { opacity: 1; color: var(-
   justify-content: center;
   flex-shrink: 0;
 }
-.plan-num.crit { background: var(--red); }
-.plan-num.warn { background: var(--orange); }
-.plan-num.info { background: var(--blue); }
+.plan-num.purple { background: var(--purple); }
+.plan-num.blue { background: var(--blue); }
+.plan-num.orange { background: var(--orange); }
+
 .plan-txt h4 {
   font-size: 12px;
   font-weight: 700;
@@ -664,27 +676,6 @@ th.sorted-asc .sort-arrow, th.sorted-desc .sort-arrow { opacity: 1; color: var(-
   font-size: 11px;
   color: var(--text-sec);
   line-height: 1.4;
-}
-
-/* Aging Ranking List */
-.aging-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 8px 10px;
-  background: #fafafc;
-  border-radius: 8px;
-  margin-bottom: 6px;
-  border: 1px solid #f0f0f4;
-}
-.aging-store {
-  font-weight: 600;
-  font-size: 11.5px;
-  color: var(--text);
-}
-.aging-detail {
-  font-size: 10px;
-  color: var(--text-muted);
 }
 
 /* ── MODAL ── */
@@ -774,26 +765,29 @@ th.sorted-asc .sort-arrow, th.sorted-desc .sort-arrow { opacity: 1; color: var(-
 <!-- ══════════════ HEADER ══════════════ -->
 <header class="hdr">
   <div class="hdr-brand">
-    <div class="hdr-logo">iP</div>
+    <div class="hdr-logo-group">
+      <div class="hdr-logo"></div>
+      <div class="hdr-logo" style="background:#0071e3;">iP</div>
+    </div>
     <div class="hdr-titles">
-      <h1>iPlace Retail Tracker · Appointment Audit (AA)</h1>
-      <p><span class="live-dot"></span> Status das Lojas Refit 2026 & Pendentes · Atualizado em 27/10/2026</p>
+      <h1>iPlace & Apple Retail · Status Appointment Audit (AA)</h1>
+      <p><span class="live-dot"></span> Acompanhamento Operacional Conjunto · Atualizado em 27/10/2026</p>
     </div>
   </div>
 
-  <!-- 4 Clean Quadrants (Removed 64d Maior Atraso as requested) -->
+  <!-- 4 Clean Quadrants (Without 64d Maior Atraso) -->
   <div class="hdr-stats">
     <div class="stat-card">
       <div class="stat-num" id="st-total">20</div>
       <div class="stat-lbl">Total Lojas</div>
     </div>
-    <div class="stat-card" style="border-top: 3px solid var(--red);">
-      <div class="stat-num" style="color:var(--red);" id="st-blocked">6</div>
-      <div class="stat-lbl">AA Não Aprovado</div>
+    <div class="stat-card" style="border-top: 3px solid var(--purple);">
+      <div class="stat-num" style="color:var(--purple-dark);" id="st-val">6</div>
+      <div class="stat-lbl">Em Validação / Adequação</div>
     </div>
     <div class="stat-card" style="border-top: 3px solid var(--orange);">
       <div class="stat-num" style="color:var(--orange);" id="st-open">6</div>
-      <div class="stat-lbl">Aberta s/ AA</div>
+      <div class="stat-lbl">Aberta (AA a Enviar)</div>
     </div>
     <div class="stat-card" style="border-top: 3px solid var(--blue);">
       <div class="stat-num" style="color:var(--blue);" id="st-pre">8</div>
@@ -814,33 +808,33 @@ th.sorted-asc .sort-arrow, th.sorted-desc .sort-arrow { opacity: 1; color: var(-
     AA 2025 & Uruguai <span class="tab-count">4</span>
   </button>
   <button class="tab-btn" onclick="switchTab('summary')" id="tab-summary">
-    Resumo Executivo & Plano de Ação
+    Resumo Executivo & Próximos Marcos
   </button>
 </nav>
 
-<!-- ══════════════ ALERT CALLOUT ══════════════ -->
+<!-- ══════════════ ALERT CALLOUT CONJUNTO ══════════════ -->
 <div class="alert-box" id="main-alert">
-  <div class="alert-icon">!</div>
+  <div class="alert-icon">✓</div>
   <div class="alert-content">
-    <h3>Atenção: 6 Lojas com AA Não Aprovado e 6 Lojas Abertas sem AA Submetido</h3>
+    <h3>Atualizações Operacionais de Hoje (27/10/2026) & Próximos Marcos de Conclusão</h3>
     <p>
-      <strong>Lojas ordenadas cronologicamente por Data de Abertura (TOD).</strong>
+      <strong>✅ Shopping Nuevo Centro (Uruguai):</strong> Retorno técnico finalizado com sucesso hoje (27/10) e pacote re-enviado para validação regional da equipe de Miami.
       <br>
-      <strong>Atualização de Hoje (27/10):</strong> <em>iPlace Shopping Recife</em> recebeu feedback da Regional Miami com apontamentos no A0 e foi repassado ao iPlace hoje.
+      <strong>🗓️ Barra Salvador & União Osasco (Conclusão 30/10):</strong> O time iPlace retornou com o plano de ação técnico estruturado. Ajuste de fachada (Barra Salvador) e adequação da distância do caixa/móvel (Osasco) estão agendados para <strong>conclusão nesta sexta-feira, 30/10/2026</strong>.
       <br>
-      <strong>Reembolso Financeiro (SFF):</strong> Nenhuma das 20 lojas possui SFF submetido ou aprovado. A liberação financeira permanece vinculada à aprovação formal do AA.
+      <strong>📋 Shopping Recife:</strong> Feedback regional de Miami recebido em 27/10 com apontamentos de A0 repassados para alinhamento com a equipe técnica.
     </p>
     <div class="alert-tags">
-      <span class="alert-tag">Shopping Recife: Feedback Repassado Hoje (27/10)</span>
-      <span class="alert-tag">Barra Sul: 64d aguardando resposta</span>
-      <span class="alert-tag">Barra Salvador: 63d aguardando resposta</span>
-      <span class="alert-tag">Iguatemi Campinas: 60d aguardando resposta</span>
-      <span class="alert-tag">Novo TOD: Boulevard Belém (12/11)</span>
+      <span class="alert-tag success">✓ Nuevo Centro: Re-enviado para Miami (27/10)</span>
+      <span class="alert-tag highlight">🗓️ Barra Salvador: Ajuste de Fachada p/ 30/10</span>
+      <span class="alert-tag highlight">🗓️ União Osasco: Adequação Móvel Caixa p/ 30/10</span>
+      <span class="alert-tag">📋 Shopping Recife: Feedback A0 repassado hoje (27/10)</span>
+      <span class="alert-tag">📅 Novo TOD: Boulevard Belém (12/11)</span>
     </div>
   </div>
 </div>
 
-<!-- ══════════════ VIEW 1: DATA TABLE VIEW (ALL, 2026, 2025) ══════════════ -->
+<!-- ══════════════ VIEW 1: DATA TABLE VIEW ══════════════ -->
 <div id="view-table">
   <!-- Controls -->
   <div class="toolbar">
@@ -851,17 +845,19 @@ th.sorted-asc .sort-arrow, th.sorted-desc .sort-arrow { opacity: 1; color: var(-
 
     <select class="filter-select" id="status-filter" onchange="applyFilters()">
       <option value="">Todos os Status AA</option>
-      <option value="AA não aprovado">AA não aprovado (6)</option>
-      <option value="AA pendente">AA pendente (6)</option>
+      <option value="Enviado a Miami">Enviado a Miami (1)</option>
+      <option value="Adequação Agendada (30/10)">Adequação Agendada (30/10) (2)</option>
+      <option value="Alinhamento Técnico">Alinhamento Técnico (Recife / Barra Sul / Campinas)</option>
+      <option value="AA pendente">AA pendente (Loja Aberta) (6)</option>
       <option value="Pré-Abertura">Pré-Abertura (8)</option>
     </select>
 
     <select class="filter-select" id="urgency-filter" onchange="applyFilters()">
-      <option value="">Todos os Prazos</option>
-      <option value="critical">Crítico (>30 dias em aberto)</option>
-      <option value="new">Atualizado Hoje (27/10)</option>
-      <option value="pending_sub">Loja Aberta sem Submissão</option>
-      <option value="future">Pré-Abertura (Nov/26)</option>
+      <option value="">Filtrar por Marco</option>
+      <option value="today">Atualizados Hoje (27/10)</option>
+      <option value="scheduled">Agendados para Sexta (30/10)</option>
+      <option value="open_no_aa">Lojas Abertas (AA a Enviar)</option>
+      <option value="pre_opening">Inaugurações de Novembro</option>
     </select>
 
     <div style="margin-left: auto; display: flex; gap: 8px;">
@@ -877,23 +873,23 @@ th.sorted-asc .sort-arrow, th.sorted-desc .sort-arrow { opacity: 1; color: var(-
   <!-- Quick Filter Pills -->
   <div class="pipe-bar">
     <div class="pipe-chip active" onclick="setQuickFilter('all')" id="chip-all">
-      Todos <span class="chip-badge" id="c-all">20</span>
+      Todas as Lojas <span class="chip-badge" id="c-all">20</span>
     </div>
-    <div class="pipe-chip" onclick="setQuickFilter('AA não aprovado')" id="chip-nao-aprov">
-      <span class="pipe-dot" style="background:var(--red);"></span> AA Não Aprovado <span class="chip-badge">6</span>
+    <div class="pipe-chip" onclick="setQuickFilter('scheduled')" id="chip-scheduled">
+      <span class="pipe-dot" style="background:var(--purple);"></span> Conclusão em 30/10 <span class="chip-badge">2</span>
     </div>
-    <div class="pipe-chip" onclick="setQuickFilter('AA pendente')" id="chip-pend">
-      <span class="pipe-dot" style="background:var(--orange);"></span> AA Pendente (Aberta) <span class="chip-badge">6</span>
+    <div class="pipe-chip" onclick="setQuickFilter('miami')" id="chip-miami">
+      <span class="pipe-dot" style="background:var(--blue);"></span> Em Validação Miami <span class="chip-badge">1</span>
     </div>
-    <div class="pipe-chip" onclick="setQuickFilter('Pré-Abertura')" id="chip-pre">
-      <span class="pipe-dot" style="background:var(--blue);"></span> Pré-Abertura <span class="chip-badge">8</span>
+    <div class="pipe-chip" onclick="setQuickFilter('open_no_aa')" id="chip-open">
+      <span class="pipe-dot" style="background:var(--orange);"></span> Lojas Abertas (AA a Enviar) <span class="chip-badge">6</span>
     </div>
-    <div class="pipe-chip" onclick="setQuickFilter('overdue')" id="chip-overdue">
-      <span class="pipe-dot" style="background:var(--red);"></span> Aguardando iPlace >30d <span class="chip-badge">5</span>
+    <div class="pipe-chip" onclick="setQuickFilter('pre_opening')" id="chip-pre">
+      <span class="pipe-dot" style="background:#64748b;"></span> Pré-Abertura <span class="chip-badge">8</span>
     </div>
   </div>
 
-  <!-- Data Table -->
+  <!-- Data Table (Chronological by TOD Opening Date) -->
   <div class="table-wrap">
     <table class="tracker-table" id="tracker-table">
       <thead>
@@ -902,29 +898,28 @@ th.sorted-asc .sort-arrow, th.sorted-desc .sort-arrow { opacity: 1; color: var(-
           <th class="th-g-proj" colspan="5">PROJETO & IDENTIFICAÇÃO</th>
           <th class="th-g-sub" colspan="3">SUBMISSÃO AA</th>
           <th class="th-g-mia" colspan="2">VALIDAÇÃO MIAMI (REGIONAL)</th>
-          <th class="th-g-resp" colspan="3">FEEDBACK & RETORNO IPLACE</th>
+          <th class="th-g-resp" colspan="2">ALINHAMENTO & RETORNO IPLACE</th>
           <th class="th-g-sff" colspan="3">APROVAÇÃO & SFF</th>
-          <th class="th-g-note" colspan="1">PENDÊNCIAS & COMENTÁRIOS</th>
+          <th class="th-g-note" colspan="1">STATUS DETALHADO & PRÓXIMOS PASSOS</th>
         </tr>
         <!-- Column Headers -->
         <tr class="col-row">
           <th onclick="sortTable(0)" style="width:78px;">Apple ID <span class="sort-arrow">↕</span></th>
           <th onclick="sortTable(1)" style="min-width:180px;">POS Name <span class="sort-arrow">↕</span></th>
           <th onclick="sortTable(2)" style="width:90px;">Responsável <span class="sort-arrow">↕</span></th>
-          <th onclick="sortTable(3)" style="min-width:130px;">Status AA <span class="sort-arrow">↕</span></th>
+          <th onclick="sortTable(3)" style="min-width:145px;">Status AA <span class="sort-arrow">↕</span></th>
           <th onclick="sortTable(4)" style="min-width:115px;" class="sorted-asc">Abertura (TOD) <span class="sort-arrow">▲</span></th>
           <th onclick="sortTable(5)" style="width:75px;">Rodada AA <span class="sort-arrow">↕</span></th>
           <th onclick="sortTable(6)" style="min-width:95px;">1ª Sub. <span class="sort-arrow">↕</span></th>
           <th onclick="sortTable(7)" style="min-width:95px;">Últ. Sub. <span class="sort-arrow">↕</span></th>
           <th onclick="sortTable(8)" style="min-width:95px;">Sub. Miami <span class="sort-arrow">↕</span></th>
           <th onclick="sortTable(9)" style="min-width:115px;">Feedback Miami <span class="sort-arrow">↕</span></th>
-          <th onclick="sortTable(10)" style="min-width:125px;">Feedback iPlace <span class="sort-arrow">↕</span></th>
-          <th onclick="sortTable(11)" style="min-width:105px;">Retorno iPlace <span class="sort-arrow">↕</span></th>
-          <th onclick="sortTable(12)" style="min-width:100px;">Dias Aberto <span class="sort-arrow">↕</span></th>
-          <th onclick="sortTable(13)" style="min-width:105px;">Aprovação AA <span class="sort-arrow">↕</span></th>
-          <th onclick="sortTable(14)" style="min-width:90px;">SFF Sub. <span class="sort-arrow">↕</span></th>
-          <th onclick="sortTable(15)" style="min-width:90px;">SFF Aprov. <span class="sort-arrow">↕</span></th>
-          <th onclick="sortTable(16)" style="min-width:240px;">Comentários / Pendências <span class="sort-arrow">↕</span></th>
+          <th onclick="sortTable(10)" style="min-width:125px;">Feedback p/ iPlace <span class="sort-arrow">↕</span></th>
+          <th onclick="sortTable(11)" style="min-width:115px;">Retorno iPlace <span class="sort-arrow">↕</span></th>
+          <th onclick="sortTable(12)" style="min-width:105px;">Aprovação AA <span class="sort-arrow">↕</span></th>
+          <th onclick="sortTable(13)" style="min-width:90px;">SFF Sub. <span class="sort-arrow">↕</span></th>
+          <th onclick="sortTable(14)" style="min-width:90px;">SFF Aprov. <span class="sort-arrow">↕</span></th>
+          <th onclick="sortTable(15)" style="min-width:260px;">Comentários / Alinhamentos <span class="sort-arrow">↕</span></th>
         </tr>
       </thead>
       <tbody id="table-body">
@@ -937,135 +932,121 @@ th.sorted-asc .sort-arrow, th.sorted-desc .sort-arrow { opacity: 1; color: var(-
 <!-- ══════════════ VIEW 2: EXECUTIVE SUMMARY (TAB 4) ══════════════ -->
 <div id="view-summary" style="display:none;" class="summary-container">
   <div class="grid-2">
-    <!-- Card 1: Diagnóstico de Status -->
+    <!-- Card 1: Diagnóstico Consolidado -->
     <div class="card">
-      <h2>📊 Diagnóstico Geral do Programa</h2>
-      <p class="card-desc">Visão consolidada das 20 lojas organizadas pelo cronograma de aberturas (TOD).</p>
+      <h2>📊 Status Geral do Pipeline de AA</h2>
+      <p class="card-desc">Visão consolidada das 20 lojas organizadas pelo cronograma de aberturas e marcos de entrega.</p>
       
       <div style="display:flex; flex-direction:column; gap:10px;">
-        <div style="display:flex; justify-content:space-between; align-items:center; padding:8px 12px; background:#fef2f2; border-radius:8px; border:1px solid #fee2e2;">
+        <div style="display:flex; justify-content:space-between; align-items:center; padding:9px 12px; background:#f5f3ff; border-radius:8px; border:1px solid #ddd6fe;">
           <div>
-            <strong style="color:var(--red);">AA Não Aprovado / Apontamentos Pendentes</strong>
-            <div style="font-size:10.5px; color:var(--text-sec)">6 lojas com pendências formais aguardando correções</div>
+            <strong style="color:var(--purple-dark);">Adequações Técnicas Agendadas (30/10)</strong>
+            <div style="font-size:10.5px; color:var(--text-sec)">Barra Salvador (fachada) e União Osasco (móvel caixa)</div>
           </div>
-          <span style="font-size:18px; font-weight:700; color:var(--red);">6 lojas (30%)</span>
+          <span style="font-size:16px; font-weight:700; color:var(--purple-dark);">2 lojas</span>
         </div>
 
-        <div style="display:flex; justify-content:space-between; align-items:center; padding:8px 12px; background:#fff7ed; border-radius:8px; border:1px solid #ffedd5;">
+        <div style="display:flex; justify-content:space-between; align-items:center; padding:9px 12px; background:#e0f2fe; border-radius:8px; border:1px solid #bae6fd;">
           <div>
-            <strong style="color:var(--orange);">Lojas Já Abertas sem Envio de AA</strong>
-            <div style="font-size:10.5px; color:var(--text-sec)">Operando comercialmente mas iPlace não submeteu AA</div>
+            <strong style="color:#0369a1;">Re-submetido para Miami Hoje (27/10)</strong>
+            <div style="font-size:10.5px; color:var(--text-sec)">Shopping Nuevo Centro (retorno concluído e enviado)</div>
           </div>
-          <span style="font-size:18px; font-weight:700; color:var(--orange);">6 lojas (30%)</span>
+          <span style="font-size:16px; font-weight:700; color:#0369a1;">1 loja</span>
         </div>
 
-        <div style="display:flex; justify-content:space-between; align-items:center; padding:8px 12px; background:#eff6ff; border-radius:8px; border:1px solid #dbeafe;">
+        <div style="display:flex; justify-content:space-between; align-items:center; padding:9px 12px; background:#fff7ed; border-radius:8px; border:1px solid #fed7aa;">
           <div>
-            <strong style="color:var(--blue);">Lojas em Pré-Abertura (Novembro/2026)</strong>
-            <div style="font-size:10.5px; color:var(--text-sec)">6 lojas confirmadas para Nov/26 e 2 com data a confirmar</div>
+            <strong style="color:var(--orange-dark);">Lojas Já Abertas (AA a Submeter)</strong>
+            <div style="font-size:10.5px; color:var(--text-sec)">Inauguradas e operando; envio de fotos/docs previsto</div>
           </div>
-          <span style="font-size:18px; font-weight:700; color:var(--blue);">8 lojas (40%)</span>
+          <span style="font-size:16px; font-weight:700; color:var(--orange-dark);">6 lojas</span>
         </div>
 
-        <div style="display:flex; justify-content:space-between; align-items:center; padding:8px 12px; background:#f0fdf4; border-radius:8px; border:1px solid #dcfce7;">
+        <div style="display:flex; justify-content:space-between; align-items:center; padding:9px 12px; background:#eff6ff; border-radius:8px; border:1px solid #bfdbfe;">
           <div>
-            <strong style="color:var(--green-dark);">Reembolsos SFF Submetidos / Concluídos</strong>
-            <div style="font-size:10.5px; color:var(--text-sec)">Nenhum reembolso SFF liberado até aprovação do AA</div>
+            <strong style="color:var(--blue);">Pré-Aberturas Programadas (Novembro/2026)</strong>
+            <div style="font-size:10.5px; color:var(--text-sec)">6 lojas confirmadas em novembro e 2 com data a confirmar</div>
           </div>
-          <span style="font-size:18px; font-weight:700; color:var(--green-dark);">0 / 20 (0%)</span>
+          <span style="font-size:16px; font-weight:700; color:var(--blue);">8 lojas</span>
         </div>
       </div>
     </div>
 
-    <!-- Card 2: Ranking de Dias em Aberto (Aging) -->
+    <!-- Card 2: Próximos Marcos de Entrega -->
     <div class="card">
-      <h2>⏱️ Apontamentos Aguardando Retorno do iPlace</h2>
-      <p class="card-desc">Lojas com feedback de Miami repassado ao iPlace sem envio de correções.</p>
+      <h2>🗓️ Próximos Marcos & Entregas Chave</h2>
+      <p class="card-desc">Prazos e entregas acordadas entre as equipes de Engenharia/Retail iPlace e Apple:</p>
 
-      <div class="aging-row">
-        <div>
-          <div class="aging-store">IPLACE BARRA SHOPPING SUL</div>
-          <div class="aging-detail">Abertura: 11/07/2026 · Feedback: 24/08/2026 · Ajuste logo fachada</div>
+      <div style="display:flex; flex-direction:column; gap:8px;">
+        <div style="padding:10px 12px; background:#faf5ff; border:1px solid #e9d5ff; border-radius:8px;">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <strong style="color:#6d28d9; font-size:12px;">Sexta-feira, 30/10/2026</strong>
+            <span style="background:#7c3aed; color:#fff; font-size:9.5px; font-weight:700; padding:2px 7px; border-radius:12px;">MARCO CRÍTICO</span>
+          </div>
+          <p style="font-size:11px; color:#5b21b6; margin-top:4px;">
+            • <strong>IPLACE BARRA SALVADOR:</strong> Conclusão dos ajustes de fachada.<br>
+            • <strong>IPLACE UNIAO DE OSASCO:</strong> Conclusão da adequação do móvel do caixa (distância da parede).
+          </p>
         </div>
-        <span class="aging-tag aging-crit">64 dias</span>
-      </div>
 
-      <div class="aging-row">
-        <div>
-          <div class="aging-store">IPLACE SHOPPING BARRA SALVADOR</div>
-          <div class="aging-detail">Abertura: 12/09/2025 · Feedback: 25/08/2026 · Fachada, Flex Table, LAC, AT e A0</div>
+        <div style="padding:10px 12px; background:#f0f9ff; border:1px solid #bae6fd; border-radius:8px;">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <strong style="color:#0369a1; font-size:12px;">Em Validação Miami (27/10 a 03/11)</strong>
+            <span style="background:#0284c7; color:#fff; font-size:9.5px; font-weight:700; padding:2px 7px; border-radius:12px;">AGUARDANDO REGIONAL</span>
+          </div>
+          <p style="font-size:11px; color:#0c4a6e; margin-top:4px;">
+            • <strong>SHOPPING NUEVO CENTRO:</strong> Aguardar parecer da equipe regional de Miami sobre o retorno re-enviado hoje (27/10).
+          </p>
         </div>
-        <span class="aging-tag aging-crit">63 dias</span>
-      </div>
 
-      <div class="aging-row">
-        <div>
-          <div class="aging-store">IPLACE IGUATEMI CAMPINAS</div>
-          <div class="aging-detail">Abertura: 02/09/2025 · Feedback: 28/08/2026 · Ajuste Fachada</div>
+        <div style="padding:10px 12px; background:#fffbeb; border:1px solid #fde68a; border-radius:8px;">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <strong style="color:#92400e; font-size:12px;">Alinhamento Técnico Imediato</strong>
+            <span style="background:#d97706; color:#fff; font-size:9.5px; font-weight:700; padding:2px 7px; border-radius:12px;">AÇÃO TÉCNICA</span>
+          </div>
+          <p style="font-size:11px; color:#78350f; margin-top:4px;">
+            • <strong>IPLACE SHOPPING RECIFE:</strong> Alinhamento sobre os ajustes de A0 apontados por Miami em 27/10.<br>
+            • <strong>IPLACE BARRA SHOPPING SUL:</strong> Alinhamento sobre o logo de fachada.
+          </p>
         </div>
-        <span class="aging-tag aging-crit">60 dias</span>
-      </div>
-
-      <div class="aging-row">
-        <div>
-          <div class="aging-store">SHOPPING NUEVO CENTRO (Uruguai)</div>
-          <div class="aging-detail">Abertura: 04/10/2024 · Feedback: 22/09/2026 · Clearance entrada</div>
-        </div>
-        <span class="aging-tag aging-crit">35 dias</span>
-      </div>
-
-      <div class="aging-row">
-        <div>
-          <div class="aging-store">IPLACE SHOPPING UNIAO DE OSASCO</div>
-          <div class="aging-detail">Abertura: 12/09/2025 · Feedback: 30/09/2026 · Clearance Caixa</div>
-        </div>
-        <span class="aging-tag aging-warn">27 dias</span>
-      </div>
-
-      <div class="aging-row" style="background:#f0f9ff; border-color:#bae6fd;">
-        <div>
-          <div class="aging-store">IPLACE SHOPPING RECIFE</div>
-          <div class="aging-detail">Abertura: 25/07/2026 · Feedback de Miami hoje (27/10) · Ajustes A0</div>
-        </div>
-        <span class="aging-tag aging-new">0 dias (Hoje!)</span>
       </div>
     </div>
   </div>
 
-  <!-- Card 3: Plano de Ação Recomendado -->
+  <!-- Card 3: Plano de Ação Conjunto -->
   <div class="card">
-    <h2>🎯 Plano de Ação Imediato Recomendado</h2>
-    <p class="card-desc">Medidas prioritárias para destravar o pipeline de auditorias e viabilizar o reembolso financeiro (SFF):</p>
+    <h2>🎯 Alinhamento de Próximos Passos (Apple & iPlace)</h2>
+    <p class="card-desc">Frentes de trabalho prioritárias para conclusão das auditorias de abertura:</p>
 
     <div class="plan-item">
-      <div class="plan-num crit">1</div>
+      <div class="plan-num purple">1</div>
       <div class="plan-txt">
-        <h4>Escalação Formal das 4 Lojas com Atraso > 30 Dias</h4>
-        <p>Cobrar plano de ação do iPlace para Barra Shopping Sul (64d), Barra Salvador (63d), Iguatemi Campinas (60d) e Nuevo Centro (35d). As pendências envolvem ajustes de logo de fachada, balcão AT/A0 e clearance de entrada.</p>
+        <h4>Acompanhamento das Conclusões Agendadas para 30/10 (Barra Salvador & Osasco)</h4>
+        <p>Garantir o término das obras civis/marcenaria na sexta-feira (30/10) e envio imediato das fotos de evidência para validação regional.</p>
       </div>
     </div>
 
     <div class="plan-item">
-      <div class="plan-num warn">2</div>
+      <div class="plan-num blue">2</div>
       <div class="plan-txt">
-        <h4>Notificação Imediata das 6 Lojas Já Abertas sem Submissão</h4>
-        <p>As lojas Riomar Recife (aberta em 11/08), Rio Mar Fortaleza (09/09), Salvador Shopping (12/09), Riosul (23/09), Leblon (05/10) e Iguatemi Fortaleza (11/10) já estão operando. Solicitar o envio urgente das fotos e pacotes de AA para validação.</p>
+        <h4>Acompanhamento do Retorno de Miami sobre Nuevo Centro</h4>
+        <p>Monitorar o retorno da Regional Miami referente ao pacote de Nuevo Centro re-submetido em 27/10 para fechamento definitivo da auditoria.</p>
       </div>
     </div>
 
     <div class="plan-item">
-      <div class="plan-num info">3</div>
+      <div class="plan-num orange">3</div>
       <div class="plan-txt">
-        <h4>Alinhamento Técnico sobre Apontamentos de A0 no Shopping Recife</h4>
-        <p>Orientar o time de obras do iPlace sobre os ajustes de A0 apontados hoje (27/10) pela equipe regional de Miami para permitir rápida re-submissão e aprovação.</p>
+        <h4>Envio dos Pacotes Iniciais de AA das 6 Lojas Já Inauguradas</h4>
+        <p>Organizar o fluxo de submissão do primeiro pacote de AA para Riomar Recife, Rio Mar Fortaleza, Salvador Shopping, Riosul, Leblon e Iguatemi Fortaleza.</p>
       </div>
     </div>
 
     <div class="plan-item">
       <div class="plan-num">4</div>
       <div class="plan-txt">
-        <h4>Acompanhamento do Novo Cronograma de Novembro (TODs)</h4>
-        <p>Monitorar as 6 aberturas de novembro, com atenção especial ao Boulevard Belém (reagendado para 12/11, antigo 18/10), e obter confirmação de datas para Manauara e Park Shopping Brasília.</p>
+        <h4>Prontidão para as Aberturas de Novembro (TODs)</h4>
+        <p>Manter o acompanhamento próximo das datas de Caxias do Sul (03/11), Brasília Shopping (06/11), Florianópolis (10/11), Boulevard Belém (12/11), Amazonas (16/11) e Beira Mar (23/11).</p>
       </div>
     </div>
   </div>
@@ -1091,13 +1072,12 @@ th.sorted-asc .sort-arrow, th.sorted-desc .sort-arrow { opacity: 1; color: var(-
     <div class="modal-field"><span class="mf-lbl">Envio para Miami:</span><span class="mf-val" id="m-submia">-</span></div>
     <div class="modal-field"><span class="mf-lbl">Feedback Regional Miami:</span><span class="mf-val" id="m-fbmia">-</span></div>
     <div class="modal-field"><span class="mf-lbl">Feedback Enviado ao iPlace:</span><span class="mf-val" id="m-fbip">-</span></div>
-    <div class="modal-field"><span class="mf-lbl">Resposta do iPlace:</span><span class="mf-val" id="m-retip">-</span></div>
-    <div class="modal-field"><span class="mf-lbl">Dias em Aberto:</span><span class="mf-val" id="m-aging">-</span></div>
+    <div class="modal-field"><span class="mf-lbl">Retorno do iPlace:</span><span class="mf-val" id="m-retip">-</span></div>
     <div class="modal-field"><span class="mf-lbl">Aprovação AA:</span><span class="mf-val" id="m-appaa">-</span></div>
     <div class="modal-field"><span class="mf-lbl">Submissão SFF:</span><span class="mf-val" id="m-sffsub">-</span></div>
     <div class="modal-field"><span class="mf-lbl">Aprovação SFF:</span><span class="mf-val" id="m-sffapp">-</span></div>
     <div style="margin-top:14px; background:#f9fafb; padding:12px; border-radius:10px; border:1px solid #e5e7eb;">
-      <div style="font-weight:700; font-size:11px; margin-bottom:4px; color:var(--text);">Comentários e Apontamentos Técnicos:</div>
+      <div style="font-weight:700; font-size:11px; margin-bottom:4px; color:var(--text);">Observações Técnicas & Próximos Passos:</div>
       <div id="m-notes" style="font-size:12px; color:#374151; line-height:1.45;">-</div>
     </div>
   </div>
@@ -1105,46 +1085,470 @@ th.sorted-asc .sort-arrow, th.sorted-desc .sort-arrow { opacity: 1; color: var(-
 
 <!-- ══════════════ FOOTER ══════════════ -->
 <footer class="ftr">
-  <p><strong>iPlace Retail Refit & Appointment Audit Tracking System</strong></p>
-  <p style="margin-top:4px;">Apple Retail Channel Partner Operations · Dados consolidados em 27 de Outubro de 2026</p>
+  <p><strong>iPlace & Apple Retail · Appointment Audit & Refit Tracking System</strong></p>
+  <p style="margin-top:4px;">Acompanhamento conjunto para alinhamento operacional e fechamento de auditorias · Atualizado em 27/10/2026</p>
 </footer>
 
 <!-- ══════════════ JAVASCRIPT LOGIC ══════════════ -->
 <script>
 // RAW_DATA ORDERED STRICTLY BY DATA DE ABERTURA (CHRONOLOGICAL)
+// Incorporating updates of 27/10:
+// - Nuevo Centro: Retorno concluído hoje (27/10) e enviado para Miami em 27/10
+// - Barra Salvador: Retorno iPlace 27/10 com ajuste de fachada agendado para 30/10/2026
+// - União Osasco: Retorno iPlace 27/10 com ajuste da distância do caixa/móvel agendado para 30/10/2026
 const RAW_DATA = [
-  // ── 2024 / 2025 ──
-  { id: "4284227", name: "SHOPPING NUEVO CENTRO (Uruguai)", group: "Uruguai", resp: "iPlace", status: "AA não aprovado", tod: "04/10/2024", round: 3, sub1: "31/10/2024", subUlt: "22/09/2026", subMia: "22/09/2026", fbMia: "22/09/2026", fbIp: "22/09/2026", retIp: "", appAA: "", sffSub: "", sffApp: "", notes: "Clearance entrada", aging: 35, urgency: "critical" },
-  { id: "991538",  name: "IPLACE IGUATEMI CAMPINAS", group: "AA 2025", resp: "iPlace", status: "AA não aprovado", tod: "02/09/2025", round: 1, sub1: "21/08/2026", subUlt: "21/08/2026", subMia: "27/08/2026", fbMia: "28/08/2026", fbIp: "28/08/2026", retIp: "", appAA: "", sffSub: "", sffApp: "", notes: "Ajuste Fachada", aging: 60, urgency: "critical" },
-  { id: "1559317", name: "IPLACE SHOPPING BARRA SALVADOR", group: "AA 2025", resp: "iPlace", status: "AA não aprovado", tod: "12/09/2025", round: 1, sub1: "21/08/2026", subUlt: "21/08/2026", subMia: "24/08/2026", fbMia: "25/08/2026", fbIp: "25/08/2026", retIp: "", appAA: "", sffSub: "", sffApp: "", notes: "Fachada (Logo), Flex Table 1,5 m, LAC, balcão AT e A0.", aging: 63, urgency: "critical" },
-  { id: "1718416", name: "IPLACE SHOPPING UNIAO DE OSASCO", group: "AA 2025", resp: "iPlace", status: "AA não aprovado", tod: "12/09/2025", round: 2, sub1: "19/06/2026", subUlt: "24/09/2026", subMia: "24/09/2026", fbMia: "28/09/2026", fbIp: "30/09/2026", retIp: "", appAA: "", sffSub: "", sffApp: "", notes: "Clearance Caixa", aging: 27, urgency: "warning" },
+  // ── HISTÓRICAS / 2024 & 2025 (ORDENADAS POR ABERTURA) ──
+  {
+    id: "4284227",
+    name: "SHOPPING NUEVO CENTRO (Uruguai)",
+    group: "Uruguai",
+    resp: "iPlace",
+    status: "Enviado a Miami",
+    tod: "04/10/2024",
+    round: 3,
+    sub1: "31/10/2024",
+    subUlt: "22/09/2026",
+    subMia: "27/10/2026",
+    fbMia: "22/09/2026",
+    fbIp: "22/09/2026",
+    retIp: "27/10/2026",
+    appAA: "",
+    sffSub: "",
+    sffApp: "",
+    notes: "Retorno técnico concluído hoje (27/10) e re-enviado para validação da Regional Miami.",
+    statusClass: "badge-miami",
+    noteClass: "miami",
+    category: "miami"
+  },
+  {
+    id: "991538",
+    name: "IPLACE IGUATEMI CAMPINAS",
+    group: "AA 2025",
+    resp: "iPlace",
+    status: "Alinhamento Técnico",
+    tod: "02/09/2025",
+    round: 1,
+    sub1: "21/08/2026",
+    subUlt: "21/08/2026",
+    subMia: "27/08/2026",
+    fbMia: "28/08/2026",
+    fbIp: "28/08/2026",
+    retIp: "",
+    appAA: "",
+    sffSub: "",
+    sffApp: "",
+    notes: "Ajuste de fachada em alinhamento com a equipe técnica.",
+    statusClass: "badge-orange",
+    noteClass: "pending",
+    category: "technical"
+  },
+  {
+    id: "1559317",
+    name: "IPLACE SHOPPING BARRA SALVADOR",
+    group: "AA 2025",
+    resp: "iPlace",
+    status: "Adequação Agendada (30/10)",
+    tod: "12/09/2025",
+    round: 1,
+    sub1: "21/08/2026",
+    subUlt: "21/08/2026",
+    subMia: "24/08/2026",
+    fbMia: "25/08/2026",
+    fbIp: "25/08/2026",
+    retIp: "27/10/2026",
+    appAA: "",
+    sffSub: "",
+    sffApp: "",
+    notes: "Ajuste na fachada em andamento — conclusão agendada para sexta-feira, 30/10/2026.",
+    statusClass: "badge-scheduled",
+    noteClass: "scheduled",
+    category: "scheduled"
+  },
+  {
+    id: "1718416",
+    name: "IPLACE SHOPPING UNIAO DE OSASCO",
+    group: "AA 2025",
+    resp: "iPlace",
+    status: "Adequação Agendada (30/10)",
+    tod: "12/09/2025",
+    round: 2,
+    sub1: "19/06/2026",
+    subUlt: "24/09/2026",
+    subMia: "24/09/2026",
+    fbMia: "28/09/2026",
+    fbIp: "30/09/2026",
+    retIp: "27/10/2026",
+    appAA: "",
+    sffSub: "",
+    sffApp: "",
+    notes: "Ajuste na distância do caixa em relação à parede; adequação do móvel agendada para 30/10/2026.",
+    statusClass: "badge-scheduled",
+    noteClass: "scheduled",
+    category: "scheduled"
+  },
 
-  // ── 2026 (ABERTAS) ──
-  { id: "481804",  name: "IPLACE BARRA SHOPPING SUL", group: "Refit 2026", resp: "iPlace", status: "AA não aprovado", tod: "11/07/2026", round: 1, sub1: "14/08/2026", subUlt: "14/08/2026", subMia: "17/08/2026", fbMia: "24/08/2026", fbIp: "24/08/2026", retIp: "", appAA: "", sffSub: "", sffApp: "", notes: "Ajuste logo fachada", aging: 64, urgency: "critical" },
-  { id: "2386980", name: "IPLACE SHOPPING RECIFE", group: "Refit 2026", resp: "iPlace", status: "AA não aprovado", tod: "25/07/2026", round: 1, sub1: "15/10/2026", subUlt: "15/10/2026", subMia: "26/10/2026", fbMia: "27/10/2026", fbIp: "27/10/2026", retIp: "", appAA: "", sffSub: "", sffApp: "", notes: "Ajustes A0", aging: 0, urgency: "new" },
-  { id: "2379277", name: "IPLACE RIOMAR RECIFE", group: "Refit 2026", resp: "iPlace", status: "AA pendente", tod: "11/08/2026", round: null, sub1: "", subUlt: "", subMia: "", fbMia: "", fbIp: "", retIp: "", appAA: "", sffSub: "", sffApp: "", notes: "Loja aberta", aging: null, urgency: "pending_sub" },
-  { id: "1110390", name: "IPLACE SHOPPING RIO MAR FORTALEZA", group: "Refit 2026", resp: "iPlace", status: "AA pendente", tod: "09/09/2026", round: null, sub1: "", subUlt: "", subMia: "", fbMia: "", fbIp: "", retIp: "", appAA: "", sffSub: "", sffApp: "", notes: "Loja aberta", aging: null, urgency: "pending_sub" },
-  { id: "2401400", name: "IPLACE SALVADOR SHOPPING", group: "Refit 2026", resp: "iPlace", status: "AA pendente", tod: "12/09/2026", round: null, sub1: "", subUlt: "", subMia: "", fbMia: "", fbIp: "", retIp: "", appAA: "", sffSub: "", sffApp: "", notes: "Loja aberta", aging: null, urgency: "pending_sub" },
-  { id: "881687",  name: "IPLACE RIOSUL SHOPPING", group: "Refit 2026", resp: "iPlace", status: "AA pendente", tod: "23/09/2026", round: null, sub1: "", subUlt: "", subMia: "", fbMia: "", fbIp: "", retIp: "", appAA: "", sffSub: "", sffApp: "", notes: "Loja aberta", aging: null, urgency: "pending_sub" },
-  { id: "1685237", name: "IPLACE SHOPPING LEBLON", group: "Refit 2026", resp: "iPlace", status: "AA pendente", tod: "05/10/2026", round: null, sub1: "", subUlt: "", subMia: "", fbMia: "", fbIp: "", retIp: "", appAA: "", sffSub: "", sffApp: "", notes: "Loja aberta", aging: null, urgency: "pending_sub" },
-  { id: "727819",  name: "IPLACE SHOPPING IGUATEMI FORTALEZA", group: "Refit 2026", resp: "iPlace", status: "AA pendente", tod: "11/10/2026", round: null, sub1: "", subUlt: "", subMia: "", fbMia: "", fbIp: "", retIp: "", appAA: "", sffSub: "", sffApp: "", notes: "Loja aberta", aging: null, urgency: "pending_sub" },
+  // ── REFIT 2026 (LOJAS JÁ ABERTAS, ORDENADAS POR TOD) ──
+  {
+    id: "481804",
+    name: "IPLACE BARRA SHOPPING SUL",
+    group: "Refit 2026",
+    resp: "iPlace",
+    status: "Alinhamento Técnico",
+    tod: "11/07/2026",
+    round: 1,
+    sub1: "14/08/2026",
+    subUlt: "14/08/2026",
+    subMia: "17/08/2026",
+    fbMia: "24/08/2026",
+    fbIp: "24/08/2026",
+    retIp: "",
+    appAA: "",
+    sffSub: "",
+    sffApp: "",
+    notes: "Ajuste de logo na fachada em alinhamento técnico.",
+    statusClass: "badge-orange",
+    noteClass: "pending",
+    category: "technical"
+  },
+  {
+    id: "2386980",
+    name: "IPLACE SHOPPING RECIFE",
+    group: "Refit 2026",
+    resp: "iPlace",
+    status: "Alinhamento Técnico",
+    tod: "25/07/2026",
+    round: 1,
+    sub1: "15/10/2026",
+    subUlt: "15/10/2026",
+    subMia: "26/10/2026",
+    fbMia: "27/10/2026",
+    fbIp: "27/10/2026",
+    retIp: "",
+    appAA: "",
+    sffSub: "",
+    sffApp: "",
+    notes: "Feedback regional de Miami recebido em 27/10 com apontamentos no A0; repassado para alinhamento.",
+    statusClass: "badge-orange",
+    noteClass: "pending",
+    category: "technical"
+  },
+  {
+    id: "2379277",
+    name: "IPLACE RIOMAR RECIFE",
+    group: "Refit 2026",
+    resp: "iPlace",
+    status: "AA pendente",
+    tod: "11/08/2026",
+    round: null,
+    sub1: "",
+    subUlt: "",
+    subMia: "",
+    fbMia: "",
+    fbIp: "",
+    retIp: "",
+    appAA: "",
+    sffSub: "",
+    sffApp: "",
+    notes: "Loja aberta e operando; aguardando pacote inicial de fotos/documentos de AA.",
+    statusClass: "badge-orange",
+    noteClass: "neutral",
+    category: "open_no_aa"
+  },
+  {
+    id: "1110390",
+    name: "IPLACE SHOPPING RIO MAR FORTALEZA",
+    group: "Refit 2026",
+    resp: "iPlace",
+    status: "AA pendente",
+    tod: "09/09/2026",
+    round: null,
+    sub1: "",
+    subUlt: "",
+    subMia: "",
+    fbMia: "",
+    fbIp: "",
+    retIp: "",
+    appAA: "",
+    sffSub: "",
+    sffApp: "",
+    notes: "Loja aberta e operando; aguardando pacote inicial de fotos/documentos de AA.",
+    statusClass: "badge-orange",
+    noteClass: "neutral",
+    category: "open_no_aa"
+  },
+  {
+    id: "2401400",
+    name: "IPLACE SALVADOR SHOPPING",
+    group: "Refit 2026",
+    resp: "iPlace",
+    status: "AA pendente",
+    tod: "12/09/2026",
+    round: null,
+    sub1: "",
+    subUlt: "",
+    subMia: "",
+    fbMia: "",
+    fbIp: "",
+    retIp: "",
+    appAA: "",
+    sffSub: "",
+    sffApp: "",
+    notes: "Loja aberta e operando; aguardando pacote inicial de fotos/documentos de AA.",
+    statusClass: "badge-orange",
+    noteClass: "neutral",
+    category: "open_no_aa"
+  },
+  {
+    id: "881687",
+    name: "IPLACE RIOSUL SHOPPING",
+    group: "Refit 2026",
+    resp: "iPlace",
+    status: "AA pendente",
+    tod: "23/09/2026",
+    round: null,
+    sub1: "",
+    subUlt: "",
+    subMia: "",
+    fbMia: "",
+    fbIp: "",
+    retIp: "",
+    appAA: "",
+    sffSub: "",
+    sffApp: "",
+    notes: "Loja aberta e operando; aguardando pacote inicial de fotos/documentos de AA.",
+    statusClass: "badge-orange",
+    noteClass: "neutral",
+    category: "open_no_aa"
+  },
+  {
+    id: "1685237",
+    name: "IPLACE SHOPPING LEBLON",
+    group: "Refit 2026",
+    resp: "iPlace",
+    status: "AA pendente",
+    tod: "05/10/2026",
+    round: null,
+    sub1: "",
+    subUlt: "",
+    subMia: "",
+    fbMia: "",
+    fbIp: "",
+    retIp: "",
+    appAA: "",
+    sffSub: "",
+    sffApp: "",
+    notes: "Loja aberta e operando; aguardando pacote inicial de fotos/documentos de AA.",
+    statusClass: "badge-orange",
+    noteClass: "neutral",
+    category: "open_no_aa"
+  },
+  {
+    id: "727819",
+    name: "IPLACE SHOPPING IGUATEMI FORTALEZA",
+    group: "Refit 2026",
+    resp: "iPlace",
+    status: "AA pendente",
+    tod: "11/10/2026",
+    round: null,
+    sub1: "",
+    subUlt: "",
+    subMia: "",
+    fbMia: "",
+    fbIp: "",
+    retIp: "",
+    appAA: "",
+    sffSub: "",
+    sffApp: "",
+    notes: "Loja aberta e operando; aguardando pacote inicial de fotos/documentos de AA.",
+    statusClass: "badge-orange",
+    noteClass: "neutral",
+    category: "open_no_aa"
+  },
 
-  // ── 2026 (PRÉ-ABERTURA NOVEMBRO) ──
-  { id: "423032",  name: "IPLACE IGUATEMI CAXIAS DO SUL", group: "Refit 2026", resp: "iPlace", status: "Pré-Abertura", tod: "03/11/2026", round: null, sub1: "", subUlt: "", subMia: "", fbMia: "", fbIp: "", retIp: "", appAA: "", sffSub: "", sffApp: "", notes: "Abertura prevista", aging: null, urgency: "future" },
-  { id: "651719",  name: "IPLACE BRASILIA SHOPPING", group: "Refit 2026", resp: "iPlace", status: "Pré-Abertura", tod: "06/11/2026", round: null, sub1: "", subUlt: "", subMia: "", fbMia: "", fbIp: "", retIp: "", appAA: "", sffSub: "", sffApp: "", notes: "Abertura prevista", aging: null, urgency: "future" },
-  { id: "452958",  name: "IPLACE IGUATEMI FLORIANOPOLIS (VILA ROMANA)", group: "Refit 2026", resp: "iPlace", status: "Pré-Abertura", tod: "10/11/2026", round: null, sub1: "", subUlt: "", subMia: "", fbMia: "", fbIp: "", retIp: "", appAA: "", sffSub: "", sffApp: "", notes: "Abertura prevista", aging: null, urgency: "future" },
-  { id: "728139",  name: "IPLACE BOULEVARD SHOPPING BELEM", group: "Refit 2026", resp: "iPlace", status: "Pré-Abertura", tod: "12/11/2026 ↑", round: null, sub1: "", subUlt: "", subMia: "", fbMia: "", fbIp: "", retIp: "", appAA: "", sffSub: "", sffApp: "", notes: "Novo TOD (era 18/10)", aging: null, urgency: "future" },
-  { id: "1652724", name: "IPLACE AMAZONAS SHOPPING AM", group: "Refit 2026", resp: "iPlace", status: "Pré-Abertura", tod: "16/11/2026", round: null, sub1: "", subUlt: "", subMia: "", fbMia: "", fbIp: "", retIp: "", appAA: "", sffSub: "", sffApp: "", notes: "Abertura prevista", aging: null, urgency: "future" },
-  { id: "1695800", name: "IPLACE BEIRA MAR SHOPPING", group: "Refit 2026", resp: "iPlace", status: "Pré-Abertura", tod: "23/11/2026", round: null, sub1: "", subUlt: "", subMia: "", fbMia: "", fbIp: "", retIp: "", appAA: "", sffSub: "", sffApp: "", notes: "Abertura prevista", aging: null, urgency: "future" },
+  // ── REFIT 2026 (PRÉ-ABERTURA NOVEMBRO, ORDENADAS POR TOD) ──
+  {
+    id: "423032",
+    name: "IPLACE IGUATEMI CAXIAS DO SUL",
+    group: "Refit 2026",
+    resp: "iPlace",
+    status: "Pré-Abertura",
+    tod: "03/11/2026",
+    round: null,
+    sub1: "",
+    subUlt: "",
+    subMia: "",
+    fbMia: "",
+    fbIp: "",
+    retIp: "",
+    appAA: "",
+    sffSub: "",
+    sffApp: "",
+    notes: "Inauguração confirmada para 03/11/2026.",
+    statusClass: "badge-blue",
+    noteClass: "neutral",
+    category: "pre_opening"
+  },
+  {
+    id: "651719",
+    name: "IPLACE BRASILIA SHOPPING",
+    group: "Refit 2026",
+    resp: "iPlace",
+    status: "Pré-Abertura",
+    tod: "06/11/2026",
+    round: null,
+    sub1: "",
+    subUlt: "",
+    subMia: "",
+    fbMia: "",
+    fbIp: "",
+    retIp: "",
+    appAA: "",
+    sffSub: "",
+    sffApp: "",
+    notes: "Inauguração confirmada para 06/11/2026.",
+    statusClass: "badge-blue",
+    noteClass: "neutral",
+    category: "pre_opening"
+  },
+  {
+    id: "452958",
+    name: "IPLACE IGUATEMI FLORIANOPOLIS (VILA ROMANA)",
+    group: "Refit 2026",
+    resp: "iPlace",
+    status: "Pré-Abertura",
+    tod: "10/11/2026",
+    round: null,
+    sub1: "",
+    subUlt: "",
+    subMia: "",
+    fbMia: "",
+    fbIp: "",
+    retIp: "",
+    appAA: "",
+    sffSub: "",
+    sffApp: "",
+    notes: "Inauguração confirmada para 10/11/2026.",
+    statusClass: "badge-blue",
+    noteClass: "neutral",
+    category: "pre_opening"
+  },
+  {
+    id: "728139",
+    name: "IPLACE BOULEVARD SHOPPING BELEM",
+    group: "Refit 2026",
+    resp: "iPlace",
+    status: "Pré-Abertura",
+    tod: "12/11/2026 ↑",
+    round: null,
+    sub1: "",
+    subUlt: "",
+    subMia: "",
+    fbMia: "",
+    fbIp: "",
+    retIp: "",
+    appAA: "",
+    sffSub: "",
+    sffApp: "",
+    notes: "Novo TOD aprovado para 12/11 (reagendado do original 18/10).",
+    statusClass: "badge-blue",
+    noteClass: "scheduled",
+    category: "pre_opening"
+  },
+  {
+    id: "1652724",
+    name: "IPLACE AMAZONAS SHOPPING AM",
+    group: "Refit 2026",
+    resp: "iPlace",
+    status: "Pré-Abertura",
+    tod: "16/11/2026",
+    round: null,
+    sub1: "",
+    subUlt: "",
+    subMia: "",
+    fbMia: "",
+    fbIp: "",
+    retIp: "",
+    appAA: "",
+    sffSub: "",
+    sffApp: "",
+    notes: "Inauguração confirmada para 16/11/2026.",
+    statusClass: "badge-blue",
+    noteClass: "neutral",
+    category: "pre_opening"
+  },
+  {
+    id: "1695800",
+    name: "IPLACE BEIRA MAR SHOPPING",
+    group: "Refit 2026",
+    resp: "iPlace",
+    status: "Pré-Abertura",
+    tod: "23/11/2026",
+    round: null,
+    sub1: "",
+    subUlt: "",
+    subMia: "",
+    fbMia: "",
+    fbIp: "",
+    retIp: "",
+    appAA: "",
+    sffSub: "",
+    sffApp: "",
+    notes: "Inauguração confirmada para 23/11/2026.",
+    statusClass: "badge-blue",
+    noteClass: "neutral",
+    category: "pre_opening"
+  },
 
-  // ── DATA A CONFIRMAR ──
-  { id: "712653",  name: "IPLACE SHOPPING MANAUARA", group: "Refit 2026", resp: "iPlace", status: "Pré-Abertura", tod: "—", round: null, sub1: "", subUlt: "", subMia: "", fbMia: "", fbIp: "", retIp: "", appAA: "", sffSub: "", sffApp: "", notes: "Data a confirmar", aging: null, urgency: "future" },
-  { id: "462902",  name: "IPLACE PARK SHOPPING BRASILIA (SEM SFF)", group: "Refit 2026", resp: "iPlace", status: "Pré-Abertura", tod: "—", round: null, sub1: "", subUlt: "", subMia: "", fbMia: "", fbIp: "", retIp: "", appAA: "", sffSub: "", sffApp: "", notes: "Data a confirmar", aging: null, urgency: "future" }
+  // ── REFIT 2026 (DATA A CONFIRMAR) ──
+  {
+    id: "712653",
+    name: "IPLACE SHOPPING MANAUARA",
+    group: "Refit 2026",
+    resp: "iPlace",
+    status: "Pré-Abertura",
+    tod: "—",
+    round: null,
+    sub1: "",
+    subUlt: "",
+    subMia: "",
+    fbMia: "",
+    fbIp: "",
+    retIp: "",
+    appAA: "",
+    sffSub: "",
+    sffApp: "",
+    notes: "Data de inauguração a confirmar conjuntamente.",
+    statusClass: "badge-gray",
+    noteClass: "neutral",
+    category: "pre_opening"
+  },
+  {
+    id: "462902",
+    name: "IPLACE PARK SHOPPING BRASILIA (SEM SFF)",
+    group: "Refit 2026",
+    resp: "iPlace",
+    status: "Pré-Abertura",
+    tod: "—",
+    round: null,
+    sub1: "",
+    subUlt: "",
+    subMia: "",
+    fbMia: "",
+    fbIp: "",
+    retIp: "",
+    appAA: "",
+    sffSub: "",
+    sffApp: "",
+    notes: "Data de inauguração a confirmar conjuntamente (projeto sem SFF).",
+    statusClass: "badge-gray",
+    noteClass: "neutral",
+    category: "pre_opening"
+  }
 ];
 
 let currentTab = 'all';
 let currentQuick = 'all';
-let sortCol = 4; // Default sorted by Abertura (TOD)
+let sortCol = 4; // Default: Abertura (TOD)
 let sortAsc = true;
 
 function parseDateVal(dStr) {
@@ -1176,9 +1580,9 @@ function setQuickFilter(type) {
   currentQuick = type;
   document.querySelectorAll('.pipe-chip').forEach(c => c.classList.remove('active'));
   const chipId = type === 'all' ? 'chip-all' :
-                 type === 'AA não aprovado' ? 'chip-nao-aprov' :
-                 type === 'AA pendente' ? 'chip-pend' :
-                 type === 'Pré-Abertura' ? 'chip-pre' : 'chip-overdue';
+                 type === 'scheduled' ? 'chip-scheduled' :
+                 type === 'miami' ? 'chip-miami' :
+                 type === 'open_no_aa' ? 'chip-open' : 'chip-pre';
   const el = document.getElementById(chipId);
   if (el) el.classList.add('active');
   applyFilters();
@@ -1195,16 +1599,27 @@ function applyFilters() {
     if (currentTab === 'aa25' && (item.group !== 'AA 2025' && item.group !== 'Uruguai')) return false;
 
     // Quick chip filter
-    if (currentQuick === 'overdue' && (item.aging === null || item.aging <= 30)) return false;
-    if (currentQuick !== 'all' && currentQuick !== 'overdue' && item.status !== currentQuick) return false;
+    if (currentQuick !== 'all') {
+      if (currentQuick === 'scheduled' && item.category !== 'scheduled') return false;
+      if (currentQuick === 'miami' && item.category !== 'miami') return false;
+      if (currentQuick === 'open_no_aa' && item.category !== 'open_no_aa') return false;
+      if (currentQuick === 'pre_opening' && item.category !== 'pre_opening') return false;
+    }
 
     // Select filter
-    if (statusSel && item.status !== statusSel) return false;
+    if (statusSel) {
+      if (statusSel === 'Alinhamento Técnico') {
+        if (!['Alinhamento Técnico', 'AA não aprovado'].includes(item.status)) return false;
+      } else if (item.status !== statusSel) {
+        return false;
+      }
+    }
+
     if (urgencySel) {
-      if (urgencySel === 'critical' && (item.aging === null || item.aging <= 30)) return false;
-      if (urgencySel === 'new' && item.urgency !== 'new') return false;
-      if (urgencySel === 'pending_sub' && item.urgency !== 'pending_sub') return false;
-      if (urgencySel === 'future' && item.urgency !== 'future') return false;
+      if (urgencySel === 'today' && !['4284227', '2386980', '1559317', '1718416'].includes(item.id)) return false;
+      if (urgencySel === 'scheduled' && item.category !== 'scheduled') return false;
+      if (urgencySel === 'open_no_aa' && item.category !== 'open_no_aa') return false;
+      if (urgencySel === 'pre_opening' && item.category !== 'pre_opening') return false;
     }
 
     // Search filter
@@ -1224,42 +1639,13 @@ function applyFilters() {
 function renderTable(data) {
   const tbody = document.getElementById('table-body');
   if (data.length === 0) {
-    tbody.innerHTML = `<tr><td colspan="17" style="text-align:center; padding:32px; color:var(--text-muted); font-size:13px;">Nenhuma loja encontrada para os filtros selecionados.</td></tr>`;
+    tbody.innerHTML = `<tr><td colspan="16" style="text-align:center; padding:32px; color:var(--text-muted); font-size:13px;">Nenhuma loja encontrada para os filtros selecionados.</td></tr>`;
     return;
   }
 
   let html = '';
   data.forEach(item => {
-    // Status Badge
-    let badgeClass = 'badge-gray';
-    if (item.status === 'AA não aprovado') badgeClass = 'badge-red';
-    else if (item.status === 'AA pendente') badgeClass = 'badge-orange';
-    else if (item.status === 'Pré-Abertura') badgeClass = 'badge-blue';
-
-    // Aging Badge
-    let agingHtml = `<span class="aging-none">—</span>`;
-    if (item.aging !== null) {
-      if (item.aging === 0) {
-        agingHtml = `<span class="aging-tag aging-new">Hoje (0d)</span>`;
-      } else if (item.aging > 30) {
-        agingHtml = `<span class="aging-tag aging-crit">${item.aging}d</span>`;
-      } else if (item.aging > 15) {
-        agingHtml = `<span class="aging-tag aging-warn">${item.aging}d</span>`;
-      } else {
-        agingHtml = `<span class="aging-tag aging-ok">${item.aging}d</span>`;
-      }
-    }
-
-    // Round
     const roundHtml = item.round !== null ? `<span class="round-pill">${item.round}</span>` : `<span class="date-empty">—</span>`;
-
-    // Notes
-    let noteClass = 'comment-pill';
-    if (item.notes.includes('Fachada') || item.notes.includes('logo') || item.notes.includes('A0') || item.notes.includes('Clearance')) {
-      noteClass += ' alert';
-    } else if (item.notes.includes('Novo TOD')) {
-      noteClass += ' info';
-    }
 
     html += `
       <tr onclick="openModal('${item.id}')" style="cursor:pointer;" title="Clique para detalhes completos">
@@ -1272,7 +1658,7 @@ function renderTable(data) {
         </td>
         <td><span style="font-weight:600; color:var(--text-sec);">${item.resp}</span></td>
         <td>
-          <span class="badge ${badgeClass}">
+          <span class="badge ${item.statusClass}">
             <span class="badge-dot"></span>
             ${item.status}
           </span>
@@ -1283,17 +1669,16 @@ function renderTable(data) {
         <td style="text-align:center;">${roundHtml}</td>
         <td class="date-cell">${item.sub1 || '<span class="date-empty">—</span>'}</td>
         <td class="date-cell">${item.subUlt || '<span class="date-empty">—</span>'}</td>
-        <td class="date-cell">${item.subMia || '<span class="date-empty">—</span>'}</td>
+        <td class="date-cell ${item.subMia === '27/10/2026' ? 'highlight' : ''}">${item.subMia || '<span class="date-empty">—</span>'}</td>
         <td class="date-cell">${item.fbMia || '<span class="date-empty">—</span>'}</td>
         <td class="date-cell">${item.fbIp || '<span class="date-empty">—</span>'}</td>
-        <td class="date-cell">${item.retIp || '<span class="date-empty">—</span>'}</td>
-        <td style="text-align:center;">${agingHtml}</td>
+        <td class="date-cell ${item.retIp === '27/10/2026' ? 'highlight' : ''}">${item.retIp || '<span class="date-empty">—</span>'}</td>
         <td class="date-cell">${item.appAA || '<span class="date-empty">—</span>'}</td>
         <td class="date-cell">${item.sffSub || '<span class="date-empty">—</span>'}</td>
         <td class="date-cell">${item.sffApp || '<span class="date-empty">—</span>'}</td>
         <td>
           <div class="comment-box">
-            <span class="${noteClass}">${item.notes}</span>
+            <span class="comment-pill ${item.noteClass}">${item.notes}</span>
           </div>
         </td>
       </tr>
@@ -1356,11 +1741,10 @@ function getColVal(item, idx) {
     case 9: return item.fbMia;
     case 10: return item.fbIp;
     case 11: return item.retIp;
-    case 12: return item.aging !== null ? item.aging : -1;
-    case 13: return item.appAA;
-    case 14: return item.sffSub;
-    case 15: return item.sffApp;
-    case 16: return item.notes;
+    case 12: return item.appAA;
+    case 13: return item.sffSub;
+    case 14: return item.sffApp;
+    case 15: return item.notes;
     default: return "";
   }
 }
@@ -1380,8 +1764,7 @@ function openModal(appleId) {
   document.getElementById('m-submia').textContent = item.subMia || '—';
   document.getElementById('m-fbmia').textContent = item.fbMia || '—';
   document.getElementById('m-fbip').textContent = item.fbIp || '—';
-  document.getElementById('m-retip').textContent = item.retIp || 'Aguardando retorno do iPlace';
-  document.getElementById('m-aging').textContent = item.aging !== null ? item.aging + ' dias em aberto' : '—';
+  document.getElementById('m-retip').textContent = item.retIp || 'Pendente de retorno';
   document.getElementById('m-appaa').textContent = item.appAA || 'Pendente de aprovação';
   document.getElementById('m-sffsub').textContent = item.sffSub || 'Não submetido';
   document.getElementById('m-sffapp').textContent = item.sffApp || 'Não aprovado';
@@ -1403,8 +1786,7 @@ function exportToCSV() {
   const headers = [
     "APPLE ID", "POS NAME", "GRUPO", "RESPONSAVEL", "STATUS AA", "ABERTURA",
     "RODADA AA", "1ª SUB", "ULT SUB", "SUB MIAMI", "FEEDBACK MIAMI",
-    "FEEDBACK IPLACE", "RETORNO IPLACE", "DIAS EM ABERTO", "APROVACAO AA",
-    "SFF SUB", "SFF APROV", "COMENTARIOS"
+    "FEEDBACK IPLACE", "RETORNO IPLACE", "APROVACAO AA", "SFF SUB", "SFF APROV", "COMENTARIOS"
   ];
 
   let csvContent = "\uFEFF" + headers.join(";") + "\n";
@@ -1423,7 +1805,6 @@ function exportToCSV() {
       d.fbMia,
       d.fbIp,
       d.retIp,
-      d.aging !== null ? d.aging : "",
       d.appAA,
       d.sffSub,
       d.sffApp,
@@ -1436,7 +1817,7 @@ function exportToCSV() {
   const link = document.createElement("a");
   const url = URL.createObjectURL(blob);
   link.setAttribute("href", url);
-  link.setAttribute("download", `iPlace_Retail_Tracker_AA_Status_${new Date().toISOString().slice(0,10)}.csv`);
+  link.setAttribute("download", `iPlace_Apple_Retail_AA_Status_${new Date().toISOString().slice(0,10)}.csv`);
   document.body.appendChild(link);
   link.click();
   document.body.removeChild(link);
