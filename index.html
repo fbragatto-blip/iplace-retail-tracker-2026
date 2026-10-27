@@ -195,7 +195,7 @@ body {
   color: var(--blue);
 }
 
-/* ── ALERT BANNER / CALLOUT CONJUNTO ── */
+/* ── ALERT BANNER CONJUNTO ── */
 .alert-box {
   margin: 16px 24px 0;
   background: linear-gradient(135deg, #f0f7ff 0%, #e0effe 100%);
@@ -246,6 +246,12 @@ body {
   font-size: 10px;
   font-weight: 600;
   color: #0369a1;
+}
+.alert-tag.apple {
+  background: #eff6ff;
+  border-color: #93c5fd;
+  color: #1d4ed8;
+  font-weight: 700;
 }
 .alert-tag.highlight {
   background: #f5f3ff;
@@ -520,6 +526,24 @@ th.sorted-asc .sort-arrow, th.sorted-desc .sort-arrow { opacity: 1; color: var(-
   font-size: 11px;
 }
 
+/* Responsável Badges */
+.resp-apple {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  color: #1d4ed8;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 10.5px;
+}
+.resp-iplace {
+  font-weight: 600;
+  color: var(--text-sec);
+}
+
 /* Status Badges */
 .badge {
   display: inline-flex;
@@ -541,6 +565,11 @@ th.sorted-asc .sort-arrow, th.sorted-desc .sort-arrow { opacity: 1; color: var(-
   background: #f5f3ff;
   color: #6d28d9;
   border: 1px solid #ddd6fe;
+}
+.badge-adequacao {
+  background: #fff7ed;
+  color: #c2410c;
+  border: 1px solid #fed7aa;
 }
 .badge-orange {
   background: #fff7ed;
@@ -571,7 +600,7 @@ th.sorted-asc .sort-arrow, th.sorted-desc .sort-arrow { opacity: 1; color: var(-
 
 /* Comments */
 .comment-box {
-  max-width: 320px;
+  max-width: 330px;
   font-size: 11px;
   line-height: 1.35;
 }
@@ -595,7 +624,7 @@ th.sorted-asc .sort-arrow, th.sorted-desc .sort-arrow { opacity: 1; color: var(-
   color: #0369a1;
   font-weight: 600;
 }
-.comment-pill.pending {
+.comment-pill.adequacao {
   background: #fff7ed;
   border: 1px solid #fed7aa;
   color: #9a3412;
@@ -775,23 +804,23 @@ th.sorted-asc .sort-arrow, th.sorted-desc .sort-arrow { opacity: 1; color: var(-
     </div>
   </div>
 
-  <!-- 4 Clean Quadrants (Without 64d Maior Atraso) -->
+  <!-- 4 Clean Quadrants -->
   <div class="hdr-stats">
     <div class="stat-card">
       <div class="stat-num" id="st-total">20</div>
       <div class="stat-lbl">Total Lojas</div>
     </div>
     <div class="stat-card" style="border-top: 3px solid var(--purple);">
-      <div class="stat-num" style="color:var(--purple-dark);" id="st-val">6</div>
-      <div class="stat-lbl">Em Validação / Adequação</div>
+      <div class="stat-num" style="color:var(--purple-dark);" id="st-val">5</div>
+      <div class="stat-lbl">Em Adequação iPlace</div>
+    </div>
+    <div class="stat-card" style="border-top: 3px solid var(--blue);">
+      <div class="stat-num" style="color:var(--blue);" id="st-apple">1</div>
+      <div class="stat-lbl">Validação Apple (Miami)</div>
     </div>
     <div class="stat-card" style="border-top: 3px solid var(--orange);">
       <div class="stat-num" style="color:var(--orange);" id="st-open">6</div>
       <div class="stat-lbl">Aberta (AA a Enviar)</div>
-    </div>
-    <div class="stat-card" style="border-top: 3px solid var(--blue);">
-      <div class="stat-num" style="color:var(--blue);" id="st-pre">8</div>
-      <div class="stat-lbl">Pré-Abertura</div>
     </div>
   </div>
 </header>
@@ -818,17 +847,17 @@ th.sorted-asc .sort-arrow, th.sorted-desc .sort-arrow { opacity: 1; color: var(-
   <div class="alert-content">
     <h3>Atualizações Operacionais de Hoje (27/10/2026) & Próximos Marcos de Conclusão</h3>
     <p>
-      <strong>✅ Shopping Nuevo Centro (Uruguai):</strong> Retorno técnico finalizado com sucesso hoje (27/10) e pacote re-enviado para validação regional da equipe de Miami.
+      <strong>✅ Shopping Nuevo Centro (Uruguai) — Responsável: Apple:</strong> Retorno técnico concluído com sucesso hoje (27/10) e pacote re-enviado para validação regional da equipe de Miami. Ação com o time Apple.
       <br>
-      <strong>🗓️ Barra Salvador & União Osasco (Conclusão 30/10):</strong> O time iPlace retornou com o plano de ação técnico estruturado. Ajuste de fachada (Barra Salvador) e adequação da distância do caixa/móvel (Osasco) estão agendados para <strong>conclusão nesta sexta-feira, 30/10/2026</strong>.
+      <strong>🗓️ Barra Salvador & União Osasco (Conclusão 30/10):</strong> O time iPlace retornou com o plano de ação técnico estruturado. Ajuste de fachada (Barra Salvador) e adequação da distância do caixa/móvel (Osasco) estão em adequação agendada para <strong>conclusão nesta sexta-feira, 30/10/2026</strong>.
       <br>
-      <strong>📋 Shopping Recife:</strong> Feedback regional de Miami recebido em 27/10 com apontamentos de A0 repassados para alinhamento com a equipe técnica.
+      <strong>📋 Shopping Recife, Barra Shopping Sul e Iguatemi Campinas:</strong> Em adequação iPlace para alinhamentos de A0 e logo de fachada.
     </p>
     <div class="alert-tags">
-      <span class="alert-tag success">✓ Nuevo Centro: Re-enviado para Miami (27/10)</span>
-      <span class="alert-tag highlight">🗓️ Barra Salvador: Ajuste de Fachada p/ 30/10</span>
-      <span class="alert-tag highlight">🗓️ União Osasco: Adequação Móvel Caixa p/ 30/10</span>
-      <span class="alert-tag">📋 Shopping Recife: Feedback A0 repassado hoje (27/10)</span>
+      <span class="alert-tag apple">✓ Nuevo Centro: Responsável Apple (Re-enviado p/ Miami em 27/10)</span>
+      <span class="alert-tag highlight">🗓️ Barra Salvador: Em adequação iPlace p/ 30/10</span>
+      <span class="alert-tag highlight">🗓️ União Osasco: Em adequação iPlace p/ 30/10</span>
+      <span class="alert-tag">📋 Shopping Recife: Em adequação iPlace (A0)</span>
       <span class="alert-tag">📅 Novo TOD: Boulevard Belém (12/11)</span>
     </div>
   </div>
@@ -845,17 +874,16 @@ th.sorted-asc .sort-arrow, th.sorted-desc .sort-arrow { opacity: 1; color: var(-
 
     <select class="filter-select" id="status-filter" onchange="applyFilters()">
       <option value="">Todos os Status AA</option>
-      <option value="Enviado a Miami">Enviado a Miami (1)</option>
-      <option value="Adequação Agendada (30/10)">Adequação Agendada (30/10) (2)</option>
-      <option value="Alinhamento Técnico">Alinhamento Técnico (Recife / Barra Sul / Campinas)</option>
+      <option value="Em adequação iPlace">Em adequação iPlace (5)</option>
+      <option value="Enviado a Miami">Validação Apple / Miami (1)</option>
       <option value="AA pendente">AA pendente (Loja Aberta) (6)</option>
       <option value="Pré-Abertura">Pré-Abertura (8)</option>
     </select>
 
     <select class="filter-select" id="urgency-filter" onchange="applyFilters()">
       <option value="">Filtrar por Marco</option>
-      <option value="today">Atualizados Hoje (27/10)</option>
       <option value="scheduled">Agendados para Sexta (30/10)</option>
+      <option value="apple_resp">Responsabilidade Apple</option>
       <option value="open_no_aa">Lojas Abertas (AA a Enviar)</option>
       <option value="pre_opening">Inaugurações de Novembro</option>
     </select>
@@ -875,14 +903,17 @@ th.sorted-asc .sort-arrow, th.sorted-desc .sort-arrow { opacity: 1; color: var(-
     <div class="pipe-chip active" onclick="setQuickFilter('all')" id="chip-all">
       Todas as Lojas <span class="chip-badge" id="c-all">20</span>
     </div>
-    <div class="pipe-chip" onclick="setQuickFilter('scheduled')" id="chip-scheduled">
-      <span class="pipe-dot" style="background:var(--purple);"></span> Conclusão em 30/10 <span class="chip-badge">2</span>
+    <div class="pipe-chip" onclick="setQuickFilter('adequacao')" id="chip-adequacao">
+      <span class="pipe-dot" style="background:var(--orange);"></span> Em adequação iPlace <span class="chip-badge">5</span>
     </div>
-    <div class="pipe-chip" onclick="setQuickFilter('miami')" id="chip-miami">
-      <span class="pipe-dot" style="background:var(--blue);"></span> Em Validação Miami <span class="chip-badge">1</span>
+    <div class="pipe-chip" onclick="setQuickFilter('scheduled')" id="chip-scheduled">
+      <span class="pipe-dot" style="background:var(--purple);"></span> Agendado para 30/10 <span class="chip-badge">2</span>
+    </div>
+    <div class="pipe-chip" onclick="setQuickFilter('apple')" id="chip-apple">
+      <span class="pipe-dot" style="background:var(--blue);"></span> Validação Apple / Miami <span class="chip-badge">1</span>
     </div>
     <div class="pipe-chip" onclick="setQuickFilter('open_no_aa')" id="chip-open">
-      <span class="pipe-dot" style="background:var(--orange);"></span> Lojas Abertas (AA a Enviar) <span class="chip-badge">6</span>
+      <span class="pipe-dot" style="background:var(--amber);"></span> Lojas Abertas (AA a Enviar) <span class="chip-badge">6</span>
     </div>
     <div class="pipe-chip" onclick="setQuickFilter('pre_opening')" id="chip-pre">
       <span class="pipe-dot" style="background:#64748b;"></span> Pré-Abertura <span class="chip-badge">8</span>
@@ -906,8 +937,8 @@ th.sorted-asc .sort-arrow, th.sorted-desc .sort-arrow { opacity: 1; color: var(-
         <tr class="col-row">
           <th onclick="sortTable(0)" style="width:78px;">Apple ID <span class="sort-arrow">↕</span></th>
           <th onclick="sortTable(1)" style="min-width:180px;">POS Name <span class="sort-arrow">↕</span></th>
-          <th onclick="sortTable(2)" style="width:90px;">Responsável <span class="sort-arrow">↕</span></th>
-          <th onclick="sortTable(3)" style="min-width:145px;">Status AA <span class="sort-arrow">↕</span></th>
+          <th onclick="sortTable(2)" style="width:95px;">Responsável <span class="sort-arrow">↕</span></th>
+          <th onclick="sortTable(3)" style="min-width:155px;">Status AA <span class="sort-arrow">↕</span></th>
           <th onclick="sortTable(4)" style="min-width:115px;" class="sorted-asc">Abertura (TOD) <span class="sort-arrow">▲</span></th>
           <th onclick="sortTable(5)" style="width:75px;">Rodada AA <span class="sort-arrow">↕</span></th>
           <th onclick="sortTable(6)" style="min-width:95px;">1ª Sub. <span class="sort-arrow">↕</span></th>
@@ -935,34 +966,34 @@ th.sorted-asc .sort-arrow, th.sorted-desc .sort-arrow { opacity: 1; color: var(-
     <!-- Card 1: Diagnóstico Consolidado -->
     <div class="card">
       <h2>📊 Status Geral do Pipeline de AA</h2>
-      <p class="card-desc">Visão consolidada das 20 lojas organizadas pelo cronograma de aberturas e marcos de entrega.</p>
+      <p class="card-desc">Visão consolidada das 20 lojas organizadas pelo cronograma de aberturas e responsabilidades de entrega.</p>
       
       <div style="display:flex; flex-direction:column; gap:10px;">
-        <div style="display:flex; justify-content:space-between; align-items:center; padding:9px 12px; background:#f5f3ff; border-radius:8px; border:1px solid #ddd6fe;">
-          <div>
-            <strong style="color:var(--purple-dark);">Adequações Técnicas Agendadas (30/10)</strong>
-            <div style="font-size:10.5px; color:var(--text-sec)">Barra Salvador (fachada) e União Osasco (móvel caixa)</div>
-          </div>
-          <span style="font-size:16px; font-weight:700; color:var(--purple-dark);">2 lojas</span>
-        </div>
-
-        <div style="display:flex; justify-content:space-between; align-items:center; padding:9px 12px; background:#e0f2fe; border-radius:8px; border:1px solid #bae6fd;">
-          <div>
-            <strong style="color:#0369a1;">Re-submetido para Miami Hoje (27/10)</strong>
-            <div style="font-size:10.5px; color:var(--text-sec)">Shopping Nuevo Centro (retorno concluído e enviado)</div>
-          </div>
-          <span style="font-size:16px; font-weight:700; color:#0369a1;">1 loja</span>
-        </div>
-
         <div style="display:flex; justify-content:space-between; align-items:center; padding:9px 12px; background:#fff7ed; border-radius:8px; border:1px solid #fed7aa;">
           <div>
-            <strong style="color:var(--orange-dark);">Lojas Já Abertas (AA a Submeter)</strong>
-            <div style="font-size:10.5px; color:var(--text-sec)">Inauguradas e operando; envio de fotos/docs previsto</div>
+            <strong style="color:var(--orange-dark);">Em Adequação iPlace</strong>
+            <div style="font-size:10.5px; color:var(--text-sec)">5 lojas com ajustes em andamento (fachada, móveis e A0)</div>
           </div>
-          <span style="font-size:16px; font-weight:700; color:var(--orange-dark);">6 lojas</span>
+          <span style="font-size:16px; font-weight:700; color:var(--orange-dark);">5 lojas</span>
         </div>
 
         <div style="display:flex; justify-content:space-between; align-items:center; padding:9px 12px; background:#eff6ff; border-radius:8px; border:1px solid #bfdbfe;">
+          <div>
+            <strong style="color:#1d4ed8;">Responsabilidade Apple / Validação Miami</strong>
+            <div style="font-size:10.5px; color:var(--text-sec)">Shopping Nuevo Centro (retorno concluído hoje e re-enviado)</div>
+          </div>
+          <span style="font-size:16px; font-weight:700; color:#1d4ed8;">1 loja</span>
+        </div>
+
+        <div style="display:flex; justify-content:space-between; align-items:center; padding:9px 12px; background:#fefce8; border-radius:8px; border:1px solid #fef08a;">
+          <div>
+            <strong style="color:var(--amber-dark);">Lojas Já Abertas (AA a Submeter)</strong>
+            <div style="font-size:10.5px; color:var(--text-sec)">Inauguradas e operando; envio de fotos/docs previsto</div>
+          </div>
+          <span style="font-size:16px; font-weight:700; color:var(--amber-dark);">6 lojas</span>
+        </div>
+
+        <div style="display:flex; justify-content:space-between; align-items:center; padding:9px 12px; background:#f8fafc; border-radius:8px; border:1px solid #e2e8f0;">
           <div>
             <strong style="color:var(--blue);">Pré-Aberturas Programadas (Novembro/2026)</strong>
             <div style="font-size:10.5px; color:var(--text-sec)">6 lojas confirmadas em novembro e 2 com data a confirmar</div>
@@ -980,33 +1011,34 @@ th.sorted-asc .sort-arrow, th.sorted-desc .sort-arrow { opacity: 1; color: var(-
       <div style="display:flex; flex-direction:column; gap:8px;">
         <div style="padding:10px 12px; background:#faf5ff; border:1px solid #e9d5ff; border-radius:8px;">
           <div style="display:flex; justify-content:space-between; align-items:center;">
-            <strong style="color:#6d28d9; font-size:12px;">Sexta-feira, 30/10/2026</strong>
-            <span style="background:#7c3aed; color:#fff; font-size:9.5px; font-weight:700; padding:2px 7px; border-radius:12px;">MARCO CRÍTICO</span>
+            <strong style="color:#6d28d9; font-size:12px;">Sexta-feira, 30/10/2026 (Adequação iPlace)</strong>
+            <span style="background:#7c3aed; color:#fff; font-size:9.5px; font-weight:700; padding:2px 7px; border-radius:12px;">MARCO AGENDADO</span>
           </div>
           <p style="font-size:11px; color:#5b21b6; margin-top:4px;">
-            • <strong>IPLACE BARRA SALVADOR:</strong> Conclusão dos ajustes de fachada.<br>
+            • <strong>IPLACE BARRA SALVADOR:</strong> Conclusão dos ajustes de fachada pelo time iPlace.<br>
             • <strong>IPLACE UNIAO DE OSASCO:</strong> Conclusão da adequação do móvel do caixa (distância da parede).
           </p>
         </div>
 
         <div style="padding:10px 12px; background:#f0f9ff; border:1px solid #bae6fd; border-radius:8px;">
           <div style="display:flex; justify-content:space-between; align-items:center;">
-            <strong style="color:#0369a1; font-size:12px;">Em Validação Miami (27/10 a 03/11)</strong>
-            <span style="background:#0284c7; color:#fff; font-size:9.5px; font-weight:700; padding:2px 7px; border-radius:12px;">AGUARDANDO REGIONAL</span>
+            <strong style="color:#0369a1; font-size:12px;">Validação Apple Miami (27/10 a 03/11)</strong>
+            <span style="background:#0284c7; color:#fff; font-size:9.5px; font-weight:700; padding:2px 7px; border-radius:12px;">RESPONSÁVEL: APPLE</span>
           </div>
           <p style="font-size:11px; color:#0c4a6e; margin-top:4px;">
-            • <strong>SHOPPING NUEVO CENTRO:</strong> Aguardar parecer da equipe regional de Miami sobre o retorno re-enviado hoje (27/10).
+            • <strong>SHOPPING NUEVO CENTRO:</strong> Avaliação final da equipe regional de Miami sobre o pacote re-enviado em 27/10.
           </p>
         </div>
 
         <div style="padding:10px 12px; background:#fffbeb; border:1px solid #fde68a; border-radius:8px;">
           <div style="display:flex; justify-content:space-between; align-items:center;">
-            <strong style="color:#92400e; font-size:12px;">Alinhamento Técnico Imediato</strong>
-            <span style="background:#d97706; color:#fff; font-size:9.5px; font-weight:700; padding:2px 7px; border-radius:12px;">AÇÃO TÉCNICA</span>
+            <strong style="color:#92400e; font-size:12px;">Em Adequação iPlace</strong>
+            <span style="background:#d97706; color:#fff; font-size:9.5px; font-weight:700; padding:2px 7px; border-radius:12px;">AÇÃO IPLACE</span>
           </div>
           <p style="font-size:11px; color:#78350f; margin-top:4px;">
             • <strong>IPLACE SHOPPING RECIFE:</strong> Alinhamento sobre os ajustes de A0 apontados por Miami em 27/10.<br>
-            • <strong>IPLACE BARRA SHOPPING SUL:</strong> Alinhamento sobre o logo de fachada.
+            • <strong>IPLACE BARRA SHOPPING SUL:</strong> Alinhamento sobre o logo de fachada.<br>
+            • <strong>IPLACE IGUATEMI CAMPINAS:</strong> Alinhamento sobre ajuste de fachada.
           </p>
         </div>
       </div>
@@ -1021,16 +1053,16 @@ th.sorted-asc .sort-arrow, th.sorted-desc .sort-arrow { opacity: 1; color: var(-
     <div class="plan-item">
       <div class="plan-num purple">1</div>
       <div class="plan-txt">
-        <h4>Acompanhamento das Conclusões Agendadas para 30/10 (Barra Salvador & Osasco)</h4>
-        <p>Garantir o término das obras civis/marcenaria na sexta-feira (30/10) e envio imediato das fotos de evidência para validação regional.</p>
+        <h4>Acompanhamento das Adequações Agendadas para 30/10 (Barra Salvador & Osasco)</h4>
+        <p>Garantir a finalização das intervenções em 30/10 pelo time iPlace e envio das fotos de evidência para validação regional.</p>
       </div>
     </div>
 
     <div class="plan-item">
       <div class="plan-num blue">2</div>
       <div class="plan-txt">
-        <h4>Acompanhamento do Retorno de Miami sobre Nuevo Centro</h4>
-        <p>Monitorar o retorno da Regional Miami referente ao pacote de Nuevo Centro re-submetido em 27/10 para fechamento definitivo da auditoria.</p>
+        <h4>Validação do Retorno de Nuevo Centro pela Equipe Apple (Miami)</h4>
+        <p>Acompanhar a análise do pacote re-submetido hoje pela Regional Miami para formalização da aprovação do AA de Nuevo Centro.</p>
       </div>
     </div>
 
@@ -1038,7 +1070,7 @@ th.sorted-asc .sort-arrow, th.sorted-desc .sort-arrow { opacity: 1; color: var(-
       <div class="plan-num orange">3</div>
       <div class="plan-txt">
         <h4>Envio dos Pacotes Iniciais de AA das 6 Lojas Já Inauguradas</h4>
-        <p>Organizar o fluxo de submissão do primeiro pacote de AA para Riomar Recife, Rio Mar Fortaleza, Salvador Shopping, Riosul, Leblon e Iguatemi Fortaleza.</p>
+        <p>Organizar o fluxo de envio do primeiro pacote de fotos/documentos de AA para Riomar Recife, Rio Mar Fortaleza, Salvador Shopping, Riosul, Leblon e Iguatemi Fortaleza.</p>
       </div>
     </div>
 
@@ -1046,7 +1078,7 @@ th.sorted-asc .sort-arrow, th.sorted-desc .sort-arrow { opacity: 1; color: var(-
       <div class="plan-num">4</div>
       <div class="plan-txt">
         <h4>Prontidão para as Aberturas de Novembro (TODs)</h4>
-        <p>Manter o acompanhamento próximo das datas de Caxias do Sul (03/11), Brasília Shopping (06/11), Florianópolis (10/11), Boulevard Belém (12/11), Amazonas (16/11) e Beira Mar (23/11).</p>
+        <p>Acompanhar o cronograma de Caxias do Sul (03/11), Brasília Shopping (06/11), Florianópolis (10/11), Boulevard Belém (12/11), Amazonas (16/11) e Beira Mar (23/11).</p>
       </div>
     </div>
   </div>
@@ -1063,12 +1095,13 @@ th.sorted-asc .sort-arrow, th.sorted-desc .sort-arrow { opacity: 1; color: var(-
       <button class="modal-close" onclick="closeModalDirect()">✕</button>
     </div>
 
+    <div class="modal-field"><span class="mf-lbl">Responsável Atual:</span><span class="mf-val" id="m-resp">-</span></div>
     <div class="modal-field"><span class="mf-lbl">Status AA:</span><span class="mf-val" id="m-status">-</span></div>
     <div class="modal-field"><span class="mf-lbl">Grupo / Ano:</span><span class="mf-val" id="m-group">-</span></div>
     <div class="modal-field"><span class="mf-lbl">Data Abertura (TOD):</span><span class="mf-val" id="m-tod">-</span></div>
     <div class="modal-field"><span class="mf-lbl">Rodada Atual AA:</span><span class="mf-val" id="m-round">-</span></div>
-    <div class="modal-field"><span class="mf-lbl">1ª Submissão iPlace:</span><span class="mf-val" id="m-sub1">-</span></div>
-    <div class="modal-field"><span class="mf-lbl">Última Submissão iPlace:</span><span class="mf-val" id="m-subult">-</span></div>
+    <div class="modal-field"><span class="mf-lbl">1ª Submissão:</span><span class="mf-val" id="m-sub1">-</span></div>
+    <div class="modal-field"><span class="mf-lbl">Última Submissão:</span><span class="mf-val" id="m-subult">-</span></div>
     <div class="modal-field"><span class="mf-lbl">Envio para Miami:</span><span class="mf-val" id="m-submia">-</span></div>
     <div class="modal-field"><span class="mf-lbl">Feedback Regional Miami:</span><span class="mf-val" id="m-fbmia">-</span></div>
     <div class="modal-field"><span class="mf-lbl">Feedback Enviado ao iPlace:</span><span class="mf-val" id="m-fbip">-</span></div>
@@ -1092,17 +1125,17 @@ th.sorted-asc .sort-arrow, th.sorted-desc .sort-arrow { opacity: 1; color: var(-
 <!-- ══════════════ JAVASCRIPT LOGIC ══════════════ -->
 <script>
 // RAW_DATA ORDERED STRICTLY BY DATA DE ABERTURA (CHRONOLOGICAL)
-// Incorporating updates of 27/10:
-// - Nuevo Centro: Retorno concluído hoje (27/10) e enviado para Miami em 27/10
-// - Barra Salvador: Retorno iPlace 27/10 com ajuste de fachada agendado para 30/10/2026
-// - União Osasco: Retorno iPlace 27/10 com ajuste da distância do caixa/móvel agendado para 30/10/2026
+// Updates applied:
+// - Nuevo Centro: Responsável = Apple, Status = "Enviado a Miami" (re-enviado hoje 27/10)
+// - Status "Alinhamento técnico" substituído por "Em adequação iPlace"
+// - Barra Salvador & União Osasco com adequação agendada para 30/10/2026
 const RAW_DATA = [
   // ── HISTÓRICAS / 2024 & 2025 (ORDENADAS POR ABERTURA) ──
   {
     id: "4284227",
     name: "SHOPPING NUEVO CENTRO (Uruguai)",
     group: "Uruguai",
-    resp: "iPlace",
+    resp: "Apple",
     status: "Enviado a Miami",
     tod: "04/10/2024",
     round: 3,
@@ -1115,17 +1148,17 @@ const RAW_DATA = [
     appAA: "",
     sffSub: "",
     sffApp: "",
-    notes: "Retorno técnico concluído hoje (27/10) e re-enviado para validação da Regional Miami.",
+    notes: "Retorno técnico concluído hoje (27/10) e re-enviado para validação da Regional Miami. Ação com o time Apple.",
     statusClass: "badge-miami",
     noteClass: "miami",
-    category: "miami"
+    category: "apple"
   },
   {
     id: "991538",
     name: "IPLACE IGUATEMI CAMPINAS",
     group: "AA 2025",
     resp: "iPlace",
-    status: "Alinhamento Técnico",
+    status: "Em adequação iPlace",
     tod: "02/09/2025",
     round: 1,
     sub1: "21/08/2026",
@@ -1137,17 +1170,17 @@ const RAW_DATA = [
     appAA: "",
     sffSub: "",
     sffApp: "",
-    notes: "Ajuste de fachada em alinhamento com a equipe técnica.",
-    statusClass: "badge-orange",
-    noteClass: "pending",
-    category: "technical"
+    notes: "Ajuste na fachada em andamento pela equipe iPlace.",
+    statusClass: "badge-adequacao",
+    noteClass: "adequacao",
+    category: "adequacao"
   },
   {
     id: "1559317",
     name: "IPLACE SHOPPING BARRA SALVADOR",
     group: "AA 2025",
     resp: "iPlace",
-    status: "Adequação Agendada (30/10)",
+    status: "Em adequação iPlace (30/10)",
     tod: "12/09/2025",
     round: 1,
     sub1: "21/08/2026",
@@ -1169,7 +1202,7 @@ const RAW_DATA = [
     name: "IPLACE SHOPPING UNIAO DE OSASCO",
     group: "AA 2025",
     resp: "iPlace",
-    status: "Adequação Agendada (30/10)",
+    status: "Em adequação iPlace (30/10)",
     tod: "12/09/2025",
     round: 2,
     sub1: "19/06/2026",
@@ -1193,7 +1226,7 @@ const RAW_DATA = [
     name: "IPLACE BARRA SHOPPING SUL",
     group: "Refit 2026",
     resp: "iPlace",
-    status: "Alinhamento Técnico",
+    status: "Em adequação iPlace",
     tod: "11/07/2026",
     round: 1,
     sub1: "14/08/2026",
@@ -1205,17 +1238,17 @@ const RAW_DATA = [
     appAA: "",
     sffSub: "",
     sffApp: "",
-    notes: "Ajuste de logo na fachada em alinhamento técnico.",
-    statusClass: "badge-orange",
-    noteClass: "pending",
-    category: "technical"
+    notes: "Ajuste de logo na fachada em andamento pela equipe iPlace.",
+    statusClass: "badge-adequacao",
+    noteClass: "adequacao",
+    category: "adequacao"
   },
   {
     id: "2386980",
     name: "IPLACE SHOPPING RECIFE",
     group: "Refit 2026",
     resp: "iPlace",
-    status: "Alinhamento Técnico",
+    status: "Em adequação iPlace",
     tod: "25/07/2026",
     round: 1,
     sub1: "15/10/2026",
@@ -1227,10 +1260,10 @@ const RAW_DATA = [
     appAA: "",
     sffSub: "",
     sffApp: "",
-    notes: "Feedback regional de Miami recebido em 27/10 com apontamentos no A0; repassado para alinhamento.",
-    statusClass: "badge-orange",
-    noteClass: "pending",
-    category: "technical"
+    notes: "Feedback regional de Miami recebido em 27/10 com apontamentos no A0; repassado para adequação pelo parceiro.",
+    statusClass: "badge-adequacao",
+    noteClass: "adequacao",
+    category: "adequacao"
   },
   {
     id: "2379277",
@@ -1580,8 +1613,9 @@ function setQuickFilter(type) {
   currentQuick = type;
   document.querySelectorAll('.pipe-chip').forEach(c => c.classList.remove('active'));
   const chipId = type === 'all' ? 'chip-all' :
+                 type === 'adequacao' ? 'chip-adequacao' :
                  type === 'scheduled' ? 'chip-scheduled' :
-                 type === 'miami' ? 'chip-miami' :
+                 type === 'apple' ? 'chip-apple' :
                  type === 'open_no_aa' ? 'chip-open' : 'chip-pre';
   const el = document.getElementById(chipId);
   if (el) el.classList.add('active');
@@ -1600,24 +1634,25 @@ function applyFilters() {
 
     // Quick chip filter
     if (currentQuick !== 'all') {
+      if (currentQuick === 'adequacao' && !item.status.includes('Em adequação iPlace')) return false;
       if (currentQuick === 'scheduled' && item.category !== 'scheduled') return false;
-      if (currentQuick === 'miami' && item.category !== 'miami') return false;
+      if (currentQuick === 'apple' && item.resp !== 'Apple') return false;
       if (currentQuick === 'open_no_aa' && item.category !== 'open_no_aa') return false;
       if (currentQuick === 'pre_opening' && item.category !== 'pre_opening') return false;
     }
 
     // Select filter
     if (statusSel) {
-      if (statusSel === 'Alinhamento Técnico') {
-        if (!['Alinhamento Técnico', 'AA não aprovado'].includes(item.status)) return false;
+      if (statusSel === 'Em adequação iPlace') {
+        if (!item.status.includes('Em adequação iPlace')) return false;
       } else if (item.status !== statusSel) {
         return false;
       }
     }
 
     if (urgencySel) {
-      if (urgencySel === 'today' && !['4284227', '2386980', '1559317', '1718416'].includes(item.id)) return false;
       if (urgencySel === 'scheduled' && item.category !== 'scheduled') return false;
+      if (urgencySel === 'apple_resp' && item.resp !== 'Apple') return false;
       if (urgencySel === 'open_no_aa' && item.category !== 'open_no_aa') return false;
       if (urgencySel === 'pre_opening' && item.category !== 'pre_opening') return false;
     }
@@ -1626,6 +1661,7 @@ function applyFilters() {
     if (search) {
       const match = item.name.toLowerCase().includes(search) ||
                     item.id.toLowerCase().includes(search) ||
+                    item.resp.toLowerCase().includes(search) ||
                     item.notes.toLowerCase().includes(search);
       if (!match) return false;
     }
@@ -1646,6 +1682,9 @@ function renderTable(data) {
   let html = '';
   data.forEach(item => {
     const roundHtml = item.round !== null ? `<span class="round-pill">${item.round}</span>` : `<span class="date-empty">—</span>`;
+    const respHtml = item.resp === 'Apple'
+      ? `<span class="resp-apple"> Apple</span>`
+      : `<span class="resp-iplace">iPlace</span>`;
 
     html += `
       <tr onclick="openModal('${item.id}')" style="cursor:pointer;" title="Clique para detalhes completos">
@@ -1656,7 +1695,7 @@ function renderTable(data) {
             <span class="pos-group">${item.group}</span>
           </div>
         </td>
-        <td><span style="font-weight:600; color:var(--text-sec);">${item.resp}</span></td>
+        <td>${respHtml}</td>
         <td>
           <span class="badge ${item.statusClass}">
             <span class="badge-dot"></span>
@@ -1755,6 +1794,7 @@ function openModal(appleId) {
 
   document.getElementById('m-name').textContent = item.name;
   document.getElementById('m-id').textContent = 'Apple ID: ' + item.id;
+  document.getElementById('m-resp').textContent = item.resp;
   document.getElementById('m-status').textContent = item.status;
   document.getElementById('m-group').textContent = item.group;
   document.getElementById('m-tod').textContent = item.tod;
@@ -1764,7 +1804,7 @@ function openModal(appleId) {
   document.getElementById('m-submia').textContent = item.subMia || '—';
   document.getElementById('m-fbmia').textContent = item.fbMia || '—';
   document.getElementById('m-fbip').textContent = item.fbIp || '—';
-  document.getElementById('m-retip').textContent = item.retIp || 'Pendente de retorno';
+  document.getElementById('m-retip').textContent = item.retIp || 'Em andamento';
   document.getElementById('m-appaa').textContent = item.appAA || 'Pendente de aprovação';
   document.getElementById('m-sffsub').textContent = item.sffSub || 'Não submetido';
   document.getElementById('m-sffapp').textContent = item.sffApp || 'Não aprovado';
