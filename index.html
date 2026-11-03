@@ -841,31 +841,57 @@ th.sorted-asc .sort-arrow, th.sorted-desc .sort-arrow { opacity: 1; color: var(-
 </nav>
 
 <!-- ══════════════ ALERT CALLOUT CONJUNTO ══════════════ -->
-<div class="alert-box" id="main-alert" style="flex-direction: column; gap: 12px; padding: 16px 22px;">
-  <div style="display: flex; align-items: flex-start; gap: 12px; width: 100%;">
-    <div class="alert-icon" style="background: var(--blue);">✓</div>
-    <div class="alert-content" style="width: 100%;">
-      <h3 style="margin-bottom: 6px; font-size: 13.5px; color: #0369a1;">Destaques AA:</h3>
-      <ul style="margin: 0; padding-left: 18px; font-size: 11.5px; color: #0c4a6e; line-height: 1.65;">
-        <li><strong>Uruguay (Nuevo Centro):</strong> Em validação em Miami (Apple); iPlace enviar fotos adicionais comprovando loja limpa, sem comunicação não autorizada e ambiente de loja.</li>
-        <li><strong>AA 2025 (Sexta, 30/10):</strong> Conclusão agendada para Barra Salvador (fachada) e Osasco (móvel caixa); Iguatemi Campinas: informar data prevista para conclusão de ajuste da fachada.</li>
-        <li><strong>Refit 2026:</strong> Recife (A0) e Barra Sul (fachada) em adequação, informar previsão para conclusão; 6 lojas abertas pendentes envio de AA.</li>
-        <li><strong>Inaugurações:</strong> 5 aberturas em nov (Brasília 06/11; Boulevard Belém 12/11; Caxias 16/11; Beira Mar 26/11; Villa Romana 29/11) e 2 em dez (Amazonas 04/12; Park Brasília 08/12). Comunicar que lojas foram abertas assim que ocorrer ou comunicar caso ocorra alteração de data.</li>
-      </ul>
+<div class="alert-box" id="main-alert" style="flex-direction: column; gap: 14px; padding: 16px 22px; background: #ffffff; border: 1.5px solid #cbd5e1; box-shadow: 0 2px 8px rgba(0,0,0,0.06);">
+  
+  <!-- Bloco 1: Ações com Atraso Crítico (iPlace) -->
+  <div style="background: #fff5f5; border: 1px solid #fecaca; border-radius: 8px; padding: 12px 14px;">
+    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px;">
+      <span style="font-size: 12px; font-weight: 800; color: #991b1b; text-transform: uppercase; letter-spacing: 0.5px;">
+        🚨 PENDÊNCIAS EM ATRASO & AÇÕES IMEDIATAS (IPLACE)
+      </span>
+      <span style="background: #ef4444; color: #fff; font-size: 9.5px; font-weight: 700; padding: 2px 7px; border-radius: 10px;">URGENTE</span>
+    </div>
+    <ul style="margin: 0; padding-left: 18px; font-size: 11.5px; color: #7f1d1d; line-height: 1.6;">
+      <li><strong>6 Lojas Abertas com AA Atrasado:</strong> Riomar Recife (aberta 11/08), Rio Mar Fortaleza (09/09), Salvador (12/09), Riosul (23/09), Leblon (05/10) e Iguatemi Fortaleza (11/10) ➔ <strong>iPlace enviar pacotes de fotos e documentação de AA imediatamente.</strong></li>
+      <li><strong>Previsão de Conclusão de Fachada:</strong> Barra Shopping Sul (pendente desde 24/08) e Iguatemi Campinas (pendente desde 28/08) ➔ <strong>iPlace informar data prevista limite para conclusão dos ajustes.</strong></li>
+      <li><strong>Shopping Recife:</strong> Feedback de A0 repassado em 27/10 ➔ <strong>iPlace informar prazo para conclusão dos ajustes de A0.</strong></li>
+      <li><strong>Uruguay (Nuevo Centro):</strong> Em validação de clearance em Miami (Apple) ➔ <strong>iPlace enviar fotos adicionais comprovando loja limpa, retirada de comunicação não autorizada e ambiente de loja.</strong></li>
+      <li><strong>APP Center Norte:</strong> Store Brief não enviado (Atrasado) ➔ <strong>iPlace enviar Store Brief imediatamente.</strong></li>
+    </ul>
+  </div>
+
+  <!-- Bloco 2: Entregas Agendadas e Aberturas -->
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 10px;">
+    <!-- Entregas 30/10 -->
+    <div style="background: #f5f3ff; border: 1px solid #ddd6fe; border-radius: 8px; padding: 10px 14px;">
+      <strong style="color: #5b21b6; font-size: 11.5px; display: block; margin-bottom: 4px;">🗓️ ENTREGAS AGENDADAS (SEXTA, 30/10/2026):</strong>
+      <p style="font-size: 11px; color: #4c1d95; line-height: 1.5; margin: 0;">
+        • <strong>Barra Salvador:</strong> Conclusão do ajuste de fachada agendada para 30/10.<br>
+        • <strong>União Osasco:</strong> Conclusão da adequação da distância do caixa/móvel agendada para 30/10.
+      </p>
+    </div>
+
+    <!-- Inaugurações -->
+    <div style="background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 8px; padding: 10px 14px;">
+      <strong style="color: #1e40af; font-size: 11.5px; display: block; margin-bottom: 4px;">📅 INAUGURAÇÕES & COMUNICAÇÃO OBRIGATÓRIA:</strong>
+      <p style="font-size: 11px; color: #1e3a8a; line-height: 1.5; margin: 0;">
+        • <strong>Novembro:</strong> Brasília (06/11), Boulevard Belém (12/11), Caxias (16/11), Beira Mar (26/11), Villa Romana (29/11).<br>
+        • <strong>Dezembro:</strong> Amazonas (04/12), Park Brasília (08/12).<br>
+        ➔ <em>Regra: Comunicar abertura assim que ocorrer ou avisar imediatamente qualquer alteração de data.</em>
+      </p>
     </div>
   </div>
 
-  <div style="border-top: 1px solid #bae6fd; padding-top: 12px; display: flex; align-items: flex-start; gap: 12px; width: 100%;">
-    <div class="alert-icon" style="background: var(--purple-dark); font-size: 13px;">📋</div>
-    <div class="alert-content" style="width: 100%;">
-      <h3 style="margin-bottom: 6px; font-size: 13.5px; color: #5b21b6;">APP Ações Store Brief (SB):</h3>
-      <ul style="margin: 0; padding-left: 18px; font-size: 11.5px; color: #3b0764; line-height: 1.65;">
-        <li><strong>iPlace Iguatemi POA</strong> (Enviado) ➔ Confirmar se SB enviado se mantém. Se sim, realizar correções.</li>
-        <li><strong>iPlace Barra Shopping RJ</strong> (Enviado) ➔ Confirmar se SB enviado se mantém. Se sim, realizar correções.</li>
-        <li><strong>iPlace Center Norte</strong> (Não enviado) ➔ Enviar Store Brief.</li>
-      </ul>
-    </div>
+  <!-- Bloco 3: APP Store Brief -->
+  <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 10px 14px;">
+    <strong style="color: #334155; font-size: 11.5px; display: block; margin-bottom: 4px;">📋 APP — AÇÕES STORE BRIEF (SB):</strong>
+    <p style="font-size: 11px; color: #475569; line-height: 1.5; margin: 0;">
+      • <strong>iPlace Iguatemi POA</strong> (Enviado) ➔ Confirmar se SB enviado se mantém. Se sim, realizar correções.<br>
+      • <strong>iPlace Barra Shopping RJ</strong> (Enviado) ➔ Confirmar se SB enviado se mantém. Se sim, realizar correções.<br>
+      • <strong>iPlace Center Norte</strong> (Não enviado) ➔ <strong>Enviar Store Brief.</strong>
+    </p>
   </div>
+
 </div>
 
 <!-- ══════════════ VIEW 1: DATA TABLE VIEW ══════════════ -->
