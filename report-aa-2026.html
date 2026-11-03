@@ -799,7 +799,7 @@ th.sorted-asc .sort-arrow, th.sorted-desc .sort-arrow { opacity: 1; color: var(-
     </div>
     <div class="hdr-titles">
       <h1>iPlace & Apple Retail · Status Appointment Audit (AA)</h1>
-      <p><span class="live-dot"></span> Acompanhamento Operacional Conjunto · Atualizado em 27/10/2026</p>
+      <p><span class="live-dot"></span> Acompanhamento Operacional Conjunto · Atualizado em 03/11/2026</p>
     </div>
   </div>
 
@@ -840,31 +840,49 @@ th.sorted-asc .sort-arrow, th.sorted-desc .sort-arrow { opacity: 1; color: var(-
   </button>
 </nav>
 
-<!-- ══════════════ ALERT CALLOUT CONJUNTO ══════════════ -->
-<div class="alert-box" id="main-alert" style="background: #ffffff; border: 1px solid #d2d2d7; border-left: 4px solid var(--blue); border-radius: var(--radius-md); padding: 14px 20px; box-shadow: var(--shadow-sm); display: flex; flex-direction: column; gap: 8px;">
-  <div style="display: flex; align-items: center; justify-content: space-between;">
-    <h3 style="font-size: 13px; font-weight: 700; color: var(--text); display: flex; align-items: center; gap: 8px;">
-      📌 Ações & Próximos Passos · 27/10/2026
-    </h3>
+<!-- ══════════════ ALERT CALLOUT CONJUNTO (SEPARADO POR 26, 25/UY E APP) ══════════════ -->
+<div class="alert-box" id="main-alert" style="background: #ffffff; border: 1px solid #d2d2d7; border-radius: var(--radius-md); padding: 16px 20px; box-shadow: var(--shadow-sm); display: flex; flex-direction: column; gap: 12px;">
+  <div style="font-size: 13px; font-weight: 700; color: var(--text); border-bottom: 1px solid #e5e5ea; padding-bottom: 8px;">
+    📌 Ações Prioritárias & Pendências em Atraso · 03/11/2026
   </div>
-  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 16px; margin-top: 2px; font-size: 11.5px; line-height: 1.6;">
-    <div>
-      <div style="font-weight: 700; color: #b91c1c; margin-bottom: 4px;">🚨 Pendências & Atrasos (Ação iPlace):</div>
+  
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px; font-size: 11.5px; line-height: 1.6;">
+    
+    <!-- 1. Refit 2026 -->
+    <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 12px;">
+      <div style="font-weight: 700; color: #0369a1; margin-bottom: 6px; font-size: 12px;">
+        🔹 Refit 2026
+      </div>
       <div style="color: var(--text-sec);">
-        • <strong>6 Lojas Abertas:</strong> Enviar fotos e documentos de AA imediatamente.<br>
-        • <strong>Previsão de Conclusão:</strong> Informar data para Barra Sul (fachada), Campinas (fachada) e Recife (A0).<br>
-        • <strong>Uruguay (Nuevo Centro):</strong> Enviar fotos adicionais da loja limpa, sem comunicação não autorizada e confirmando clearance.<br>
-        • <strong>APP Center Norte:</strong> Enviar Store Brief pendente.
+        • <strong>Lojas Abertas:</strong> 6 lojas pendentes de envio de AA (<span style="color:#dc2626; font-weight:700;">em atraso</span>) ➔ iPlace enviar fotos e docs.<br>
+        • <strong>Adequações:</strong> Barra Sul (fachada) e Recife (A0) ➔ Informar previsão de conclusão.<br>
+        • <strong>Inaugurações:</strong> 5 em nov e 2 em dez ➔ Comunicar aberturas no dia ou avisar alterações de data.
       </div>
     </div>
-    <div>
-      <div style="font-weight: 700; color: #1e40af; margin-bottom: 4px;">🗓️ Entregas & Cronograma:</div>
+
+    <!-- 2. 2025 / UY -->
+    <div style="background: #fdf2f8; border: 1px solid #fbcfe8; border-radius: 8px; padding: 12px;">
+      <div style="font-weight: 700; color: #9d174d; margin-bottom: 6px; font-size: 12px;">
+        🔸 2025 / UY
+      </div>
       <div style="color: var(--text-sec);">
-        • <strong>Sexta, 30/10:</strong> Conclusão agendada de Barra Salvador (fachada) e Osasco (móvel caixa).<br>
-        • <strong>Inaugurações:</strong> 5 em nov e 2 em dez. Avisar aberturas no dia ou alterações de data.<br>
-        • <strong>APP (POA & Barra RJ):</strong> Confirmar se Store Brief enviado se mantém e enviar correções.
+        • <strong>Barra Salvador & União Osasco:</strong> Conclusão agendada para 30/10 <span style="color:#dc2626; font-weight:700;">em atraso</span> ➔ iPlace enviar fotos de comprovação.<br>
+        • <strong>Iguatemi Campinas:</strong> Informar previsão de conclusão da fachada.<br>
+        • <strong>Uruguay (Nuevo Centro):</strong> Em validação em Miami (Apple); iPlace enviar fotos adicionais da loja limpa, sem comunicação não autorizada e confirmando clearance.
       </div>
     </div>
+
+    <!-- 3. APP -->
+    <div style="background: #faf5ff; border: 1px solid #e9d5ff; border-radius: 8px; padding: 12px;">
+      <div style="font-weight: 700; color: #6d28d9; margin-bottom: 6px; font-size: 12px;">
+        🟣 APP
+      </div>
+      <div style="color: var(--text-sec);">
+        • <strong>Center Norte:</strong> Store Brief não enviado (<span style="color:#dc2626; font-weight:700;">em atraso</span>) ➔ Enviar SB.<br>
+        • <strong>Iguatemi POA & Barra RJ:</strong> Confirmar se SB enviado se mantém e enviar correções.
+      </div>
+    </div>
+
   </div>
 </div>
 
@@ -1251,7 +1269,7 @@ const RAW_DATA = [
     name: "IPLACE SHOPPING BARRA SALVADOR",
     group: "AA 2025",
     resp: "iPlace",
-    status: "Em adequação iPlace (30/10)",
+    status: "Em atraso (prazo 30/10)",
     tod: "12/09/2025",
     round: 1,
     sub1: "21/08/2026",
@@ -1263,17 +1281,17 @@ const RAW_DATA = [
     appAA: "",
     sffSub: "",
     sffApp: "",
-    notes: "Ajuste na fachada em andamento — conclusão agendada para sexta-feira, 30/10/2026.",
-    statusClass: "badge-scheduled",
-    noteClass: "scheduled",
-    category: "scheduled"
+    notes: "Prazo de conclusão de fachada em 30/10 expirado — iPlace enviar fotos de evidência.",
+    statusClass: "badge-red",
+    noteClass: "alert",
+    category: "overdue"
   },
   {
     id: "1718416",
     name: "IPLACE SHOPPING UNIAO DE OSASCO",
     group: "AA 2025",
     resp: "iPlace",
-    status: "Em adequação iPlace (30/10)",
+    status: "Em atraso (prazo 30/10)",
     tod: "12/09/2025",
     round: 2,
     sub1: "19/06/2026",
@@ -1285,10 +1303,10 @@ const RAW_DATA = [
     appAA: "",
     sffSub: "",
     sffApp: "",
-    notes: "Ajuste na distância do caixa em relação à parede; adequação do móvel agendada para 30/10/2026.",
-    statusClass: "badge-scheduled",
-    noteClass: "scheduled",
-    category: "scheduled"
+    notes: "Prazo de adequação do móvel do caixa em 30/10 expirado — iPlace enviar fotos de evidência.",
+    statusClass: "badge-red",
+    noteClass: "alert",
+    category: "overdue"
   },
 
   // ── REFIT 2026 (LOJAS JÁ ABERTAS, ORDENADAS POR TOD) ──
