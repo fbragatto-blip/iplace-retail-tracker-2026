@@ -810,16 +810,16 @@ th.sorted-asc .sort-arrow, th.sorted-desc .sort-arrow { opacity: 1; color: var(-
       <div class="stat-lbl">Total Lojas</div>
     </div>
     <div class="stat-card" style="border-top: 3px solid var(--purple);">
-      <div class="stat-num" style="color:var(--purple-dark);" id="st-val">5</div>
+      <div class="stat-num" style="color:var(--purple-dark);" id="st-val">6</div>
       <div class="stat-lbl">Em Adequação iPlace</div>
-    </div>
-    <div class="stat-card" style="border-top: 3px solid var(--blue);">
-      <div class="stat-num" style="color:var(--blue);" id="st-apple">1</div>
-      <div class="stat-lbl">Ação Apple & iPlace</div>
     </div>
     <div class="stat-card" style="border-top: 3px solid var(--orange);">
       <div class="stat-num" style="color:var(--orange);" id="st-open">6</div>
       <div class="stat-lbl">Aberta (AA a Enviar)</div>
+    </div>
+    <div class="stat-card" style="border-top: 3px solid var(--blue);">
+      <div class="stat-num" style="color:var(--blue);" id="st-pre">8</div>
+      <div class="stat-lbl">Pré-Abertura</div>
     </div>
   </div>
 </header>
@@ -840,47 +840,47 @@ th.sorted-asc .sort-arrow, th.sorted-desc .sort-arrow { opacity: 1; color: var(-
   </button>
 </nav>
 
-<!-- ══════════════ ALERT CALLOUT CONJUNTO (SEPARADO POR 26, 25/UY E APP) ══════════════ -->
+<!-- ══════════════ ALERT CALLOUT CONJUNTO (ORDEM: 25/UY -> APP -> 26) ══════════════ -->
 <div class="alert-box" id="main-alert" style="background: #ffffff; border: 1px solid #d2d2d7; border-radius: var(--radius-md); padding: 16px 20px; box-shadow: var(--shadow-sm); display: flex; flex-direction: column; gap: 12px;">
   <div style="font-size: 13px; font-weight: 700; color: var(--text); border-bottom: 1px solid #e5e5ea; padding-bottom: 8px;">
     📌 Ações iPlace · 03/11/2026
   </div>
   
-  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px; font-size: 11.5px; line-height: 1.6;">
+  <div class="priority-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; font-size: 11.5px; line-height: 1.6;">
     
-    <!-- 1. Refit 2026 -->
-    <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 12px;">
-      <div style="font-weight: 700; color: #0369a1; margin-bottom: 6px; font-size: 12px;">
-        🔹 Refit 2026
-      </div>
-      <div style="color: var(--text-sec);">
-        • <strong>6 Lojas Abertas:</strong> Pendentes de envio de AA (<span style="color:#dc2626; font-weight:700;">em atraso</span>) ➔ iPlace enviar fotos e docs.<br>
-        • <strong>Barra Shopping Sul:</strong> Aguardando iPlace enviar fotos adicionais para comprovar correção.<br>
-        • <strong>Shopping Recife (A0):</strong> Informar previsão para conclusão.<br>
-        • <strong>Inaugurações:</strong> 5 em nov e 2 em dez ➔ Comunicar aberturas no dia ou avisar alterações de data.
-      </div>
-    </div>
-
-    <!-- 2. 2025 / UY -->
-    <div style="background: #fdf2f8; border: 1px solid #fbcfe8; border-radius: 8px; padding: 12px;">
-      <div style="font-weight: 700; color: #9d174d; margin-bottom: 6px; font-size: 12px;">
+    <!-- 2025 / UY -->
+    <div style="background: #fdf2f8; border: 1px solid #fbcfe8; border-radius: 8px; padding: 12px; display: flex; flex-direction: column;">
+      <div style="font-weight: 800; color: #9d174d; margin-bottom: 6px; font-size: 12px;">
         🔸 2025 / UY
       </div>
-      <div style="color: var(--text-sec);">
-        • <strong>Barra Salvador & União Osasco:</strong> Conclusão agendada para 30/10 <span style="color:#dc2626; font-weight:700;">em atraso</span> ➔ iPlace enviar fotos de comprovação.<br>
-        • <strong>Iguatemi Campinas:</strong> Informar previsão de conclusão da fachada.<br>
+      <div style="color: var(--text-sec); flex: 1;">
+        • <strong>Barra Salvador & União Osasco:</strong> Conclusão de 30/10 <span style="color:#dc2626; font-weight:700;">em atraso</span> ➔ Enviar fotos de comprovação imediatamente.<br>
+        • <strong>Iguatemi Campinas:</strong> Informar data prevista para conclusão do ajuste de fachada.<br>
         • <strong>Uruguay (Nuevo Centro):</strong> Enviar fotos adicionais da loja limpa, sem comunicação não autorizada e confirmando clearance.
       </div>
     </div>
 
-    <!-- 3. APP -->
-    <div style="background: #faf5ff; border: 1px solid #e9d5ff; border-radius: 8px; padding: 12px;">
-      <div style="font-weight: 700; color: #6d28d9; margin-bottom: 6px; font-size: 12px;">
+    <!-- APP -->
+    <div style="background: #faf5ff; border: 1px solid #e9d5ff; border-radius: 8px; padding: 12px; display: flex; flex-direction: column;">
+      <div style="font-weight: 800; color: #6d28d9; margin-bottom: 6px; font-size: 12px;">
         🟣 APP
       </div>
-      <div style="color: var(--text-sec);">
+      <div style="color: var(--text-sec); flex: 1;">
         • <strong>Center Norte:</strong> Enviar Store Brief.<br>
         • <strong>Iguatemi POA & Barra RJ:</strong> Confirmar se SB enviado se mantém e enviar correções.
+      </div>
+    </div>
+
+    <!-- Refit 2026 -->
+    <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 12px; display: flex; flex-direction: column;">
+      <div style="font-weight: 800; color: #0369a1; margin-bottom: 6px; font-size: 12px;">
+        🔹 Refit 2026
+      </div>
+      <div style="color: var(--text-sec); flex: 1;">
+        • <strong>6 Lojas Abertas:</strong> Pendentes de envio de AA (<span style="color:#dc2626; font-weight:700;">em atraso</span>) ➔ Enviar fotos e docs.<br>
+        • <strong>Barra Shopping Sul:</strong> Aguardando iPlace enviar fotos adicionais para comprovar correção.<br>
+        • <strong>Shopping Recife (A0):</strong> Informar previsão para conclusão.<br>
+        • <strong>Inaugurações:</strong> 5 em nov e 2 em dez ➔ Comunicar aberturas no dia ou avisar alterações de data.
       </div>
     </div>
 
@@ -986,191 +986,122 @@ th.sorted-asc .sort-arrow, th.sorted-desc .sort-arrow { opacity: 1; color: var(-
 
 <!-- ══════════════ VIEW 2: EXECUTIVE SUMMARY (TAB 4) ══════════════ -->
 <div id="view-summary" style="display:none;" class="summary-container">
-  <div class="grid-2">
-    <!-- Card 1: Diagnóstico Consolidado por Programa -->
-    <div class="card">
-      <h2>📊 Status Geral do Pipeline de AA</h2>
-      <p class="card-desc">Visão consolidada das 20 lojas divididas entre os ciclos <strong>Refit 2026</strong>, <strong>AA 2025</strong> e <strong>Uruguay</strong>:</p>
+  <div style="display: flex; flex-direction: column; gap: 16px;">
+    
+    <div style="background: #fff; border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 16px 20px; box-shadow: var(--shadow-sm);">
+      <h2 style="font-size: 14px; font-weight: 700; color: var(--text); margin-bottom: 2px;">📊 Resumo Executivo & Próximos Marcos · 03/11/2026</h2>
+      <p style="font-size: 11.5px; color: var(--text-sec); margin: 0;">Frentes de trabalho e pendências operacionais organizadas por ordem de prioridade:</p>
+    </div>
+
+    <!-- 3 QUADRANTES LADO A LADO: 25/UY -> APP -> 26 -->
+    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;">
       
-      <div style="display:flex; flex-direction:column; gap:12px;">
-        <!-- Bloco Refit 2026 -->
-        <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:10px; padding:12px;">
-          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
-            <div style="display:flex; align-items:center; gap:6px;">
-              <span class="pbadge pbadge-26">Refit 2026</span>
-              <strong style="color:var(--text); font-size:12.5px;">16 Lojas no Programa</strong>
-            </div>
-          </div>
-          <div style="display:flex; flex-direction:column; gap:6px; font-size:11px; color:var(--text-sec);">
-            <div style="display:flex; justify-content:space-between; padding:4px 0; border-bottom:1px dashed #e2e8f0;">
-              <span>• <strong>Em adequação iPlace:</strong> Barra Sul (logo fachada) e Shopping Recife (A0)</span>
-              <strong style="color:var(--orange-dark);">2 lojas</strong>
-            </div>
-            <div style="display:flex; justify-content:space-between; padding:4px 0; border-bottom:1px dashed #e2e8f0;">
-              <span>• <strong>Lojas abertas (AA a submeter):</strong> Riomar Recife, Rio Mar Fortaleza, Salvador, Riosul, Leblon, Iguatemi Fortaleza</span>
-              <strong style="color:var(--amber-dark);">6 lojas</strong>
-            </div>
-            <div style="display:flex; justify-content:space-between; padding:4px 0;">
-              <span>• <strong>Pré-Aberturas (Nov & Dez):</strong> 5 em nov, 2 em dez (Amazonas 04/12 e Park Brasília 08/12) + Manauara a confirmar</span>
-              <strong style="color:var(--blue);">8 lojas</strong>
-            </div>
-          </div>
+      <!-- QUADRANTE 1: 2025 / UY -->
+      <div class="card" style="border-top: 4px solid #be185d; display: flex; flex-direction: column; padding: 16px;">
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
+          <h2 style="margin: 0; color: #9d174d; font-size: 13.5px;">🔸 2025 / UY</h2>
+          <span style="background: #fdf2f8; color: #be185d; border: 1px solid #fbcfe8; font-size: 10px; font-weight: 700; padding: 2px 7px; border-radius: 12px;">4 Lojas</span>
         </div>
-
-        <!-- Bloco AA 2025 & Uruguay -->
-        <div style="background:#fdf2f8; border:1px solid #fbcfe8; border-radius:10px; padding:12px;">
-          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
-            <div style="display:flex; align-items:center; gap:6px;">
-              <span class="pbadge pbadge-25">AA 2025 & Uruguay</span>
-              <strong style="color:var(--text); font-size:12.5px;">4 Lojas em Validação Final</strong>
+        <p class="card-desc" style="margin-bottom: 10px;">Auditorias em fase final e pendências vencidas:</p>
+        
+        <div style="display: flex; flex-direction: column; gap: 8px; flex: 1;">
+          <div style="background: #fff5f5; border: 1px solid #fecaca; border-radius: 8px; padding: 10px;">
+            <div style="font-weight: 700; color: #991b1b; font-size: 11.5px;">Barra Salvador & União Osasco</div>
+            <div style="font-size: 11px; color: #7f1d1d; margin-top: 2px;">
+              Prazo de 30/10 <strong style="color: #dc2626;">em atraso</strong> (fachada / móvel caixa).<br>
+              ➔ <strong>Ação iPlace:</strong> Enviar fotos de comprovação imediatamente.
             </div>
           </div>
-          <div style="display:flex; flex-direction:column; gap:6px; font-size:11px; color:var(--text-sec);">
-            <div style="display:flex; justify-content:space-between; padding:4px 0; border-bottom:1px dashed #fce7f3;">
-              <span>• <strong>Em adequação iPlace (agendado 30/10):</strong> Barra Salvador (fachada) e União Osasco (móvel caixa)</span>
-              <strong style="color:var(--purple-dark);">2 lojas</strong>
+
+          <div style="background: #fff7ed; border: 1px solid #fed7aa; border-radius: 8px; padding: 10px;">
+            <div style="font-weight: 700; color: #9a3412; font-size: 11.5px;">Iguatemi Campinas</div>
+            <div style="font-size: 11px; color: #7c2d12; margin-top: 2px;">
+              Ajuste de fachada em adequação.<br>
+              ➔ <strong>Ação iPlace:</strong> Informar data prevista para conclusão.
             </div>
-            <div style="display:flex; justify-content:space-between; padding:4px 0; border-bottom:1px dashed #fce7f3;">
-              <span>• <strong>Ação Apple & iPlace (Miami):</strong> Shopping Nuevo Centro (Validação de clearance em Miami + fotos adicionais iPlace)</span>
-              <strong style="color:#0369a1;">1 loja</strong>
-            </div>
-            <div style="display:flex; justify-content:space-between; padding:4px 0;">
-              <span>• <strong>Em adequação iPlace:</strong> Iguatemi Campinas (fachada — informar data prevista para conclusão)</span>
-              <strong style="color:var(--orange-dark);">1 loja</strong>
+          </div>
+
+          <div style="background: #f0f9ff; border: 1px solid #bae6fd; border-radius: 8px; padding: 10px;">
+            <div style="font-weight: 700; color: #0369a1; font-size: 11.5px;">Shopping Nuevo Centro (Uruguay)</div>
+            <div style="font-size: 11px; color: #0c4a6e; margin-top: 2px;">
+              Re-enviado para Miami em 27/10 para validação de clearance.<br>
+              ➔ <strong>Ação iPlace:</strong> Enviar fotos adicionais da loja limpa, sem comunicação não autorizada e confirmando clearance.
             </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <!-- Card 2: Próximos Marcos & Entregas Chave -->
-    <div class="card">
-      <h2>🗓️ Próximos Marcos & Entregas Chave</h2>
-      <p class="card-desc">Prazos e entregas acordadas entre as equipes de Engenharia/Retail iPlace e Apple:</p>
-
-      <div style="display:flex; flex-direction:column; gap:8px;">
-        <div style="padding:10px 12px; background:#faf5ff; border:1px solid #e9d5ff; border-radius:8px;">
-          <div style="display:flex; justify-content:space-between; align-items:center;">
-            <div style="display:flex; align-items:center; gap:6px;">
-              <span class="pbadge pbadge-25">AA 2025</span>
-              <strong style="color:#6d28d9; font-size:12px;">Sexta-feira, 30/10/2026 (Adequação iPlace)</strong>
-            </div>
-            <span style="background:#7c3aed; color:#fff; font-size:9.5px; font-weight:700; padding:2px 7px; border-radius:12px;">MARCO AGENDADO</span>
-          </div>
-          <p style="font-size:11px; color:#5b21b6; margin-top:4px;">
-            • <strong>IPLACE SHOPPING BARRA SALVADOR:</strong> Conclusão dos ajustes de fachada pelo time iPlace.<br>
-            • <strong>IPLACE SHOPPING UNIAO DE OSASCO:</strong> Conclusão da adequação do móvel do caixa (distância da parede).
-          </p>
+      <!-- QUADRANTE 2: APP -->
+      <div class="card" style="border-top: 4px solid #7c3aed; display: flex; flex-direction: column; padding: 16px;">
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
+          <h2 style="margin: 0; color: #6d28d9; font-size: 13.5px;">🟣 APP</h2>
+          <span style="background: #faf5ff; color: #7c3aed; border: 1px solid #e9d5ff; font-size: 10px; font-weight: 700; padding: 2px 7px; border-radius: 12px;">Store Brief</span>
         </div>
-
-        <div style="padding:10px 12px; background:#f0f9ff; border:1px solid #bae6fd; border-radius:8px;">
-          <div style="display:flex; justify-content:space-between; align-items:center;">
-            <div style="display:flex; align-items:center; gap:6px;">
-              <span class="pbadge pbadge-25">Uruguay</span>
-              <strong style="color:#0369a1; font-size:12px;">Validação Miami & Fotos Adicionais iPlace</strong>
+        <p class="card-desc" style="margin-bottom: 10px;">Status de envio e validação dos Store Briefs:</p>
+        
+        <div style="display: flex; flex-direction: column; gap: 8px; flex: 1;">
+          <div style="background: #fffbeb; border: 1px solid #fde68a; border-radius: 8px; padding: 10px;">
+            <div style="font-weight: 700; color: #92400e; font-size: 11.5px;">iPlace Center Norte</div>
+            <div style="font-size: 11px; color: #78350f; margin-top: 2px;">
+              Store Brief pendente de envio.<br>
+              ➔ <strong>Ação iPlace:</strong> Enviar Store Brief.
             </div>
-            <span style="background:#0284c7; color:#fff; font-size:9.5px; font-weight:700; padding:2px 7px; border-radius:12px;">APPLE & IPLACE</span>
           </div>
-          <p style="font-size:11px; color:#0c4a6e; margin-top:4px;">
-            • <strong>SHOPPING NUEVO CENTRO (Uruguay):</strong> Avaliação de clearance e comentários pela equipe de Miami (Apple); iPlace enviar fotos adicionais da loja limpa, sem comunicação não autorizada e confirmando clearance.
-          </p>
-        </div>
 
-        <div style="padding:10px 12px; background:#fffbeb; border:1px solid #fde68a; border-radius:8px;">
-          <div style="display:flex; justify-content:space-between; align-items:center;">
-            <div style="display:flex; align-items:center; gap:6px;">
-              <span class="pbadge pbadge-26">Refit 2026</span>
-              <strong style="color:#92400e; font-size:12px;">Em Adequação iPlace</strong>
+          <div style="background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 8px; padding: 10px;">
+            <div style="font-weight: 700; color: #1e40af; font-size: 11.5px;">iPlace Iguatemi POA</div>
+            <div style="font-size: 11px; color: #1e3a8a; margin-top: 2px;">
+              Store Brief enviado.<br>
+              ➔ <strong>Ação iPlace:</strong> Confirmar se SB enviado se mantém. Se sim, realizar correções.
             </div>
-            <span style="background:#d97706; color:#fff; font-size:9.5px; font-weight:700; padding:2px 7px; border-radius:12px;">AÇÃO IPLACE</span>
           </div>
-          <p style="font-size:11px; color:#78350f; margin-top:4px;">
-            • <strong>IPLACE SHOPPING RECIFE:</strong> Ajustes de A0 em adequação; informar previsão para conclusão.<br>
-            • <strong>IPLACE BARRA SHOPPING SUL:</strong> Aguardando iPlace enviar fotos adicionais para comprovar correção.<br>
-            • <strong>IPLACE IGUATEMI CAMPINAS:</strong> <span class="pbadge pbadge-25" style="font-size:8px;">AA 2025</span> Ajuste de fachada em adequação; informar data prevista para conclusão.
-          </p>
+
+          <div style="background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 8px; padding: 10px;">
+            <div style="font-weight: 700; color: #1e40af; font-size: 11.5px;">iPlace Barra Shopping RJ</div>
+            <div style="font-size: 11px; color: #1e3a8a; margin-top: 2px;">
+              Store Brief enviado.<br>
+              ➔ <strong>Ação iPlace:</strong> Confirmar se SB enviado se mantém. Se sim, realizar correções.
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
 
-  <!-- Card 3: Plano de Ação Conjunto -->
-  <div class="card">
-    <h2>🎯 Alinhamento de Próximos Passos (Apple & iPlace)</h2>
-    <p class="card-desc">Frentes de trabalho prioritárias discriminadas por programa:</p>
+      <!-- QUADRANTE 3: Refit 2026 -->
+      <div class="card" style="border-top: 4px solid #0284c7; display: flex; flex-direction: column; padding: 16px;">
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
+          <h2 style="margin: 0; color: #0369a1; font-size: 13.5px;">🔹 Refit 2026</h2>
+          <span style="background: #f0f9ff; color: #0284c7; border: 1px solid #bae6fd; font-size: 10px; font-weight: 700; padding: 2px 7px; border-radius: 12px;">16 Lojas</span>
+        </div>
+        <p class="card-desc" style="margin-bottom: 10px;">Lojas abertas, adequações e inaugurações:</p>
+        
+        <div style="display: flex; flex-direction: column; gap: 8px; flex: 1;">
+          <div style="background: #fff5f5; border: 1px solid #fecaca; border-radius: 8px; padding: 10px;">
+            <div style="font-weight: 700; color: #991b1b; font-size: 11.5px;">6 Lojas Já Abertas (AA Atrasado)</div>
+            <div style="font-size: 11px; color: #7f1d1d; margin-top: 2px;">
+              Riomar Recife, Rio Mar Fortaleza, Salvador, Riosul, Leblon e Iguatemi Fortaleza.<br>
+              ➔ <strong>Ação iPlace:</strong> Enviar fotos e docs de AA imediatamente.
+            </div>
+          </div>
 
-    <div class="plan-item">
-      <div class="plan-num purple">1</div>
-      <div class="plan-txt">
-        <h4><span class="pbadge pbadge-25">AA 2025</span> Adequações Agendadas para 30/10 (Barra Salvador & Osasco) e Campinas</h4>
-        <p>Garantir a finalização das intervenções em 30/10 pelo time iPlace (Barra Salvador e Osasco) e obter data prevista para conclusão do ajuste da fachada de Iguatemi Campinas.</p>
+          <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 10px;">
+            <div style="font-weight: 700; color: #334155; font-size: 11.5px;">Adequações Técnicas</div>
+            <div style="font-size: 11px; color: #475569; margin-top: 2px;">
+              • <strong>Barra Shopping Sul:</strong> Aguardando fotos adicionais para comprovar correção.<br>
+              • <strong>Shopping Recife:</strong> Informar previsão para conclusão de A0.
+            </div>
+          </div>
+
+          <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 10px;">
+            <div style="font-weight: 700; color: #334155; font-size: 11.5px;">Inaugurações (Nov & Dez)</div>
+            <div style="font-size: 11px; color: #475569; margin-top: 2px;">
+              • <strong>Nov:</strong> Brasília (06/11), Belém (12/11), Caxias (16/11), Beira Mar (26/11), Villa Romana (29/11).<br>
+              • <strong>Dez:</strong> Amazonas (04/12), Park Brasília (08/12).<br>
+              ➔ <strong>Regra:</strong> Comunicar no dia da abertura ou avisar alteração de data.
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
 
-    <div class="plan-item">
-      <div class="plan-num blue">2</div>
-      <div class="plan-txt">
-        <h4><span class="pbadge pbadge-25">Uruguay</span> Ação Conjunta em Nuevo Centro (Validação Miami & Fotos iPlace)</h4>
-        <p>Em validação em Miami (Apple); iPlace enviar fotos adicionais da loja limpa, sem comunicação não autorizada e confirmando clearance.</p>
-      </div>
-    </div>
-
-    <div class="plan-item">
-      <div class="plan-num orange">3</div>
-      <div class="plan-txt">
-        <h4><span class="pbadge pbadge-26">Refit 2026</span> Adequações de A0 (Shopping Recife) e Fachada (Barra Shopping Sul)</h4>
-        <p>Recife (A0) e Barra Sul (fachada) em adequação, informar previsão para conclusão; 6 lojas abertas pendentes envio de AA.</p>
-      </div>
-    </div>
-
-    <div class="plan-item">
-      <div class="plan-num orange">4</div>
-      <div class="plan-txt">
-        <h4><span class="pbadge pbadge-26">Refit 2026</span> Envio dos Pacotes Iniciais de AA das 6 Lojas Inauguradas</h4>
-        <p>Organizar o fluxo de envio do primeiro pacote de fotos/documentos de AA para Riomar Recife, Rio Mar Fortaleza, Salvador Shopping, Riosul, Leblon e Iguatemi Fortaleza.</p>
-      </div>
-    </div>
-
-    <div class="plan-item">
-      <div class="plan-num">5</div>
-      <div class="plan-txt">
-        <h4><span class="pbadge pbadge-26">Refit 2026</span> Inaugurações de Novembro & Dezembro (Novo Cronograma)</h4>
-        <p>Acompanhar o cronograma atualizado: Brasília Shopping (06/11), Boulevard Belém (12/11), Caxias do Sul (16/11), Beira Mar (26/11), Villa Romana (29/11), Amazonas (04/12) e Park Shopping Brasília (08/12). Comunicar que lojas foram abertas assim que ocorrer ou comunicar caso ocorra alteração de data.</p>
-      </div>
-    </div>
-  </div>
-
-  <!-- Card 4: APP Ações Store Brief (SB) -->
-  <div class="card" style="margin-top: 16px;">
-    <h2>📋 APP Ações Store Brief (SB)</h2>
-    <p class="card-desc">Status do envio e validação de Store Brief (SB) para o programa APP:</p>
-    <div style="overflow-x: auto;">
-      <table style="width:100%; border-collapse: collapse; font-size:11.5px;">
-        <thead>
-          <tr style="background:#f8fafc; border-bottom:2px solid #e2e8f0; text-align:left;">
-            <th style="padding:10px 14px; font-weight:700; color:var(--text-sec);">LOJA</th>
-            <th style="padding:10px 14px; font-weight:700; color:var(--text-sec); width:140px;">STORE BRIEF</th>
-            <th style="padding:10px 14px; font-weight:700; color:var(--text-sec);">AÇÃO NECESSÁRIA</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr style="border-bottom:1px solid #f1f5f9;">
-            <td style="padding:11px 14px; font-weight:600; color:var(--text);">iPlace Iguatemi POA</td>
-            <td style="padding:11px 14px;"><span class="badge" style="background:#dbeafe; color:#1e40af; border:1px solid #bfdbfe;">Enviado</span></td>
-            <td style="padding:11px 14px; color:#334155;">Confirmar se SB enviado se mantém. Se sim, realizar correções.</td>
-          </tr>
-          <tr style="border-bottom:1px solid #f1f5f9;">
-            <td style="padding:11px 14px; font-weight:600; color:var(--text);">iPlace Barra Shopping RJ</td>
-            <td style="padding:11px 14px;"><span class="badge" style="background:#dbeafe; color:#1e40af; border:1px solid #bfdbfe;">Enviado</span></td>
-            <td style="padding:11px 14px; color:#334155;">Confirmar se SB enviado se mantém. Se sim, realizar correções.</td>
-          </tr>
-          <tr>
-            <td style="padding:11px 14px; font-weight:600; color:var(--text);">iPlace Center Norte</td>
-            <td style="padding:11px 14px;"><span class="badge" style="background:#fef3c7; color:#92400e; border:1px solid #fde68a;">Não enviado</span></td>
-            <td style="padding:11px 14px; font-weight:600; color:#9a3412;">Enviar Store Brief.</td>
-          </tr>
-        </tbody>
-      </table>
     </div>
   </div>
 </div>
@@ -1225,8 +1156,8 @@ const RAW_DATA = [
     id: "4284227",
     name: "SHOPPING NUEVO CENTRO (Uruguay)",
     group: "Uruguay",
-    resp: "Apple / iPlace",
-    status: "Validação Miami / Fotos iPlace",
+    resp: "iPlace",
+    status: "Em adequação iPlace",
     tod: "04/10/2024",
     round: 3,
     sub1: "31/10/2024",
@@ -1238,10 +1169,10 @@ const RAW_DATA = [
     appAA: "",
     sffSub: "",
     sffApp: "",
-    notes: "Em validação em Miami (Apple); iPlace enviar fotos adicionais da loja limpa, sem comunicação não autorizada e confirmando clearance.",
-    statusClass: "badge-miami",
-    noteClass: "miami",
-    category: "apple_iplace"
+    notes: "Aguardando iPlace enviar fotos adicionais da loja limpa, sem comunicação não autorizada e confirmando clearance.",
+    statusClass: "badge-adequacao",
+    noteClass: "adequacao",
+    category: "adequacao"
   },
   {
     id: "991538",
