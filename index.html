@@ -803,19 +803,23 @@ th.sorted-asc .sort-arrow, th.sorted-desc .sort-arrow { opacity: 1; color: var(-
     </div>
   </div>
 
-  <!-- 4 Clean Quadrants (Without 64d Maior Atraso) -->
+  <!-- 5 Clean Quadrants (20 = 2 + 4 + 6 + 8) -->
   <div class="hdr-stats">
     <div class="stat-card">
       <div class="stat-num" id="st-total">20</div>
       <div class="stat-lbl">Total Lojas</div>
     </div>
+    <div class="stat-card" style="border-top: 3px solid var(--red);">
+      <div class="stat-num" style="color:var(--red);" id="st-overdue">2</div>
+      <div class="stat-lbl">Atraso (30/10)</div>
+    </div>
     <div class="stat-card" style="border-top: 3px solid var(--purple);">
-      <div class="stat-num" style="color:var(--purple-dark);" id="st-val">6</div>
-      <div class="stat-lbl">Em Adequação iPlace</div>
+      <div class="stat-num" style="color:var(--purple-dark);" id="st-val">4</div>
+      <div class="stat-lbl">Em Adequação</div>
     </div>
     <div class="stat-card" style="border-top: 3px solid var(--orange);">
       <div class="stat-num" style="color:var(--orange);" id="st-open">6</div>
-      <div class="stat-lbl">Aberta (AA a Enviar)</div>
+      <div class="stat-lbl">Aberta s/ AA</div>
     </div>
     <div class="stat-card" style="border-top: 3px solid var(--blue);">
       <div class="stat-num" style="color:var(--blue);" id="st-pre">8</div>
@@ -898,18 +902,19 @@ th.sorted-asc .sort-arrow, th.sorted-desc .sort-arrow { opacity: 1; color: var(-
 
     <select class="filter-select" id="status-filter" onchange="applyFilters()">
       <option value="">Todos os Status AA</option>
-      <option value="Em adequação iPlace">Em adequação iPlace (5)</option>
-      <option value="Validação Miami">Validação Miami / Fotos iPlace (1)</option>
+      <option value="Em atraso (prazo 30/10)">Em atraso (prazo 30/10) (2)</option>
+      <option value="Em adequação iPlace">Em adequação iPlace (4)</option>
       <option value="AA pendente">AA pendente (Loja Aberta) (6)</option>
       <option value="Pré-Abertura">Pré-Abertura (8)</option>
     </select>
 
     <select class="filter-select" id="urgency-filter" onchange="applyFilters()">
-      <option value="">Filtrar por Marco</option>
-      <option value="scheduled">Agendados para Sexta (30/10)</option>
-      <option value="apple_resp">Ação Apple & iPlace (Miami)</option>
-      <option value="open_no_aa">Lojas Abertas (AA a Enviar)</option>
-      <option value="pre_opening">Inaugurações de Novembro</option>
+      <option value="">Filtrar por Marco / Grupo</option>
+      <option value="overdue">🚨 Prazos Vencidos / Atrasos (30/10 & Abertas)</option>
+      <option value="uy_25">🔸 2025 / UY (4 lojas)</option>
+      <option value="adequacao">Em Adequação iPlace (4 lojas)</option>
+      <option value="open_no_aa">Lojas Abertas sem AA (6 lojas)</option>
+      <option value="pre_opening">Inaugurações Nov & Dez (8 lojas)</option>
     </select>
 
     <div style="margin-left: auto; display: flex; gap: 8px;">
@@ -927,17 +932,14 @@ th.sorted-asc .sort-arrow, th.sorted-desc .sort-arrow { opacity: 1; color: var(-
     <div class="pipe-chip active" onclick="setQuickFilter('all')" id="chip-all">
       Todas as Lojas <span class="chip-badge" id="c-all">20</span>
     </div>
+    <div class="pipe-chip" onclick="setQuickFilter('overdue')" id="chip-overdue">
+      <span class="pipe-dot" style="background:var(--red);"></span> Em atraso (30/10) <span class="chip-badge">2</span>
+    </div>
     <div class="pipe-chip" onclick="setQuickFilter('adequacao')" id="chip-adequacao">
-      <span class="pipe-dot" style="background:var(--orange);"></span> Em adequação iPlace <span class="chip-badge">5</span>
-    </div>
-    <div class="pipe-chip" onclick="setQuickFilter('scheduled')" id="chip-scheduled">
-      <span class="pipe-dot" style="background:var(--purple);"></span> Agendado para 30/10 <span class="chip-badge">2</span>
-    </div>
-    <div class="pipe-chip" onclick="setQuickFilter('apple')" id="chip-apple">
-      <span class="pipe-dot" style="background:var(--blue);"></span> Validação Miami / Fotos iPlace <span class="chip-badge">1</span>
+      <span class="pipe-dot" style="background:var(--purple);"></span> Em adequação iPlace <span class="chip-badge">4</span>
     </div>
     <div class="pipe-chip" onclick="setQuickFilter('open_no_aa')" id="chip-open">
-      <span class="pipe-dot" style="background:var(--amber);"></span> Lojas Abertas (AA a Enviar) <span class="chip-badge">6</span>
+      <span class="pipe-dot" style="background:var(--orange);"></span> Lojas Abertas (AA a Enviar) <span class="chip-badge">6</span>
     </div>
     <div class="pipe-chip" onclick="setQuickFilter('pre_opening')" id="chip-pre">
       <span class="pipe-dot" style="background:#64748b;"></span> Pré-Abertura <span class="chip-badge">8</span>
@@ -1634,9 +1636,8 @@ function setQuickFilter(type) {
   currentQuick = type;
   document.querySelectorAll('.pipe-chip').forEach(c => c.classList.remove('active'));
   const chipId = type === 'all' ? 'chip-all' :
+                 type === 'overdue' ? 'chip-overdue' :
                  type === 'adequacao' ? 'chip-adequacao' :
-                 type === 'scheduled' ? 'chip-scheduled' :
-                 type === 'apple' ? 'chip-apple' :
                  type === 'open_no_aa' ? 'chip-open' : 'chip-pre';
   const el = document.getElementById(chipId);
   if (el) el.classList.add('active');
@@ -1655,27 +1656,20 @@ function applyFilters() {
 
     // Quick chip filter
     if (currentQuick !== 'all') {
-      if (currentQuick === 'adequacao' && !item.status.includes('Em adequação iPlace')) return false;
-      if (currentQuick === 'scheduled' && item.category !== 'scheduled') return false;
-      if (currentQuick === 'apple' && item.category !== 'apple' && item.category !== 'apple_iplace') return false;
+      if (currentQuick === 'overdue' && item.category !== 'overdue') return false;
+      if (currentQuick === 'adequacao' && item.category !== 'adequacao') return false;
       if (currentQuick === 'open_no_aa' && item.category !== 'open_no_aa') return false;
       if (currentQuick === 'pre_opening' && item.category !== 'pre_opening') return false;
     }
 
     // Select filter
-    if (statusSel) {
-      if (statusSel === 'Em adequação iPlace') {
-        if (!item.status.includes('Em adequação iPlace')) return false;
-      } else if (statusSel === 'Validação Miami') {
-        if (!item.status.includes('Miami')) return false;
-      } else if (item.status !== statusSel) {
-        return false;
-      }
-    }
+    if (statusSel && item.status !== statusSel) return false;
 
+    // Urgency / Marco select
     if (urgencySel) {
-      if (urgencySel === 'scheduled' && item.category !== 'scheduled') return false;
-      if (urgencySel === 'apple_resp' && item.category !== 'apple' && item.category !== 'apple_iplace') return false;
+      if (urgencySel === 'overdue' && item.category !== 'overdue' && item.category !== 'open_no_aa') return false;
+      if (urgencySel === 'uy_25' && (item.group !== 'AA 2025' && item.group !== 'Uruguay')) return false;
+      if (urgencySel === 'adequacao' && item.category !== 'adequacao') return false;
       if (urgencySel === 'open_no_aa' && item.category !== 'open_no_aa') return false;
       if (urgencySel === 'pre_opening' && item.category !== 'pre_opening') return false;
     }
