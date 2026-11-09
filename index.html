@@ -803,7 +803,7 @@ th.sorted-asc .sort-arrow, th.sorted-desc .sort-arrow { opacity: 1; color: var(-
     </div>
   </div>
 
-  <!-- 5 Clean Quadrants (20 = 2 + 4 + 6 + 8) -->
+  <!-- 6 Clean Quadrants (20 = 2 + 5 + 1 + 4 + 8) -->
   <div class="hdr-stats">
     <div class="stat-card">
       <div class="stat-num" id="st-total">20</div>
@@ -814,15 +814,19 @@ th.sorted-asc .sort-arrow, th.sorted-desc .sort-arrow { opacity: 1; color: var(-
       <div class="stat-lbl">Atraso (30/10)</div>
     </div>
     <div class="stat-card" style="border-top: 3px solid var(--purple);">
-      <div class="stat-num" style="color:var(--purple-dark);" id="st-val">4</div>
+      <div class="stat-num" style="color:var(--purple-dark);" id="st-val">5</div>
       <div class="stat-lbl">Em Adequação</div>
     </div>
+    <div class="stat-card" style="border-top: 3px solid var(--blue);">
+      <div class="stat-num" style="color:var(--blue);" id="st-apple">1</div>
+      <div class="stat-lbl">Validação Apple</div>
+    </div>
     <div class="stat-card" style="border-top: 3px solid var(--orange);">
-      <div class="stat-num" style="color:var(--orange);" id="st-open">6</div>
+      <div class="stat-num" style="color:var(--orange);" id="st-open">4</div>
       <div class="stat-lbl">Aberta s/ AA</div>
     </div>
-    <div class="stat-card" style="border-top: 3px solid var(--blue);">
-      <div class="stat-num" style="color:var(--blue);" id="st-pre">8</div>
+    <div class="stat-card" style="border-top: 3px solid #64748b;">
+      <div class="stat-num" style="color:#64748b;" id="st-pre">8</div>
       <div class="stat-lbl">Pré-Abertura</div>
     </div>
   </div>
@@ -881,10 +885,11 @@ th.sorted-asc .sort-arrow, th.sorted-desc .sort-arrow { opacity: 1; color: var(-
         🔹 Refit 2026
       </div>
       <div style="color: var(--text-sec); flex: 1;">
-        • <strong>6 Lojas Abertas:</strong> Pendentes de envio de AA (<span style="color:#dc2626; font-weight:700;">em atraso</span>) ➔ Enviar fotos e docs.<br>
-        • <strong>Barra Shopping Sul:</strong> Aguardando iPlace enviar fotos adicionais para comprovar correção.<br>
-        • <strong>Shopping Recife (A0):</strong> Informar previsão para conclusão.<br>
-        • <strong>Inaugurações:</strong> 4 em nov e 2 em dez (Brasília Shopping data será alterada / a confirmar) ➔ Comunicar aberturas no dia ou avisar alterações de data.
+        • <strong>4 Lojas Abertas:</strong> Riomar Recife, Salvador, Riosul e Iguatemi Fortaleza pendentes de envio de AA (<span style="color:#dc2626; font-weight:700;">em atraso</span>) ➔ Enviar fotos e docs.<br>
+        • <strong>Shopping Leblon:</strong> AA enviado hoje (03/11) ➔ Em validação pela equipe Apple.<br>
+        • <strong>Rio Mar Fortaleza:</strong> Não aprovado (alarmes de APR, gráficos de mesa e fotos de acessórios) ➔ Em adequação iPlace.<br>
+        • <strong>Barra Sul & Recife:</strong> Aguardando fotos de correção (Barra Sul) e previsão de término de A0 (Recife).<br>
+        • <strong>Inaugurações:</strong> 4 em nov e 2 em dez (Brasília Shopping e Manauara a confirmar).
       </div>
     </div>
 
@@ -903,8 +908,9 @@ th.sorted-asc .sort-arrow, th.sorted-desc .sort-arrow { opacity: 1; color: var(-
     <select class="filter-select" id="status-filter" onchange="applyFilters()">
       <option value="">Todos os Status AA</option>
       <option value="Em atraso (prazo 30/10)">Em atraso (prazo 30/10) (2)</option>
-      <option value="Em adequação iPlace">Em adequação iPlace (4)</option>
-      <option value="AA pendente">AA pendente (Loja Aberta) (6)</option>
+      <option value="Em adequação iPlace">Em adequação iPlace (5)</option>
+      <option value="Em validação Apple">Em validação Apple (1)</option>
+      <option value="AA pendente">AA pendente (Loja Aberta) (4)</option>
       <option value="Pré-Abertura">Pré-Abertura (8)</option>
     </select>
 
@@ -912,8 +918,9 @@ th.sorted-asc .sort-arrow, th.sorted-desc .sort-arrow { opacity: 1; color: var(-
       <option value="">Filtrar por Marco / Grupo</option>
       <option value="overdue">🚨 Prazos Vencidos / Atrasos (30/10 & Abertas)</option>
       <option value="uy_25">🔸 2025 / UY (4 lojas)</option>
-      <option value="adequacao">Em Adequação iPlace (4 lojas)</option>
-      <option value="open_no_aa">Lojas Abertas sem AA (6 lojas)</option>
+      <option value="adequacao">Em Adequação iPlace (5 lojas)</option>
+      <option value="apple_val">Em Validação Apple (1 loja)</option>
+      <option value="open_no_aa">Lojas Abertas sem AA (4 lojas)</option>
       <option value="pre_opening">Inaugurações Nov & Dez (8 lojas)</option>
     </select>
 
@@ -936,10 +943,13 @@ th.sorted-asc .sort-arrow, th.sorted-desc .sort-arrow { opacity: 1; color: var(-
       <span class="pipe-dot" style="background:var(--red);"></span> Em atraso (30/10) <span class="chip-badge">2</span>
     </div>
     <div class="pipe-chip" onclick="setQuickFilter('adequacao')" id="chip-adequacao">
-      <span class="pipe-dot" style="background:var(--purple);"></span> Em adequação iPlace <span class="chip-badge">4</span>
+      <span class="pipe-dot" style="background:var(--purple);"></span> Em adequação iPlace <span class="chip-badge">5</span>
+    </div>
+    <div class="pipe-chip" onclick="setQuickFilter('validacao_apple')" id="chip-apple">
+      <span class="pipe-dot" style="background:var(--blue);"></span> Validação Apple <span class="chip-badge">1</span>
     </div>
     <div class="pipe-chip" onclick="setQuickFilter('open_no_aa')" id="chip-open">
-      <span class="pipe-dot" style="background:var(--orange);"></span> Lojas Abertas (AA a Enviar) <span class="chip-badge">6</span>
+      <span class="pipe-dot" style="background:var(--orange);"></span> Lojas Abertas (AA a Enviar) <span class="chip-badge">4</span>
     </div>
     <div class="pipe-chip" onclick="setQuickFilter('pre_opening')" id="chip-pre">
       <span class="pipe-dot" style="background:#64748b;"></span> Pré-Abertura <span class="chip-badge">8</span>
@@ -1078,17 +1088,25 @@ th.sorted-asc .sort-arrow, th.sorted-desc .sort-arrow { opacity: 1; color: var(-
         
         <div style="display: flex; flex-direction: column; gap: 8px; flex: 1;">
           <div style="background: #fff5f5; border: 1px solid #fecaca; border-radius: 8px; padding: 10px;">
-            <div style="font-weight: 700; color: #991b1b; font-size: 11.5px;">6 Lojas Já Abertas (AA Atrasado)</div>
+            <div style="font-weight: 700; color: #991b1b; font-size: 11.5px;">4 Lojas Já Abertas (AA Atrasado)</div>
             <div style="font-size: 11px; color: #7f1d1d; margin-top: 2px;">
-              Riomar Recife, Rio Mar Fortaleza, Salvador, Riosul, Leblon e Iguatemi Fortaleza.<br>
+              Riomar Recife, Salvador Shopping, Riosul e Iguatemi Fortaleza.<br>
               ➔ <strong>Ação iPlace:</strong> Enviar fotos e docs de AA imediatamente.
             </div>
           </div>
 
+          <div style="background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 8px; padding: 10px;">
+            <div style="font-weight: 700; color: #1e40af; font-size: 11.5px;">Em Validação Apple</div>
+            <div style="font-size: 11px; color: #1e3a8a; margin-top: 2px;">
+              • <strong>Shopping Leblon:</strong> AA enviado hoje (03/11) ➔ Em validação pela equipe Apple.
+            </div>
+          </div>
+
           <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 10px;">
-            <div style="font-weight: 700; color: #334155; font-size: 11.5px;">Adequações Técnicas</div>
+            <div style="font-weight: 700; color: #334155; font-size: 11.5px;">Adequações Técnicas iPlace</div>
             <div style="font-size: 11px; color: #475569; margin-top: 2px;">
-              • <strong>Barra Shopping Sul:</strong> Aguardando fotos adicionais para comprovar correção.<br>
+              • <strong>Rio Mar Fortaleza:</strong> Não aprovado (retorno 06/10: alarmes APR, gráficos de mesa e fotos de acessórios).<br>
+              • <strong>Barra Shopping Sul:</strong> Aguardando fotos adicionais para comprovar correção (fachada).<br>
               • <strong>Shopping Recife:</strong> Informar previsão para conclusão de A0.
             </div>
           </div>
@@ -1315,22 +1333,22 @@ const RAW_DATA = [
     name: "IPLACE SHOPPING RIO MAR FORTALEZA",
     group: "Refit 2026",
     resp: "iPlace",
-    status: "AA pendente",
+    status: "Em adequação iPlace",
     tod: "09/09/2026",
-    round: null,
-    sub1: "",
-    subUlt: "",
+    round: 1,
+    sub1: "06/10/2026",
+    subUlt: "06/10/2026",
     subMia: "",
     fbMia: "",
-    fbIp: "",
+    fbIp: "06/10/2026",
     retIp: "",
     appAA: "",
     sffSub: "",
     sffApp: "",
-    notes: "Loja aberta e operando; aguardando pacote inicial de fotos/documentos de AA.",
-    statusClass: "badge-orange",
-    noteClass: "neutral",
-    category: "open_no_aa"
+    notes: "AA não aprovado (retorno 06/10): alarmes de APR em uso, correção no local dos gráficos de mesa e fotos de acessórios.",
+    statusClass: "badge-adequacao",
+    noteClass: "adequacao",
+    category: "adequacao"
   },
   {
     id: "2401400",
@@ -1380,12 +1398,12 @@ const RAW_DATA = [
     id: "1685237",
     name: "IPLACE SHOPPING LEBLON",
     group: "Refit 2026",
-    resp: "iPlace",
-    status: "AA pendente",
+    resp: "Apple",
+    status: "Em validação Apple",
     tod: "05/10/2026",
-    round: null,
-    sub1: "",
-    subUlt: "",
+    round: 1,
+    sub1: "03/11/2026",
+    subUlt: "03/11/2026",
     subMia: "",
     fbMia: "",
     fbIp: "",
@@ -1393,10 +1411,10 @@ const RAW_DATA = [
     appAA: "",
     sffSub: "",
     sffApp: "",
-    notes: "Loja aberta e operando; aguardando pacote inicial de fotos/documentos de AA.",
-    statusClass: "badge-orange",
+    notes: "AA enviado hoje (03/11/2026) — em validação pela equipe Apple.",
+    statusClass: "badge-blue",
     noteClass: "neutral",
-    category: "open_no_aa"
+    category: "validacao_apple"
   },
   {
     id: "727819",
