@@ -886,9 +886,8 @@ th.sorted-asc .sort-arrow, th.sorted-desc .sort-arrow { opacity: 1; color: var(-
 
     <!-- Refit 2026 -->
     <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 12px; display: flex; flex-direction: column;">
-      <div style="font-weight: 800; color: #0369a1; margin-bottom: 6px; font-size: 12px; display: flex; align-items: center; justify-content: space-between;">
-        <span>🔹 Refit 2026</span>
-        <span style="background: #e0f2fe; color: #0369a1; border: 1px solid #bae6fd; font-size: 9.5px; font-weight: 700; padding: 1px 6px; border-radius: 10px;">16 Lojas</span>
+      <div style="font-weight: 800; color: #0369a1; margin-bottom: 6px; font-size: 12px;">
+        🔹 Refit 2026
       </div>
       <div style="color: var(--text-sec); flex: 1; line-height: 1.65;">
         • <strong>2 em validação Apple:</strong> Barra Shopping Sul e Riosul Shopping.<br>
@@ -1030,7 +1029,7 @@ th.sorted-asc .sort-arrow, th.sorted-desc .sort-arrow { opacity: 1; color: var(-
         
         <div style="display: flex; flex-direction: column; gap: 8px; flex: 1;">
           <div style="background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 8px; padding: 10px;">
-            <div style="font-weight: 700; color: #15803d; font-size: 11.5px;">IPLACE IGUATEMI CAMPINAS (991538)</div>
+            <div style="font-weight: 700; color: #15803d; font-size: 11.5px;">IPLACE IGUATEMI CAMPINAS (SEM SFF) (991538)</div>
             <div style="font-size: 11px; color: #166534; margin-top: 2px;">
               Retorno iPlace 11/11 ➔ <strong>Aprovado pela Apple em 13/11/2026</strong>.<br>
               Loja não tem SFF — <strong style="color:#15803d;">Processo finalizado com sucesso!</strong> ✅
@@ -1104,7 +1103,6 @@ th.sorted-asc .sort-arrow, th.sorted-desc .sort-arrow { opacity: 1; color: var(-
       <div class="card" style="border-top: 4px solid #0284c7; display: flex; flex-direction: column; padding: 16px;">
         <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
           <h2 style="margin: 0; color: #0369a1; font-size: 13.5px;">🔹 Refit 2026</h2>
-          <span style="background: #f0f9ff; color: #0284c7; border: 1px solid #bae6fd; font-size: 10px; font-weight: 700; padding: 2px 7px; border-radius: 12px;">16 Lojas</span>
         </div>
         <p class="card-desc" style="margin-bottom: 10px;">Lojas abertas, validações e adequações:</p>
         
@@ -1204,7 +1202,7 @@ const RAW_DATA = [
   // ── 1. AA APROVADO ──
   {
     id: "991538",
-    name: "IPLACE IGUATEMI CAMPINAS",
+    name: "IPLACE IGUATEMI CAMPINAS (SEM SFF)",
     group: "AA 2025",
     resp: "iPlace",
     status: "AA Aprovado",
@@ -1217,8 +1215,8 @@ const RAW_DATA = [
     fbIp: "13/11/2026",
     retIp: "11/11/2026",
     appAA: "13/11/2026",
-    sffSub: "—",
-    sffApp: "—",
+    sffSub: "N/A",
+    sffApp: "N/A",
     notes: "Retorno enviado pela iPlace em 11/11 — Aprovado pela Apple em 13/11. Loja não tem SFF, processo finalizado.",
     statusClass: "badge-green",
     noteClass: "neutral",
@@ -1480,7 +1478,7 @@ const RAW_DATA = [
     group: "Refit 2026",
     resp: "iPlace",
     status: "Confirmar Abertura (iPlace)",
-    tod: "12/11/2026 ↑",
+    tod: "12/11/2026",
     round: null,
     sub1: "",
     subUlt: "",
@@ -1599,8 +1597,8 @@ const RAW_DATA = [
     fbIp: "",
     retIp: "",
     appAA: "",
-    sffSub: "",
-    sffApp: "",
+    sffSub: "N/A",
+    sffApp: "N/A",
     notes: "Inauguração confirmada para 08/12/2026 (SEM SFF).",
     statusClass: "badge-blue",
     noteClass: "neutral",
@@ -1783,7 +1781,7 @@ function renderTable(data) {
             ${item.status}
           </span>
         </td>
-        <td class="date-cell" style="font-weight:600; ${item.tod.includes('↑') ? 'color:var(--orange); font-weight:700;' : ''}">
+        <td class="date-cell" style="font-weight:600;">
           ${item.tod}
         </td>
         <td style="text-align:center;">${roundHtml}</td>
