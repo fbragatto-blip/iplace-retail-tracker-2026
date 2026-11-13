@@ -803,7 +803,7 @@ th.sorted-asc .sort-arrow, th.sorted-desc .sort-arrow { opacity: 1; color: var(-
     </div>
   </div>
 
-  <!-- 6 Clean Quadrants (20 = 1 + 3 + 7 + 1 + 8) -->
+  <!-- 7 Clean Quadrants (20 = 1 + 3 + 7 + 1 + 1 + 7) -->
   <div class="hdr-stats">
     <div class="stat-card">
       <div class="stat-num" id="st-total">20</div>
@@ -815,18 +815,22 @@ th.sorted-asc .sort-arrow, th.sorted-desc .sort-arrow { opacity: 1; color: var(-
     </div>
     <div class="stat-card" style="border-top: 3px solid var(--blue);">
       <div class="stat-num" style="color:var(--blue);" id="st-val">3</div>
-      <div class="stat-lbl">Em Validação</div>
+      <div class="stat-lbl">Validação Apple</div>
     </div>
     <div class="stat-card" style="border-top: 3px solid var(--purple);">
       <div class="stat-num" style="color:var(--purple-dark);" id="st-adeq">7</div>
       <div class="stat-lbl">Em Adequação</div>
+    </div>
+    <div class="stat-card" style="border-top: 3px solid var(--red);">
+      <div class="stat-num" style="color:var(--red);" id="st-conf">1</div>
+      <div class="stat-lbl">Confirmar Abertura</div>
     </div>
     <div class="stat-card" style="border-top: 3px solid var(--orange);">
       <div class="stat-num" style="color:var(--orange);" id="st-open">1</div>
       <div class="stat-lbl">Aberta s/ AA</div>
     </div>
     <div class="stat-card" style="border-top: 3px solid #64748b;">
-      <div class="stat-num" style="color:#64748b;" id="st-pre">8</div>
+      <div class="stat-num" style="color:#64748b;" id="st-pre">7</div>
       <div class="stat-lbl">Pré-Abertura</div>
     </div>
   </div>
@@ -886,10 +890,10 @@ th.sorted-asc .sort-arrow, th.sorted-desc .sort-arrow { opacity: 1; color: var(-
         🔹 Refit 2026
       </div>
       <div style="color: var(--text-sec); flex: 1;">
-        • <strong>Em Validação Apple:</strong> Barra Sul (submetido Mia 05/11) e Riosul (submetido Mia 12/11).<br>
-        • <strong>Boulevard Belém:</strong> TOD era 12/11 ➔ <strong style="color:#b91c1c;">Pendente confirmação de abertura por parte da iPlace.</strong><br>
-        • <strong>Em Adequação iPlace:</strong> Leblon, Riomar Recife e Iguatemi Fortaleza (inf. 10/11); Rio Mar Fortaleza e Shopping Recife ➔ <strong style="color:#c2410c;">Informar previsões de conclusão</strong>.<br>
-        • <strong>Aberta s/ AA:</strong> Salvador Shopping ➔ Enviar fotos e docs de AA imediatamente.<br>
+        • <strong>Em Validação Apple:</strong> Barra Sul e Riosul submetidos para Miami.<br>
+        • <strong>Boulevard Belém:</strong> TOD previsto era 12/11 ➔ <strong style="color:#b91c1c;">Pendente confirmação de abertura pelo iPlace</strong>.<br>
+        • <strong>5 Lojas com Adequações Pendentes:</strong> Leblon, Riomar Recife, Iguatemi Fortaleza, Rio Mar Fortaleza e Recife ➔ <strong style="color:#c2410c;">iPlace realizar correções e informar previsões de conclusão</strong>.<br>
+        • <strong>Aberta s/ AA:</strong> Salvador Shopping ➔ Enviar pacote inicial de fotos/docs de AA imediatamente.<br>
         • <strong>Próximas Inaugurações:</strong> Caxias (16/11), Beira Mar (26/11), Villa Romana (29/11), Amazonas (04/12), Park Brasília (08/12) + Brasília Shopping e Manauara (a confirmar).
       </div>
     </div>
@@ -911,19 +915,21 @@ th.sorted-asc .sort-arrow, th.sorted-desc .sort-arrow { opacity: 1; color: var(-
       <option value="AA Aprovado">AA Aprovado (1)</option>
       <option value="Em validação Apple">Em validação Apple (3)</option>
       <option value="Em adequação iPlace">Em adequação iPlace (7)</option>
+      <option value="Confirmar Abertura (iPlace)">Confirmar Abertura (iPlace) (1)</option>
       <option value="AA pendente">AA pendente (Loja Aberta) (1)</option>
-      <option value="Pré-Abertura">Pré-Abertura (8)</option>
+      <option value="Pré-Abertura">Pré-Abertura (7)</option>
     </select>
 
     <select class="filter-select" id="urgency-filter" onchange="applyFilters()">
-      <option value="">Filtrar por Marco / Grupo</option>
+      <option value="">Filtrar por Grupo / Ação</option>
       <option value="uy_25">🔸 2025 / UY (4 lojas)</option>
       <option value="refit26">🔹 Refit 2026 (16 lojas)</option>
       <option value="approved">AA Aprovado (1 loja)</option>
       <option value="validacao">Em Validação Apple (3 lojas)</option>
       <option value="adequacao">Em Adequação iPlace (7 lojas)</option>
+      <option value="confirmar">Confirmar Abertura (1 loja)</option>
       <option value="open_no_aa">Aberta sem envio de AA (1 loja)</option>
-      <option value="pre_opening">Inaugurações Nov & Dez (8 lojas)</option>
+      <option value="pre_opening">Inaugurações Nov & Dez (7 lojas)</option>
     </select>
 
     <div style="margin-left: auto; display: flex; gap: 8px;">
@@ -950,11 +956,14 @@ th.sorted-asc .sort-arrow, th.sorted-desc .sort-arrow { opacity: 1; color: var(-
     <div class="pipe-chip" onclick="setQuickFilter('adequacao')" id="chip-adequacao">
       <span class="pipe-dot" style="background:var(--purple);"></span> Em adequação iPlace <span class="chip-badge">7</span>
     </div>
+    <div class="pipe-chip" onclick="setQuickFilter('confirmar')" id="chip-confirmar">
+      <span class="pipe-dot" style="background:var(--red);"></span> Confirmar Abertura <span class="chip-badge">1</span>
+    </div>
     <div class="pipe-chip" onclick="setQuickFilter('open_no_aa')" id="chip-open">
       <span class="pipe-dot" style="background:var(--orange);"></span> Aberta s/ AA <span class="chip-badge">1</span>
     </div>
     <div class="pipe-chip" onclick="setQuickFilter('pre_opening')" id="chip-pre">
-      <span class="pipe-dot" style="background:#64748b;"></span> Pré-Abertura <span class="chip-badge">8</span>
+      <span class="pipe-dot" style="background:#64748b;"></span> Pré-Abertura <span class="chip-badge">7</span>
     </div>
   </div>
 
@@ -1469,7 +1478,7 @@ const RAW_DATA = [
     name: "IPLACE BOULEVARD SHOPPING BELEM",
     group: "Refit 2026",
     resp: "iPlace",
-    status: "Pré-Abertura",
+    status: "Confirmar Abertura (iPlace)",
     tod: "12/11/2026 ↑",
     round: null,
     sub1: "",
@@ -1481,10 +1490,10 @@ const RAW_DATA = [
     appAA: "",
     sffSub: "",
     sffApp: "",
-    notes: "TOD previsto era 12/11/2026 — pendente confirmação da abertura por parte da iPlace.",
-    statusClass: "badge-blue",
-    noteClass: "scheduled",
-    category: "pre_opening"
+    notes: "Pendente confirmação de abertura por parte da iPlace (TOD previsto: 12/11/2026).",
+    statusClass: "badge-scheduled",
+    noteClass: "alert",
+    category: "confirmar_abertura"
   },
   {
     id: "423032",
@@ -1679,6 +1688,7 @@ function setQuickFilter(type) {
                  type === 'approved' ? 'chip-approved' :
                  type === 'validacao' ? 'chip-validacao' :
                  type === 'adequacao' ? 'chip-adequacao' :
+                 type === 'confirmar' ? 'chip-confirmar' :
                  type === 'open_no_aa' ? 'chip-open' : 'chip-pre';
   const el = document.getElementById(chipId);
   if (el) el.classList.add('active');
@@ -1700,6 +1710,7 @@ function applyFilters() {
       if (currentQuick === 'approved' && item.category !== 'approved') return false;
       if (currentQuick === 'validacao' && item.category !== 'validacao') return false;
       if (currentQuick === 'adequacao' && item.category !== 'adequacao') return false;
+      if (currentQuick === 'confirmar' && item.category !== 'confirmar_abertura') return false;
       if (currentQuick === 'open_no_aa' && item.category !== 'open_no_aa') return false;
       if (currentQuick === 'pre_opening' && item.category !== 'pre_opening') return false;
     }
@@ -1708,8 +1719,8 @@ function applyFilters() {
     if (statusSel) {
       if (statusSel === 'Em adequação iPlace') {
         if (!item.status.includes('adequação')) return false;
-      } else if (statusSel === 'Em validação') {
-        if (!item.status.includes('validação') && !item.status.includes('Miami')) return false;
+      } else if (statusSel === 'Em validação Apple') {
+        if (!item.status.includes('validação')) return false;
       } else if (item.status !== statusSel) {
         return false;
       }
@@ -1722,6 +1733,7 @@ function applyFilters() {
       if (urgencySel === 'approved' && item.category !== 'approved') return false;
       if (urgencySel === 'validacao' && item.category !== 'validacao') return false;
       if (urgencySel === 'adequacao' && item.category !== 'adequacao') return false;
+      if (urgencySel === 'confirmar' && item.category !== 'confirmar_abertura') return false;
       if (urgencySel === 'open_no_aa' && item.category !== 'open_no_aa') return false;
       if (urgencySel === 'pre_opening' && item.category !== 'pre_opening') return false;
     }
@@ -1796,12 +1808,13 @@ function renderTable(data) {
 }
 
 function getStatusRank(status) {
-  if (status.includes('atraso')) return 1;
-  if (status.includes('adequação')) return 2;
-  if (status.includes('validação')) return 3;
-  if (status.includes('pendente')) return 4;
-  if (status.includes('Pré-Abertura')) return 5;
-  return 6;
+  if (status.includes('Aprovado')) return 1;
+  if (status.includes('validação')) return 2;
+  if (status.includes('adequação')) return 3;
+  if (status.includes('Confirmar Abertura')) return 4;
+  if (status.includes('pendente')) return 5;
+  if (status.includes('Pré-Abertura')) return 6;
+  return 7;
 }
 
 function sortTable(colIdx) {
